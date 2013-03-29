@@ -1,6 +1,13 @@
+# Generated files and folders #
+target/
 *.class
 
 # Package Files #
 *.jar
 *.war
 *.ear
+
+# Eclipse Metadata #
+.classpath
+.project
+.settings
