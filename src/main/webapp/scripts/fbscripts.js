@@ -7,6 +7,11 @@
 	      xfbml      : true  // parse XFBML - para escanear social plugins
 	    });
 	    
+	    //publicar en muro
+	    FB.ui({ 
+            method: 'feed' 
+          });
+	    
 	    function testAPI() {
 	        console.log('Welcome!  Fetching your information.... ');
 	        FB.api('/me', function(response) {
