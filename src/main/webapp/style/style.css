@@ -22,7 +22,35 @@ h3 {
     padding: 11px 0;
 }
 
-#logout {
-	position: absolute;
-	left: 75%;
+nav {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.75);
+}
+
+nav ul {
+    margin: 0 auto;
+    width: 960px;
+    list-style: none;
+}
+
+nav ul li {
+     float: left;
+}
+nav ul li a {
+    display: block;
+    margin-right: 20px;
+    width: 140px;
+    font-size: 14px;
+    line-height: 44px;
+    text-align: center;
+    text-decoration: none;
+    color: #777;
+}
+nav ul li a:hover {
+     color: #fff;
+}
+nav ul li.selected a {
+     color: #fff;
 }

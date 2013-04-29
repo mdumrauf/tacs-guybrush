@@ -18,11 +18,17 @@
         style="border:none; width:450px; height:80px">
         </iframe>
         
-  <button id="logout" type="button" onclick="FB.logout(function(response){})">Logout</button>
-  
   <header>
   <h1>Guybrush & friends</h1>
   </header>
+  
+  <nav>
+	  <ul>
+		  <li><a href="#" onClick='postear()'>Postear</a></li>
+		  <li><a href="#" onclick='cerrarSesion()'>Cerrar sesión</a></li>
+	  </ul>
+  </nav>
+  
 		
 </body>
 </html>

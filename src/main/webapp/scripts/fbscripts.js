@@ -7,10 +7,6 @@
 	      xfbml      : true  // parse XFBML - para escanear social plugins
 	    });
 	    
-	    //publicar en muro
-	    FB.ui({ 
-            method: 'feed' 
-          });
 	    
 	    function testAPI() {
 	        console.log('Welcome!  Fetching your information.... ');
@@ -56,3 +52,14 @@
 	     js.src = "//connect.facebook.net/es_LA/all.js";
 	     ref.parentNode.insertBefore(js, ref);
 	   }(document));
+	  
+	  
+function postear(){
+	  FB.ui({ 
+          method: 'feed' 
+        });
+}
+
+function cerrarSesion(){
+	FB.logout(function(response){})
+}
