@@ -1,9 +1,9 @@
  window.fbAsyncInit = function() {
 	    FB.init({
-	      appId      : 576930012331758, // App ID
+	      appId      : 475074325879764, // App ID
 	      channelUrl : '//localhost:8080/', // Channel File
 	      status     : true, // check login status
-	      cookie     : false, // enable cookies to allow the server to access the session
+	      cookie     : true, // enable cookies to allow the server to access the session
 	      xfbml      : true  // parse XFBML - para escanear social plugins
 	    });
 	    
@@ -54,7 +54,7 @@
 	   }(document));
 	  
 	  
-function postear(){
+function post(){
 	  FB.ui({ 
           method: 'feed' 
         });

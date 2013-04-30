@@ -24,7 +24,7 @@
   
   <nav>
 	  <ul>
-		  <li><a href="#" onClick='postear()'>Postear</a></li>
+		  <li><a href="#" onClick='post()'>Postear</a></li>
 		  <li><a href="#" onclick='cerrarSesion()'>Cerrar sesión</a></li>
 	  </ul>
   </nav>
