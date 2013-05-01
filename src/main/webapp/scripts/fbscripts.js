@@ -60,6 +60,6 @@ function post(){
         });
 }
 
-function cerrarSesion(){
+function closeFbSession(){
 	FB.logout(function(response){})
 }

@@ -28,7 +28,7 @@
   <script type="text/javascript">
   	$(document).ready(function(){
   		$('#post').bind({click: post});
-  		$('#close-session').bind({click: post});
+  		$('#close-session').bind({click: closeFbSession});
   	})
   </script>
 		
