@@ -37,6 +37,7 @@ nav ul {
 
 nav ul li {
      float: left;
+     display: block;
 }
 nav ul li a {
     display: block;
@@ -47,6 +48,11 @@ nav ul li a {
     text-align: center;
     text-decoration: none;
     color: #777;
+}
+nav ul li:hover {
+	border-bottom: solid;
+	border-bottom-color: #f00;
+	border-bottom-width: 3px;
 }
 nav ul li a:hover {
      color: #fff;
