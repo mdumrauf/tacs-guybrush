@@ -5,7 +5,44 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 
-	<welcome-file-list>
-	    <welcome-file>index.jsp</welcome-file>
-	</welcome-file-list>
+  <display-name>Guybrush Web Application</display-name>
+  <servlet>
+    <servlet-name>LoginServlet</servlet-name>
+    <servlet-class>ar.edu.utn.tacs.guybrush.LoginServlet</servlet-class>
+  </servlet>
+  
+  <servlet>
+    <servlet-name>LogoutServlet</servlet-name>
+    <servlet-class>ar.edu.utn.tacs.guybrush.LogoutServlet</servlet-class>
+  </servlet>  
+  
+  <servlet>
+    <servlet-name>AddTorrentServlet</servlet-name>
+    <servlet-class>ar.edu.utn.tacs.guybrush.AddTorrentServlet</servlet-class>
+  </servlet>  
+  
+  <servlet>
+    <servlet-name>GetFeedServlet</servlet-name>
+    <servlet-class>ar.edu.utn.tacs.guybrush.GetFeedServlet</servlet-class>
+  </servlet>  
+  
+  <servlet-mapping>
+    <servlet-name>GetFeedServlet</servlet-name>
+    <url-pattern>getFeed</url-pattern>
+  </servlet-mapping>     
+  
+  <servlet-mapping>
+    <servlet-name>AddTorrentServlet</servlet-name>
+    <url-pattern>addTorrent</url-pattern>
+  </servlet-mapping>   
+  
+  <servlet-mapping>
+    <servlet-name>LogoutServlet</servlet-name>
+    <url-pattern>logout</url-pattern>
+  </servlet-mapping>  
+
+  <servlet-mapping>
+    <servlet-name>LoginServlet</servlet-name>
+    <url-pattern>login</url-pattern>
+  </servlet-mapping>
 </web-app>

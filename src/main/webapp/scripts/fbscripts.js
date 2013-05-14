@@ -1,4 +1,5 @@
- window.fbAsyncInit = function() {
+var userId; 
+window.fbAsyncInit = function() {
 	    FB.init({
 	      appId      : 475074325879764, // App ID
 	      channelUrl : '//localhost:8080/', // Channel File
@@ -7,40 +8,27 @@
 	      xfbml      : true  // parse XFBML - para escanear social plugins
 	    });
 	    
-	    
-	    function testAPI() {
-	        console.log('Welcome!  Fetching your information.... ');
-	        FB.api('/me', function(response) {
-	            console.log('Good to see you, ' + response.name + '.');
-	        });
-	    }
-	    
-	    function login() {
-	        FB.login(function(response) {
-	            if (response.authResponse) {
-	                // connected
-	            	testAPI();
-	            	
-	            } else {
-	                // cancelled
-	            }
-	        });
-	    }
-	    	    
-	    FB.getLoginStatus(function(response) {
-	    	  if (response.status === 'connected') {
-	    	    // connected
-	    		  testAPI();
-	    	  } else if (response.status === 'not_authorized') {
-	    	    // not_authorized
-	    		  // login();
-	    	  } else {
-	    	    // not_logged_in
-	    		  // login();
-	    	  }
-	    	 });
+	    FB.Event.subscribe('auth.login',
+	    	    function(response) {
+	    			loginOnServer(response.authResponse.userID);
+	    	    }
+	    	);
 	
-	    // Additional init code here
+	    function loginOnServer(uid) {
+	    	userId = uid;
+	    	$.ajax({
+	    			url: "/login?userId=" + userId,						
+					type: "get",
+					error: function(status){
+						alert("Error al loguear el usuario en el servidor");
+					},
+					success: function(){
+						var feedLink = 'localhost:8080/getFeed?userId=' + userId;
+						$("#feedUrl").attr('href', feedLink);
+						$("#appCommands").show();
+					}
+	    	});
+	    }
 	
 	  };
 	
@@ -54,12 +42,39 @@
 	   }(document));
 	  
 	  
-function post(){
-	  FB.ui({ 
-          method: 'feed' 
-        });
-}
+		function post(){
+			  FB.ui({ 
+		          method: 'feed' 
+		        });
+		}
+		
+		function addTorrent() {
+			var link = $("#addTorrentTextBox").val();
+	    	$.ajax({
+    			url: "/addTorrent?link=" + link,						
+				type: "get",
+				error: function(status){
+					alert("Error al agregar torrent");
+				},
+				success: function(){
+					alert("Torrent agregado con éxito");
+				}
+    	});			
+			
+		}
 
-function closeFbSession(){
-	FB.logout(function(response){})
+		function closeFbSession(){
+			FB.logout(function(response){
+		    	$.ajax({
+					url: "/logout?userId=" + response.authResponse.userID,						
+					type: "get",
+					error: function(status){
+						alert("Error al desloguear el usuario en el servidor");
+					},
+					success: function(){
+						$("#appCommands").hide();
+					}
+			});
+		});
+	
 }

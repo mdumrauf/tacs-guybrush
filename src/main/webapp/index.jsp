@@ -16,11 +16,18 @@
   <header>
   	<h1>Guybrush & friends</h1>
   </header>
-  
+    
   <nav>
-	  <ul>
+	  <ul id="appCommands" style="visiblity:hidden">
 		  <li><a id="post" href="#" >Postear</a></li>
-		  <li><a id="close-session" href="#">Cerrar sesiÃ³n</a></li>
+		  <li>
+		  	<input type="text" id="addTorrentTextBox" style="display:block"/>
+		  	<button id="addTorrentButton">Compartir torrent</button>
+		  </li>
+		  <li>
+		  	<a id="feedUrl">Link al feed</a>
+		  </li>
+		  <li id="logout"><a id="close-session" href="#">Cerrar sesión</a></li>
 	  </ul>
   </nav>
   
@@ -29,6 +36,8 @@
   	$(document).ready(function(){
   		$('#post').bind({click: post});
   		$('#close-session').bind({click: closeFbSession});
+		$("#appCommands").hide();
+		$("#addTorrentButton").bind({click: addTorrent});
   	})
   </script>
 		
