@@ -53,20 +53,47 @@ public class Feed {
 
 	public String build() {
 		datastore = DatastoreServiceFactory.getDatastoreService();
-		Entity feed = this.getEntity();
-		links = this.getLinks(feed);
+		Entity feed = this.getEntity();	
+		links = this.getLinks(feed);		
 		Element root = new Element("rss");
-		Element channel = new Element("channel");
-		for(String linkString : links) {
-			Element item = new Element("item");
-			Element link = new Element("link");
-			link.appendChild(linkString);
-			item.appendChild(link);
-			channel.appendChild(item);
-		}
-		root.appendChild(channel);
+		root.appendChild(this.buildRSSChannel());
 		Document doc = new Document(root);
 		System.out.print(doc.toXML());
 		return doc.toXML();
-	}		
+	}
+	
+	private Element buildRSSChannel() {
+		Element channel = new Element("channel");
+		Element channelTitle = new Element("title");
+		channelTitle.appendChild("Torrents RSS");
+		Element channelLink = new Element("link");
+		channelLink.appendChild("localhost:8080");
+		Element channelDescription = new Element("description");
+		channelDescription.appendChild("TACS Guybrush torrents feed");
+		
+		channel.appendChild(channelTitle);
+		channel.appendChild(channelLink);
+		channel.appendChild(channelDescription);
+		
+		return this.buildRSSItems(channel);
+	}
+	
+	private Element buildRSSItems(Element channel) {
+		for(String linkString : links) {
+			Element item = new Element("item");
+			Element itemTitle = new Element("title");
+			Element itemLink = new Element("link");
+			Element itemDescription = new Element("description");
+			itemTitle.appendChild("torrent title");
+			itemLink.appendChild(linkString);
+			itemDescription.appendChild("description");
+			
+			item.appendChild(itemTitle);
+			item.appendChild(itemLink);
+			item.appendChild(itemDescription);
+			
+			channel.appendChild(item);
+		}
+		return channel;
+	}
 }
