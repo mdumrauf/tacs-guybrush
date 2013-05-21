@@ -20,7 +20,7 @@
   <nav>
 	  <ul>
 		  <li><a id="post" href="#" >Postear</a></li>
-		  <li><a id="close-session" href="#">Cerrar sesión</a></li>
+		  <li><a id="close-session" href="#">Cerrar sesiÃ³n</a></li>
 	  </ul>
   </nav>
   
