@@ -1,4 +1,4 @@
-package ar.edu.utn.tacs.guybrush;
+package ar.edu.utn.tacs.guybrush.servlet;
 
 import static ar.edu.utn.tacs.guybrush.model.FeedConstants.USER_ID;
 
@@ -10,15 +10,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-public class LoginServlet extends HttpServlet {
+public class LogoutServlet extends HttpServlet {
 
-	private static final long serialVersionUID = -1017068284122307416L;
+	private static final long serialVersionUID = 5895522033839276049L;
 
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		int userId = Integer.parseInt(req.getParameter(USER_ID));
 		HttpSession session = req.getSession();
-		session.setAttribute(USER_ID, userId);
+		session.removeAttribute(USER_ID);
 	}
-
 }

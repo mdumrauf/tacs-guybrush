@@ -8,22 +8,22 @@
   <display-name>Guybrush Web Application</display-name>
   <servlet>
     <servlet-name>LoginServlet</servlet-name>
-    <servlet-class>ar.edu.utn.tacs.guybrush.LoginServlet</servlet-class>
+    <servlet-class>ar.edu.utn.tacs.guybrush.servlet.LoginServlet</servlet-class>
   </servlet>
   
   <servlet>
     <servlet-name>LogoutServlet</servlet-name>
-    <servlet-class>ar.edu.utn.tacs.guybrush.LogoutServlet</servlet-class>
+    <servlet-class>ar.edu.utn.tacs.guybrush.servlet.LogoutServlet</servlet-class>
   </servlet>  
   
   <servlet>
     <servlet-name>AddTorrentServlet</servlet-name>
-    <servlet-class>ar.edu.utn.tacs.guybrush.AddTorrentServlet</servlet-class>
+    <servlet-class>ar.edu.utn.tacs.guybrush.servlet.AddTorrentServlet</servlet-class>
   </servlet>  
   
   <servlet>
     <servlet-name>GetFeedServlet</servlet-name>
-    <servlet-class>ar.edu.utn.tacs.guybrush.GetFeedServlet</servlet-class>
+    <servlet-class>ar.edu.utn.tacs.guybrush.servlet.GetFeedServlet</servlet-class>
   </servlet>  
   
   <servlet-mapping>

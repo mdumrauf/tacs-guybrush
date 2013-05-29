@@ -1,6 +1,5 @@
-package ar.edu.utn.tacs.guybrush;
+package ar.edu.utn.tacs.guybrush.servlet;
 
-import static ar.edu.utn.tacs.guybrush.model.FeedConstants.LINK;
 import static ar.edu.utn.tacs.guybrush.model.FeedConstants.USER_ID;
 
 import java.io.IOException;
@@ -11,17 +10,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import ar.edu.utn.tacs.guybrush.model.Feed;
+public class LoginServlet extends HttpServlet {
 
-public class AddTorrentServlet extends HttpServlet {
-
-	private static final long serialVersionUID = 8656321060283652172L;
+	private static final long serialVersionUID = -1017068284122307416L;
 
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
+		int userId = Integer.parseInt(req.getParameter(USER_ID));
 		HttpSession session = req.getSession();
-		String link = req.getParameter(LINK);
-		int userId = (Integer) (session.getAttribute(USER_ID));
-		new Feed(userId).addLink(link);
+		session.setAttribute(USER_ID, userId);
 	}
+
 }
