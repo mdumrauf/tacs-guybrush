@@ -1,5 +1,7 @@
 package ar.edu.utn.tacs.guybrush;
 
+import static ar.edu.utn.tacs.guybrush.FeedConstants.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,16 +31,16 @@ public class Feed {
 		Entity feed = this.getEntity();
 		links = this.getLinks(feed);
 		links.add(link);
-		feed.setProperty("links", links);
+		feed.setProperty(LINKS, links);
 		datastore.put(feed);
 	}
 
 	private List<String> getLinks(Entity e) {
-		return (List<String>) e.getProperty("links");
+		return (List<String>) e.getProperty(LINKS);
 	}
 
 	private Entity getEntity() {
-		Query q = new Query("feed").setFilter(new FilterPredicate("userId",
+		Query q = new Query(FEED).setFilter(new FilterPredicate(USER_ID,
 				FilterOperator.EQUAL, userId));
 		PreparedQuery pq = datastore.prepare(q);
 		Entity feed = pq.asSingleEntity();
@@ -48,9 +50,9 @@ public class Feed {
 	}
 
 	private Entity createEntity() {
-		Entity feed = new Entity("feed");
-		feed.setProperty("userId", userId);
-		feed.setProperty("links", new ArrayList<String>());
+		Entity feed = new Entity(FEED);
+		feed.setProperty(USER_ID, userId);
+		feed.setProperty(LINKS, new ArrayList<String>());
 		return feed;
 	}
 
@@ -58,7 +60,7 @@ public class Feed {
 		datastore = DatastoreServiceFactory.getDatastoreService();
 		Entity feed = this.getEntity();
 		links = this.getLinks(feed);
-		Element root = new Element("rss");
+		Element root = new Element(RSS);
 		root.appendChild(this.buildRSSChannel());
 		Document doc = new Document(root);
 		System.out.print(doc.toXML());
@@ -66,13 +68,13 @@ public class Feed {
 	}
 
 	private Element buildRSSChannel() {
-		Element channel = new Element("channel");
-		Element channelTitle = new Element("title");
-		channelTitle.appendChild("Torrents RSS");
-		Element channelLink = new Element("link");
+		Element channel = new Element(CHANNEL);
+		Element channelTitle = new Element(TITLE);
+		channelTitle.appendChild(CHANNEL_TITLE);
+		Element channelLink = new Element(LINK);
 		channelLink.appendChild("localhost:8080");
-		Element channelDescription = new Element("description");
-		channelDescription.appendChild("TACS Guybrush torrents feed");
+		Element channelDescription = new Element(DESCRIPTION);
+		channelDescription.appendChild(APP_CHANNEL_DESCRIPTION);
 
 		channel.appendChild(channelTitle);
 		channel.appendChild(channelLink);
@@ -83,13 +85,13 @@ public class Feed {
 
 	private Element buildRSSItems(Element channel) {
 		for (String linkString : links) {
-			Element item = new Element("item");
-			Element itemTitle = new Element("title");
-			Element itemLink = new Element("link");
-			Element itemDescription = new Element("description");
-			itemTitle.appendChild("torrent title");
+			Element item = new Element(ITEM);
+			Element itemTitle = new Element(TITLE);
+			Element itemLink = new Element(LINK);
+			Element itemDescription = new Element(DESCRIPTION);
+			itemTitle.appendChild(TORRENT_TITLE);
 			itemLink.appendChild(linkString);
-			itemDescription.appendChild("description");
+			itemDescription.appendChild(DESCRIPTION);
 
 			item.appendChild(itemTitle);
 			item.appendChild(itemLink);

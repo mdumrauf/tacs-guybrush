@@ -1,5 +1,7 @@
 package ar.edu.utn.tacs.guybrush;
 
+import static ar.edu.utn.tacs.guybrush.FeedConstants.USER_ID;
+
 import java.io.IOException;
 
 import javax.servlet.ServletException;
@@ -15,6 +17,6 @@ public class LogoutServlet extends HttpServlet {
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		HttpSession session = req.getSession();
-		session.removeAttribute("userId");
+		session.removeAttribute(USER_ID);
 	}
 }

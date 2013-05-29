@@ -1,5 +1,8 @@
 package ar.edu.utn.tacs.guybrush;
 
+import static ar.edu.utn.tacs.guybrush.FeedConstants.LINK;
+import static ar.edu.utn.tacs.guybrush.FeedConstants.USER_ID;
+
 import java.io.IOException;
 
 import javax.servlet.ServletException;
@@ -15,8 +18,8 @@ public class AddTorrentServlet extends HttpServlet {
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		HttpSession session = req.getSession();
-		String link = req.getParameter("link");
-		int userId = (Integer) (session.getAttribute("userId"));
+		String link = req.getParameter(LINK);
+		int userId = (Integer) (session.getAttribute(USER_ID));
 		new Feed(userId).addLink(link);
 	}
 }
