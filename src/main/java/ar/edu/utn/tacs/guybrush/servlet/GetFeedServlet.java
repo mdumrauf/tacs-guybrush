@@ -17,7 +17,11 @@ public class GetFeedServlet extends HttpServlet {
 
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		int userId = Integer.parseInt(req.getParameter(USER_ID));
+		int userId = getUserId(req);
 		resp.getWriter().write(new Feed(userId).build());
+	}
+
+	private static int getUserId(HttpServletRequest req) {
+		return Integer.parseInt(req.getParameter(USER_ID));
 	}
 }
