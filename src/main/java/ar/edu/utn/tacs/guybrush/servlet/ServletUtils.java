@@ -16,6 +16,10 @@ final class ServletUtils {
 	}
 
 	static int getUserId(HttpSession session) {
-		return (Integer) session.getAttribute(USER_ID);
+		try {
+			return (Integer) session.getAttribute(USER_ID);
+		} catch (ClassCastException e) {
+			throw new NumberFormatException(e.getMessage());
+		}
 	}
 }
