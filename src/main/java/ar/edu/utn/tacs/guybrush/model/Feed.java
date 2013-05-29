@@ -4,6 +4,7 @@ import static ar.edu.utn.tacs.guybrush.model.FeedConstants.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 import nu.xom.Document;
 import nu.xom.Element;
@@ -18,6 +19,7 @@ import com.google.appengine.api.datastore.Query.FilterPredicate;
 
 public class Feed {
 
+	private Logger logger = Logger.getLogger(Feed.class.getName());
 	private List<String> links = new ArrayList<String>();
 	private long userId;
 	private DatastoreService datastore;
@@ -63,7 +65,7 @@ public class Feed {
 		Element root = new Element(RSS);
 		root.appendChild(this.buildRSSChannel());
 		Document doc = new Document(root);
-		System.out.print(doc.toXML());
+		logger.info(doc.toXML());
 		return doc.toXML();
 	}
 
