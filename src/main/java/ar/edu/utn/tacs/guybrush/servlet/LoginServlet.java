@@ -13,6 +13,7 @@ public class LoginServlet extends HttpServlet {
 
 	private static final long serialVersionUID = -1017068284122307416L;
 
+	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		long userId = ServletUtils.getUserId(req);
 		HttpSession session = req.getSession();
