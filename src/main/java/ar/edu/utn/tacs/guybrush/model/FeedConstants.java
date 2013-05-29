@@ -1,4 +1,4 @@
-package ar.edu.utn.tacs.guybrush;
+package ar.edu.utn.tacs.guybrush.model;
 
 public interface FeedConstants {
 

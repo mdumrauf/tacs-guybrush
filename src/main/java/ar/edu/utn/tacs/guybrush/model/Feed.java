@@ -1,6 +1,6 @@
-package ar.edu.utn.tacs.guybrush;
+package ar.edu.utn.tacs.guybrush.model;
 
-import static ar.edu.utn.tacs.guybrush.FeedConstants.*;
+import static ar.edu.utn.tacs.guybrush.model.FeedConstants.*;
 
 import java.util.ArrayList;
 import java.util.List;

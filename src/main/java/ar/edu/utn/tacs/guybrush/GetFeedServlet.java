@@ -1,6 +1,6 @@
 package ar.edu.utn.tacs.guybrush;
 
-import static ar.edu.utn.tacs.guybrush.FeedConstants.USER_ID;
+import static ar.edu.utn.tacs.guybrush.model.FeedConstants.USER_ID;
 
 import java.io.IOException;
 
@@ -8,6 +8,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import ar.edu.utn.tacs.guybrush.model.Feed;
 
 public class GetFeedServlet extends HttpServlet {
 

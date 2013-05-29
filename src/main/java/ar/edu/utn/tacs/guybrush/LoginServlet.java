@@ -1,6 +1,6 @@
 package ar.edu.utn.tacs.guybrush;
 
-import static ar.edu.utn.tacs.guybrush.FeedConstants.USER_ID;
+import static ar.edu.utn.tacs.guybrush.model.FeedConstants.USER_ID;
 
 import java.io.IOException;
 

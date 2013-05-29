@@ -1,7 +1,7 @@
 package ar.edu.utn.tacs.guybrush;
 
-import static ar.edu.utn.tacs.guybrush.FeedConstants.LINK;
-import static ar.edu.utn.tacs.guybrush.FeedConstants.USER_ID;
+import static ar.edu.utn.tacs.guybrush.model.FeedConstants.LINK;
+import static ar.edu.utn.tacs.guybrush.model.FeedConstants.USER_ID;
 
 import java.io.IOException;
 
@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import ar.edu.utn.tacs.guybrush.model.Feed;
 
 public class AddTorrentServlet extends HttpServlet {
 
