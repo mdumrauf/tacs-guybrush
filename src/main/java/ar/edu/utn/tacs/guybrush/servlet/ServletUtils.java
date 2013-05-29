@@ -11,13 +11,13 @@ final class ServletUtils {
 		// Utility class
 	}
 
-	static int getUserId(HttpServletRequest req) {
-		return Integer.parseInt(req.getParameter(USER_ID));
+	static long getUserId(HttpServletRequest req) {
+		return Long.parseLong(req.getParameter(USER_ID));
 	}
 
-	static int getUserId(HttpSession session) {
+	static long getUserId(HttpSession session) {
 		try {
-			return (Integer) session.getAttribute(USER_ID);
+			return (Long) session.getAttribute(USER_ID);
 		} catch (ClassCastException e) {
 			throw new NumberFormatException(e.getMessage());
 		}

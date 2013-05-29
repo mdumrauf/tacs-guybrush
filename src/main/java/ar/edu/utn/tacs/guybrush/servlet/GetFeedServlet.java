@@ -16,7 +16,7 @@ public class GetFeedServlet extends HttpServlet {
 
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		int userId = ServletUtils.getUserId(req);
+		long userId = ServletUtils.getUserId(req);
 		resp.getWriter().write(new Feed(userId).build());
 	}
 

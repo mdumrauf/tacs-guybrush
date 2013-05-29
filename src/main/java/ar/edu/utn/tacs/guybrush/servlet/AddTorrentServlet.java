@@ -18,7 +18,7 @@ public class AddTorrentServlet extends HttpServlet {
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		String link = req.getParameter(LINK);
-		int userId = ServletUtils.getUserId(req.getSession());
+		long userId = ServletUtils.getUserId(req.getSession());
 		new Feed(userId).addLink(link);
 	}
 }

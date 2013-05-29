@@ -19,10 +19,10 @@ import com.google.appengine.api.datastore.Query.FilterPredicate;
 public class Feed {
 
 	private List<String> links = new ArrayList<String>();
-	private int userId;
+	private long userId;
 	private DatastoreService datastore;
 
-	public Feed(int userId) {
+	public Feed(long userId) {
 		this.userId = userId;
 	}
 
