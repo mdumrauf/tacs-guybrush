@@ -18,7 +18,7 @@ window.fbAsyncInit = function() {
 	    	userId = uid;
 	    	$.ajax({
 	    			url: "/login?userId=" + userId,						
-					type: "get",
+					type: "post",
 					error: function(status){
 						alert("Error al loguear el usuario en el servidor");
 					},
@@ -52,7 +52,7 @@ window.fbAsyncInit = function() {
 			var link = $("#addTorrentTextBox").val();
 	    	$.ajax({
     			url: "/addTorrent?link=" + link,						
-				type: "get",
+				type: "post",
 				error: function(status){
 					alert("Error al agregar torrent");
 				},
@@ -67,7 +67,7 @@ window.fbAsyncInit = function() {
 			FB.logout(function(response){
 		    	$.ajax({
 					url: "/logout?userId=" + response.authResponse.userID,						
-					type: "get",
+					type: "post",
 					error: function(status){
 						alert("Error al desloguear el usuario en el servidor");
 					},
