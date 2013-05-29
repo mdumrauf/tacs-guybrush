@@ -4,7 +4,7 @@
   <groupId>ar.edu.utn.tacs.guybrush</groupId>
   <artifactId>guybrush</artifactId>
   <packaging>war</packaging>
-  <version>1.2-SNAPSHOT</version>
+  <version>1.2</version>
 
   <name>Guybrush Maven Webapp</name>
 
@@ -18,7 +18,7 @@
     <connection>scm:git:git@github.com:mdumrauf/tacs-guybrush.git</connection>
     <url>git:git@github.com:mdumrauf/tacs-guybrush.git</url>
     <developerConnection>scm:git:git@github.com:mdumrauf/tacs-guybrush.git</developerConnection>
-    <tag>HEAD</tag>
+    <tag>guybrush-1.2</tag>
   </scm>
 
   <dependencies>
