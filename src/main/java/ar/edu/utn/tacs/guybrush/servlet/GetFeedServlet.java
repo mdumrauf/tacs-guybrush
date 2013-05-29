@@ -1,6 +1,5 @@
 package ar.edu.utn.tacs.guybrush.servlet;
 
-import static ar.edu.utn.tacs.guybrush.model.FeedConstants.USER_ID;
 
 import java.io.IOException;
 
@@ -17,11 +16,8 @@ public class GetFeedServlet extends HttpServlet {
 
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		int userId = getUserId(req);
+		int userId = ServletUtils.getUserId(req);
 		resp.getWriter().write(new Feed(userId).build());
 	}
 
-	private static int getUserId(HttpServletRequest req) {
-		return Integer.parseInt(req.getParameter(USER_ID));
-	}
 }
