@@ -28,21 +28,21 @@
   
   <servlet-mapping>
     <servlet-name>GetFeedServlet</servlet-name>
-    <url-pattern>getFeed</url-pattern>
+    <url-pattern>/getFeed</url-pattern>
   </servlet-mapping>     
   
   <servlet-mapping>
     <servlet-name>AddTorrentServlet</servlet-name>
-    <url-pattern>addTorrent</url-pattern>
+    <url-pattern>/addTorrent</url-pattern>
   </servlet-mapping>   
   
   <servlet-mapping>
     <servlet-name>LogoutServlet</servlet-name>
-    <url-pattern>logout</url-pattern>
+    <url-pattern>/logout</url-pattern>
   </servlet-mapping>  
 
   <servlet-mapping>
     <servlet-name>LoginServlet</servlet-name>
-    <url-pattern>login</url-pattern>
+    <url-pattern>/login</url-pattern>
   </servlet-mapping>
 </web-app>
