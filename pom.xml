@@ -109,11 +109,6 @@
           <tagNameFormat>@{artifactId}-@{version}</tagNameFormat>
         </configuration>
       </plugin>
-      <plugin>
-	    <groupId>com.google.appengine</groupId>
-	    <artifactId>appengine-maven-plugin</artifactId>
-	    <version>1.8.0</version>
-	  </plugin>
     </plugins>
   </build>
 </project>
