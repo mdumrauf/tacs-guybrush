@@ -1,6 +1,7 @@
 package ar.edu.utn.tacs.guybrush.servlet;
 
 import java.io.IOException;
+import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -14,7 +15,9 @@ public class GetFeedServlet extends HttpServlet {
 
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+		Logger logger = Logger.getLogger(this.getClass().getName());
 		long userId = ServletUtils.getUserId(req);
+		logger.info("User ID: " + userId);
 		resp.getWriter().write(new Feed(userId).build());
 	}
 
