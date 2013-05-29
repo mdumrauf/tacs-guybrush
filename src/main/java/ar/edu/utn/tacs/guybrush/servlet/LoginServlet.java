@@ -16,7 +16,7 @@ public class LoginServlet extends HttpServlet {
 
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		int userId = Integer.parseInt(req.getParameter(USER_ID));
+		int userId = ServletUtils.getUserId(req);
 		HttpSession session = req.getSession();
 		session.setAttribute(USER_ID, userId);
 	}
