@@ -36,7 +36,7 @@
   	$(document).ready(function(){
   		$('#post').bind({click: post});
   		$('#close-session').bind({click: closeFbSession});
-		$("#appCommands").hide();
+		//$("#appCommands").hide();
 		$("#addTorrentButton").bind({click: addTorrent});
   	})
   </script>
