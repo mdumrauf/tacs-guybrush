@@ -1,8 +1,9 @@
 var userId;
+var domain = 'localhost:8080';
 window.fbAsyncInit = function() {
 	FB.init({
-		appId : 385248044922264, // App ID
-		channelUrl : '//localhost:8080/', // Channel File
+		appId : 175661185922694, // App ID
+		channelUrl : '//' + domain + '/', // Channel File
 		status : true, // check login status
 		cookie : true, // enable cookies to allow the server to access the
 						// session
@@ -30,7 +31,7 @@ window.fbAsyncInit = function() {
 				alert("Error al loguear el usuario en el servidor");
 			},
 			success : function() {
-				var feedLink = 'localhost:8080/getFeed?userId=' + userId;
+				var feedLink = domain + '/getFeed?userId=' + userId;
 				$("#feedUrl").attr('href', feedLink);
 				$("#appCommands").show();
 			}
