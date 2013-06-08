@@ -1,6 +1,17 @@
 package ar.edu.utn.tacs.guybrush.model;
 
-import static ar.edu.utn.tacs.guybrush.model.FeedConstants.*;
+import static ar.edu.utn.tacs.guybrush.model.FeedConstants.APP_CHANNEL_DESCRIPTION;
+import static ar.edu.utn.tacs.guybrush.model.FeedConstants.CHANNEL;
+import static ar.edu.utn.tacs.guybrush.model.FeedConstants.CHANNEL_TITLE;
+import static ar.edu.utn.tacs.guybrush.model.FeedConstants.DESCRIPTION;
+import static ar.edu.utn.tacs.guybrush.model.FeedConstants.FEED;
+import static ar.edu.utn.tacs.guybrush.model.FeedConstants.ITEM;
+import static ar.edu.utn.tacs.guybrush.model.FeedConstants.LINK;
+import static ar.edu.utn.tacs.guybrush.model.FeedConstants.LINKS;
+import static ar.edu.utn.tacs.guybrush.model.FeedConstants.RSS;
+import static ar.edu.utn.tacs.guybrush.model.FeedConstants.TITLE;
+import static ar.edu.utn.tacs.guybrush.model.FeedConstants.TORRENT_TITLE;
+import static ar.edu.utn.tacs.guybrush.model.FeedConstants.USER_ID;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +30,7 @@ import com.google.appengine.api.datastore.Query.FilterPredicate;
 
 public class Feed {
 
+	private static final String APP_LINK = "http://localhost:8080";
 	private Logger logger = Logger.getLogger(Feed.class.getName());
 	private List<String> links = new ArrayList<String>();
 	private long userId;
@@ -74,7 +86,7 @@ public class Feed {
 		Element channelTitle = new Element(TITLE);
 		channelTitle.appendChild(CHANNEL_TITLE);
 		Element channelLink = new Element(LINK);
-		channelLink.appendChild("localhost:8080");
+		channelLink.appendChild(APP_LINK);
 		Element channelDescription = new Element(DESCRIPTION);
 		channelDescription.appendChild(APP_CHANNEL_DESCRIPTION);
 
