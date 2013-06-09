@@ -16,7 +16,7 @@ public class AddTorrentServlet extends HttpServlet {
 	private static final long serialVersionUID = 8656321060283652172L;
 
 	@Override
-	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		Logger logger = Logger.getLogger(this.getClass().getName());
 		String link = req.getParameter(LINK);
 		long userId = ServletUtils.getUserId(req.getSession());

@@ -52,10 +52,11 @@ window.fbAsyncInit = function() {
 	ref.parentNode.insertBefore(js, ref);
 }(document));
 
+
 function postLink(torrent) {
     var obj = {
       method: 'feed',
-      link: torrent,
+      link: domain + 'addTorrent?link=' +torrent ,
       picture: 'http://blog.popcap.com/wp-content/blogs.dir/3/2013/01/guybrush.jpg',
       name: torrent,
       caption: 'Nuevo torrent!',
@@ -92,23 +93,33 @@ function post() {
 
 function addTorrent() {
 	var link = $("#addTorrentTextBox").val();
+	if(link==""){
+		alert("Ingrese un link de un torrent");
+		
+	}
+	else{
+	
+		sendTorrentToServlet(link);
+	}
+}
+	
+function sendTorrentToServlet(link){
 	$.ajax({
 		url : "/addTorrent?link=" + link,
-		type : "post",
+		type : "get",
 		error : function(status) {
 			alert("Error al agregar torrent");
 		},
 		success : function() {
 			var response=confirm("Torrent agregado con éxito\n\n¿Querés compartirlo en tu muro?");
 			if (response==true)
-			  {
+			{
 				postLink(link);
-			  }
+			}
 		}
 	});
-}
 	
-
+}
 
 
 function closeFbSession() {
