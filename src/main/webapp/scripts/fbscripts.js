@@ -52,9 +52,7 @@ window.fbAsyncInit = function() {
 	ref.parentNode.insertBefore(js, ref);
 }(document));
 
-function post(torrent) {
-	 // calling the API ...
-	if(torrent=='')torrent= 'www.google.com';
+function postLink(torrent) {
     var obj = {
       method: 'feed',
       link: torrent,
@@ -65,11 +63,33 @@ function post(torrent) {
     };
 
     function callback(response) {
-      document.getElementById('msg').innerHTML = "Post ID: " + response['post_id'];
-    }
+    	if (response && response.post_id) {
+            // Se posteo bien
+          } else {   
+          	alert('El link no se posteó correctamente');
+          	}
+          }    
 
     FB.ui(obj, callback);
 }
+
+function post() {
+    var obj = {
+      method: 'feed'
+      
+    };
+
+    function callback(response) {
+    	if (response && response.post_id) {
+            // Se posteo bien
+          } else {   
+          	alert('No se pudo postear en su muro');
+          	}
+          }    
+
+    FB.ui(obj, callback);
+}
+
 function addTorrent() {
 	var link = $("#addTorrentTextBox").val();
 	$.ajax({
@@ -78,14 +98,18 @@ function addTorrent() {
 		error : function(status) {
 			alert("Error al agregar torrent");
 		},
-		success : function() {link
-			alert("Torrent agregado con éxito");
-			//var link = $("#addTorrentTextBox").val();
-			post(link);
+		success : function() {
+			var response=confirm("Torrent agregado con éxito\n\n¿Querés compartirlo en tu muro?");
+			if (response==true)
+			  {
+				postLink(link);
+			  }
 		}
 	});
-L
 }
+	
+
+
 
 function closeFbSession() {
 	FB.logout(function(response) {
