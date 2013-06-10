@@ -56,7 +56,7 @@ window.fbAsyncInit = function() {
 function postLink(torrent) {
     var obj = {
       method: 'feed',
-      link: domain + 'addTorrent?link=' +torrent ,
+      link: domain + 'addTorrent?link=' +torrent +'&fromFB=true' ,
       picture: 'http://blog.popcap.com/wp-content/blogs.dir/3/2013/01/guybrush.jpg',
       name: torrent,
       caption: 'Nuevo torrent!',
@@ -105,7 +105,7 @@ function addTorrent() {
 	
 function sendTorrentToServlet(link){
 	$.ajax({
-		url : "/addTorrent?link=" + link,
+		url : "/addTorrent?link=" + link+'&fromFB=false',
 		type : "get",
 		error : function(status) {
 			alert("Error al agregar torrent");
