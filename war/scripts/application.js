@@ -1,7 +1,7 @@
 $(document).ready(function(){
 // Bindings
-	$(".addTorrentBtn").bind({click: showTorrentForm});
-	$(".shareFeed").bind({click: shareFeed});
+	$("#myFeedsList .addTorrentBtn").bind({click: showFormAddTorrent});
+	$("#myFeedsList .shareFeed").bind({click: shareFeed});
 	$("#submitNewFeed").bind({click: newFeed});
 	$("#newFeedBtn").bind({click: function (){
 		$("#formNewFeed").slideToggle();
@@ -19,7 +19,8 @@ $(document).ready(function(){
 		$("#myFeedsList #formAddTorrent").slideUp()}});
 
 // Action Functions
-	function newFeed(){
+	function newFeed(e){
+		e.preventDefault();
 		var feedName = $("#feedName").val();
 		var feedDescription = $("#feedDescription").val();
 		var feedHref = "#"; // Generar url del feed.
@@ -29,27 +30,27 @@ $(document).ready(function(){
 			return;
 		}
 		
-		var feed = $("<article><header><div class='actions'><button class='btn addTorrentBtn'><i class='icon-plus'></i></button>"
-			+ "<button class='btn shareFeed'><i class='icon-thumbs-up'></i></button></div><h3><a href='"
+		var feed = $("<article><header><div class='actions'><button class='btn addTorrentBtn'><i class='icon-plus'></i></button><button class='btn shareFeed'><i class='icon-thumbs-up'></i></button></div><h3><a href='"
 			+ feedHref + "'>"
 			+ feedName + "</a></h3></header><aside><p>"
 			+ feedDescription + "</p></aside><ul class='torrents'></ul></article>");
 			
-		$("#formNewFeed").after(feed).slideUp();
-		$(".addTorrentBtn").bind({click: showTorrentForm});
-		$(".shareFeed").bind({click: shareFeed});
+		$("#myFeedsList #formNewFeed").after(feed).slideUp();
+		$("#myFeedsList .addTorrentBtn").bind({click: showFormAddTorrent});
+		$("#myFeedsList .shareFeed").bind({click: shareFeed});
 	}
 	
-	function showTorrentForm(e){
+	function showFormAddTorrent(e){
 		e.preventDefault();
-		$("#myFeedsList #formAddTorrent").hide().remove();
-		$(formAddTorrent).prependTo($(this).closest("article").find("ul")).slideDown();
+		$("#myFeedsList #formAddTorrent").remove();
+		$(formAddTorrent).insertBefore($(this).closest("article").find("ul")).slideDown();
 		$("#addTorrent").bind({click: addTorrent});
 		$("#cancelTorrent").bind({click: function(){
-		$("#formAddTorrent").slideUp()}});
+			$("#myFeedsList #formAddTorrent").slideUp()}});
 	}
 	
-	function addTorrent(){
+	function addTorrent(e){
+		e.preventDefault();
 		var torrentName = $('#torrentName').val();
 		var torrentUrl = $('#torrentUrl').val();
 		
@@ -60,8 +61,8 @@ $(document).ready(function(){
 		
 		var torrent = $("<li><a href='" + torrentUrl + "'>" + torrentName + "</a></li>");
 		
-		$('#formAddTorrent').slideUp();
-		$(this).closest('ul').prepend(torrent);
+		$('#myFeedsList #formAddTorrent').slideUp();
+		$(this).closest('article').find('.torrents').prepend(torrent);
 	}
 	
 	function shareFeed(){

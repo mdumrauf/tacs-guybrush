@@ -1,3 +1,9 @@
+#logo {
+	background: url('img/logo/Original_266x75.png');
+	width:120;
+	height: 30;
+}
+
 #myFeedsList form {
 	padding: 10px;
 	background: #b0d0b6;
