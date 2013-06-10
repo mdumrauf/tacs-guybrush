@@ -6,7 +6,7 @@ window.fbAsyncInit = function() {
 		channelUrl : '//' + domain + '/', // Channel File
 		status : true, // check login status
 		cookie : true, // enable cookies to allow the server to access the
-						// session
+		// session
 		xfbml : true
 	// parse XFBML - para escanear social plugins
 	});
@@ -14,14 +14,13 @@ window.fbAsyncInit = function() {
 	FB.Event.subscribe('auth.login', function(response) {
 		loginOnServer(response.authResponse.userID);
 	});
-	
+
 	FB.getLoginStatus(function(response) {
-			  if (response.status === 'connected') {
-				  loginOnServer(response.authResponse.userID);
-			  }
+		if (response.status === 'connected') {
+			loginOnServer(response.authResponse.userID);
 		}
-	);
-	
+	});
+
 	function loginOnServer(uid) {
 		userId = uid;
 		$.ajax({
