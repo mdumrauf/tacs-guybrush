@@ -1,19 +1,22 @@
 $(document).ready(function(){
 // Bindings
-	$(".addTorrentBtn").bind({click: addTorrentForm});
+	$(".addTorrentBtn").bind({click: showTorrentForm});
 	$(".shareFeed").bind({click: shareFeed});
 	$("#submitNewFeed").bind({click: newFeed});
 	$("#newFeedBtn").bind({click: function (){
 		$("#formNewFeed").slideToggle();
 	}});
-
-// Structure
-	$("#formNewFeed").hide();
 	
 // One form for adding torrents for all the document.
 	var formAddTorrent = $("<form id='formAddTorrent'><fieldset><label>Name</label><input id='torrentName' type='text' placeholder='Type torrent name...'></fieldset>"
 				  + "<fieldset><label>Url</label><input id='torrentUrl' type='text' placeholder='Copy torrent url...'></fieldset>"
 				  + "<button id='addTorrent' class='btn'><i class='icon-ok'></i></button><span id='cancelTorrent' class='btn'><i class='icon-remove'></i></span></form>").hide();
+
+// Structure
+	$(formNewFeed).hide();
+	$(formAddTorrent).find('#addTorrent').bind({click: addTorrent});
+	$(formAddTorrent).find("#cancelTorrent").bind({click: function(){
+		$("#myFeedsList #formAddTorrent").slideUp()}});
 
 // Action Functions
 	function newFeed(){
@@ -33,17 +36,17 @@ $(document).ready(function(){
 			+ feedDescription + "</p></aside><ul class='torrents'></ul></article>");
 			
 		$("#formNewFeed").after(feed).slideUp();
-		$(".addTorrentBtn").bind({click: addTorrentForm});
+		$(".addTorrentBtn").bind({click: showTorrentForm});
 		$(".shareFeed").bind({click: shareFeed});
 	}
 	
-	function addTorrentForm(){		
-		$("#formAddTorrent").hide().remove();
-		$(this).closest("article").find("ul").prepend(formAddTorrent);
-		$("#formAddTorrent").slideDown();
+	function showTorrentForm(e){
+		e.preventDefault();
+		$("#myFeedsList #formAddTorrent").hide().remove();
+		$(formAddTorrent).prependTo($(this).closest("article").find("ul")).slideDown();
 		$("#addTorrent").bind({click: addTorrent});
 		$("#cancelTorrent").bind({click: function(){
-			$("#formAddTorrent").slideUp()}});
+		$("#formAddTorrent").slideUp()}});
 	}
 	
 	function addTorrent(){
