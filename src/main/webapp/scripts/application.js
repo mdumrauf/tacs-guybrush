@@ -19,7 +19,7 @@ $(document).ready(function(){
 	function newFeed(){
 		var feedName = $("#feedName").val();
 		var feedDescription = $("#feedDescription").val();
-		var feedHref = "#";// Generar url del feed.
+		var feedHref = "#"; // Generar url del feed.
 		
 		if(feedName == "" || feedDescription == ""){
 			alert("Did you complete Feed Name and Description?");
@@ -30,7 +30,7 @@ $(document).ready(function(){
 			+ "<button class='btn shareFeed'><i class='icon-thumbs-up'></i></button></div><h3><a href='"
 			+ feedHref + "'>"
 			+ feedName + "</a></h3></header><aside><p>"
-			+ feedDescription + "</p></aside><ul id='torrents'></ul></article>");
+			+ feedDescription + "</p></aside><ul class='torrents'></ul></article>");
 			
 		$("#formNewFeed").after(feed).slideUp();
 		$(".addTorrentBtn").bind({click: addTorrentForm});
@@ -42,7 +42,8 @@ $(document).ready(function(){
 		$(this).closest("article").find("ul").prepend(formAddTorrent);
 		$("#formAddTorrent").slideDown();
 		$("#addTorrent").bind({click: addTorrent});
-		$("#cancelTorrent").bind({click: function(){$("#formAddTorrent").remove()}});
+		$("#cancelTorrent").bind({click: function(){
+			$("#formAddTorrent").slideUp()}});
 	}
 	
 	function addTorrent(){
@@ -56,7 +57,7 @@ $(document).ready(function(){
 		
 		var torrent = $("<li><a href='" + torrentUrl + "'>" + torrentName + "</a></li>");
 		
-		$('#formAddTorrent').slideToggle();
+		$('#formAddTorrent').slideUp();
 		$(this).closest('ul').prepend(torrent);
 	}
 	
