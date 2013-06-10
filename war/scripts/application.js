@@ -14,9 +14,9 @@ $(document).ready(function(){
 
 // Structure
 	$(formNewFeed).hide();
-	$(formAddTorrent).find('#addTorrent').bind({click: addTorrent});
-	$(formAddTorrent).find("#cancelTorrent").bind({click: function(){
-		$("#myFeedsList #formAddTorrent").slideUp()}});
+	// $(formAddTorrent).find('#addTorrent').bind({click: addTorrent});
+	// $(formAddTorrent).find("#cancelTorrent").bind({click: function(){
+		// $("#myFeedsList #formAddTorrent").slideUp()}});
 
 // Action Functions
 	function newFeed(e){
