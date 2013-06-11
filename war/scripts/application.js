@@ -7,7 +7,7 @@ $(document).ready(function(){
 		$("#formNewFeed").slideToggle();
 	}});
 	$("#login").bind({click: login});
-	$("#logout").bind({click: closeFbSession});
+	//$("#logout").bind({click: closeFbSession});
 	
 // One form for adding torrents for all the document.
 	var formAddTorrent = $("<form id='formAddTorrent'><fieldset><label>Name</label><input id='torrentName' type='text' placeholder='Type torrent name...'></fieldset>"
@@ -16,9 +16,6 @@ $(document).ready(function(){
 
 // Structure
 	$(formNewFeed).hide();
-	// $(formAddTorrent).find('#addTorrent').bind({click: addTorrent});
-	// $(formAddTorrent).find("#cancelTorrent").bind({click: function(){
-		// $("#myFeedsList #formAddTorrent").slideUp()}});
 
 // Action Functions
 	function newFeed(e){

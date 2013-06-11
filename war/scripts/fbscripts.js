@@ -15,7 +15,23 @@ window.fbAsyncInit = function() {
 		if (response.status === 'connected') {
 			loginOnServer(response.authResponse.userID);
 		}
+		else
+		{
+			FB.login(function(response){
+					loginOnServer(response.authResponse.userID);
+				}
+				//,{scope: 'email,user_likes'}
+			);
+		}
 	});
+	
+	function login() {
+		FB.login(function(response){
+				loginOnServer(response.authResponse.userID);
+			}
+			//,{scope: 'email,user_likes'}
+		);
+}
 
 	function loginOnServer(uid) {
 		userId = uid;
@@ -125,14 +141,6 @@ function sendTorrentToServlet(link){
 		}
 	});
 	
-}
-
-function login() {
-	FB.login(function(response) {
-		loginOnServer(response.authResponse.userID);
-	}
-	//,{scope: 'email,user_likes'}
-	);
 }
 
 function closeFbSession() {
