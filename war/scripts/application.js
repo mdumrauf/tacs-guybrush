@@ -29,7 +29,7 @@ $(document).ready(function(){
 			return;
 		}
 		
-		var feed = $("<article><header><div class='actions'><button class='btn addTorrentBtn'><i class='icon-plus'></i></button><button class='btn shareFeed'><i class='icon-thumbs-up'></i></button></div><h3><a href='"
+		var feed = $("<article><header><div class='btn-group actions'><button class='btn addTorrentBtn'><i class='icon-plus'></i></button><button class='btn shareFeed'><i class='icon-thumbs-up'></i></button></div><h3><a href='"
 			+ feedHref + "'>"
 			+ feedName + "</a></h3></header><aside><p>"
 			+ feedDescription + "</p></aside><ul class='torrents'></ul></article>");

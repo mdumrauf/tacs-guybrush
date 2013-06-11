@@ -1,12 +1,11 @@
 <%@page pageEncoding="UTF-8"%>
-<!DOCTYPE html>
 <html>
 <head>
-<html lang="en">
-<meta charset="UTF-8">
-<title>Guybrush</title>
-<link href="style/bootstrap.css" rel="stylesheet">
-<link href="style/style.css" rel="stylesheet">
+  <html lang="en">
+  <meta charset="UTF-8">
+  <title>Guybrush</title>
+  <link href="style/bootstrap.css" rel="stylesheet">
+  <link href="style/style.css" rel="stylesheet">
 </head>
 
 <body>
@@ -53,11 +52,11 @@
         </article>
         <article>
           <header>
-            <div class='actions'>
-              <button class='btn addTorrentBtn'>
+            <div class="actions btn-group">
+              <button type='button' class='btn addTorrentBtn'>
                 <i class='icon-plus'></i>
               </button>
-              <button class='btn shareFeed'>
+              <button type='button' class='btn shareFeed'>
                 <i class='icon-thumbs-up'></i>
               </button>
             </div>
@@ -66,7 +65,7 @@
             </h3>
           </header>
           <aside>
-            <p>Description</p>
+            <p>Description of the feed.</p>
           </aside>
           <ul class="torrents">
             <li><a href='#'>Torrent 1</a></li>
@@ -76,11 +75,11 @@
         </article>
         <article>
           <header>
-            <div class='actions'>
-              <button class='btn addTorrentBtn'>
+            <div class="actions btn-group">
+              <button type='button' class='btn addTorrentBtn'>
                 <i class='icon-plus'></i>
               </button>
-              <button class='btn shareFeed'>
+              <button type='button' class='btn shareFeed'>
                 <i class='icon-thumbs-up'></i>
               </button>
             </div>
@@ -89,7 +88,7 @@
             </h3>
           </header>
           <aside>
-            <p>Description</p>
+            <p>Description of the feed.</p>
           </aside>
           <ul class="torrents">
             <li><a href='#'>Torrent 1</a></li>
@@ -99,11 +98,11 @@
         </article>
         <article>
           <header>
-            <div class='actions'>
-              <button class='btn addTorrentBtn'>
+            <div class="actions btn-group">
+              <button type='button' class='btn addTorrentBtn'>
                 <i class='icon-plus'></i>
               </button>
-              <button class='btn shareFeed'>
+              <button type='button' class='btn shareFeed'>
                 <i class='icon-thumbs-up'></i>
               </button>
             </div>
@@ -112,7 +111,7 @@
             </h3>
           </header>
           <aside>
-            <p>Description</p>
+            <p>Description of the feed.</p>
           </aside>
           <ul class="torrents">
             <li><a href='#'>Torrent 1</a></li>
