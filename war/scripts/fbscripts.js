@@ -11,10 +11,6 @@ window.fbAsyncInit = function() {
 	// parse XFBML - para escanear social plugins
 	});
 
-	FB.Event.subscribe('auth.login', function(response) {
-		loginOnServer(response.authResponse.userID);
-	});
-
 	FB.getLoginStatus(function(response) {
 		if (response.status === 'connected') {
 			loginOnServer(response.authResponse.userID);
@@ -131,6 +127,13 @@ function sendTorrentToServlet(link){
 	
 }
 
+function login() {
+	FB.login(function(response) {
+		loginOnServer(response.authResponse.userID);
+	}
+	//,{scope: 'email,user_likes'}
+	);
+}
 
 function closeFbSession() {
 	FB.logout(function(response) {

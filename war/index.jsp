@@ -5,12 +5,12 @@
 <html lang="en">
 <meta charset="UTF-8">
 <title>Guybrush</title>
-<link href="style/bootstrap.min.css" rel="stylesheet">
+<link href="style/bootstrap.css" rel="stylesheet">
 <link href="style/style.css" rel="stylesheet">
 </head>
 
 <body>
-
+  <div id="fb-root"></div>
   <!-- Navigation Bar -->
   <nav class='navbar navbar-fixed-top navbar-inverse'>
     <div class="navbar-inner">
@@ -18,10 +18,11 @@
       <ul class="nav">
         <li class="active"><a href="#">Home</a></li>
         <li><a href="#about">About</a></li>
-        <li><a href="#Logout">Logout</a></li>
+        <li><a id="login" href="#login">Login</a></li>
+        <li><a id="logout" href="#logout">Logout</a></li>
       </ul>
       <p class="navbar-text pull-right">
-        <div class="fb-login-button"></div>
+        Logged in as <a href='#'>Username</a>
       </p>
     </div>
   </nav>

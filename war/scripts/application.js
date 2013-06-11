@@ -6,6 +6,8 @@ $(document).ready(function(){
 	$("#newFeedBtn").bind({click: function (){
 		$("#formNewFeed").slideToggle();
 	}});
+	$("#login").bind({click: login});
+	$("#logout").bind({click: closeFbSession});
 	
 // One form for adding torrents for all the document.
 	var formAddTorrent = $("<form id='formAddTorrent'><fieldset><label>Name</label><input id='torrentName' type='text' placeholder='Type torrent name...'></fieldset>"
@@ -63,6 +65,17 @@ $(document).ready(function(){
 		
 		$('#myFeedsList #formAddTorrent').slideUp();
 		$(this).closest('article').find('.torrents').prepend(torrent);
+		
+		// var link = $("#addTorrentTextBox").val();
+		// $.ajax({
+		// url : "/addTorrent?link=" + link,
+		// type : "post",
+		// error : function(status) {
+			// alert("Error al agregar torrent");
+		// },
+		// success : function() {
+			// alert("Torrent agregado con éxito");
+		// }
 	}
 	
 	function shareFeed(){
