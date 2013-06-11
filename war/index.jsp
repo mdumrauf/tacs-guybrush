@@ -14,7 +14,7 @@
   <!-- Navigation Bar -->
   <nav class='navbar navbar-fixed-top navbar-inverse'>
     <div class="navbar-inner">
-      <a class="brand" href="#">Guybrush</a>
+      <a href="#"><img id='logo' src='img/logo/Original_266x75.png'></a>
       <ul class="nav">
         <li class="active"><a href="#">Home</a></li>
         <li><a href="#about">About</a></li>

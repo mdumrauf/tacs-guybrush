@@ -1,7 +1,10 @@
 #logo {
-	background: url('img/logo/Original_266x75.png');
-	width:120;
-	height: 30;
+	padding-left: 2px;
+	padding-right: 2px;
+	float: left;
+	display: inline-block;
+	width: 120px;
+	height: 40px;
 }
 
 #myFeedsList form {
