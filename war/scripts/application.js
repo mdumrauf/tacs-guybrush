@@ -10,7 +10,7 @@ $(document).ready(function(){
 	//$("#logout").bind({click: closeFbSession});
 	
 // One form for adding torrents for all the document.
-	var formAddTorrent = $("<form id='formAddTorrent'><fieldset><label>Name</label><input id='torrentName' type='text' placeholder='Type torrent name...'></fieldset>"
+	var formAddTorrent = $("<form id='formAddTorrent'><h3>Add Torrent</h3><hr><fieldset><label>Name</label><input id='torrentName' type='text' placeholder='Type torrent name...'></fieldset>"
 				  + "<fieldset><label>Url</label><input id='torrentUrl' type='text' placeholder='Copy torrent url...'></fieldset>"
 				  + "<button id='addTorrent' class='btn'><i class='icon-ok'></i></button><span id='cancelTorrent' class='btn'><i class='icon-remove'></i></span></form>").hide();
 
@@ -29,10 +29,10 @@ $(document).ready(function(){
 			return;
 		}
 		
-		var feed = $("<article><header><div class='btn-group actions'><button class='btn addTorrentBtn'><i class='icon-plus'></i></button><button class='btn shareFeed'><i class='icon-thumbs-up'></i></button></div><h3><a href='"
-			+ feedHref + "'>"
+		var feed = $("<article><header><div class='btn-group actions'><button class='btn addTorrentBtn'><i class='icon-plus'></i></button><button class='btn shareFeed'><i class='icon-thumbs-up'></i></button></div>"
+			+ "<h3><a href='" + feedHref + "'>"
 			+ feedName + "</a></h3></header><aside><p>"
-			+ feedDescription + "</p></aside><ul class='torrents'></ul></article>");
+			+ feedDescription + "</p></aside><hr><ul class='torrents'></ul></article>");
 			
 		$("#myFeedsList #formNewFeed").after(feed).slideUp();
 		$("#myFeedsList .addTorrentBtn").bind({click: showFormAddTorrent});

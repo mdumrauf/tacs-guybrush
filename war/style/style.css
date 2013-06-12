@@ -19,6 +19,19 @@
 	border-top-left-radius: 10px;
 }
 
+form fieldset label {
+	display: inline-block;
+	padding-right: 3px;
+}
+
+form fieldset input {
+	display: inline-block;
+}
+
+form fieldset textarea {
+	display: inline-block;
+}
+
 #myFeedsModal article {
 	margin: 2px;
 	padding-left: 2px;

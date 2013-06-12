@@ -39,6 +39,7 @@
         <article id='formNewFeed'>
           <form>
             <h3>New Feed</h3>
+            <hr>
             <fieldset>
               <label>Name</label> <input id="feedName" type="text"
                 placeholder="Type feed name...">
@@ -67,6 +68,7 @@
           <aside>
             <p>Description of the feed.</p>
           </aside>
+          <hr>
           <ul class="torrents">
             <li><a href='#'>Torrent 1</a></li>
             <li><a href='#'>Torrent 2</a></li>
