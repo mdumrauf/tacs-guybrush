@@ -52,26 +52,71 @@ window.fbAsyncInit = function() {
 	ref.parentNode.insertBefore(js, ref);
 }(document));
 
+
+function postLink(torrent) {
+    var obj = {
+      method: 'feed',
+      link: domain + 'addTorrent?link=' +torrent +'&fromFB=true' ,
+      picture: 'http://blog.popcap.com/wp-content/blogs.dir/3/2013/01/guybrush.jpg',
+      name: torrent,
+      caption: 'Nuevo torrent!',
+      description: 'Has click en el link para agregar el torrent a tus feeds.'
+    };
+
+    function callback(response) {
+    	if (response && response.post_id) {
+            // Se posteo bien
+          } else {   
+          	alert('El link no se posteó correctamente');
+          	}
+          }    
+
+    FB.ui(obj, callback);
+}
+
 function post() {
-	FB.ui({
-		method : 'feed'
-	});
+    var obj = {
+      method: 'feed'
+      
+    };
+
+    function callback(response) {
+    	if (response && response.post_id) {
+            // Se posteo bien
+          } else {   
+          	alert('No se pudo postear en su muro');
+          	}
+          }    
+
+    FB.ui(obj, callback);
 }
 
 function addTorrent() {
 	var link = $("#addTorrentTextBox").val();
+	
+	
+	sendTorrentToServlet(link);
+	
+}
+	
+function sendTorrentToServlet(link){
 	$.ajax({
-		url : "/addTorrent?link=" + link,
-		type : "post",
+		url : "/addTorrent?link=" + link+'&fromFB=false',
+		type : "get",
 		error : function(status) {
 			alert("Error al agregar torrent");
 		},
 		success : function() {
-			alert("Torrent agregado con éxito");
+			var response=confirm("Torrent agregado con éxito\n\n¿Querés compartirlo en tu muro?");
+			if (response==true)
+			{
+				postLink(link);
+			}
 		}
 	});
-
+	
 }
+
 
 function closeFbSession() {
 	FB.logout(function(response) {

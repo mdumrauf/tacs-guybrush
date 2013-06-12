@@ -5,6 +5,7 @@ public interface FeedConstants {
 	String USER_ID = "userId";
 	String LINKS = "links";
 	String LINK = "link";
+	String FROM_FB = "from fb";
 	String ITEM = "item";
 	String TITLE = "title";
 	String DESCRIPTION = "description";
