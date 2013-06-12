@@ -39,10 +39,10 @@
       <p>Please choose one of your feeds to add the shared torrent.</p>
       <hr>
       <div id='myFeedsModal'>
-      <article><h4>Horror Movies</h4></article>
-      <article><h4>Horror Movies</h4></article>
-      <article><h4>Horror Movies</h4></article>
-      <article><h4>Horror Movies</h4></article>
+      <article data-key="5432"><h4>Horror Movies</h4></article>
+      <article data-key="5433"><h4>Horror Movies</h4></article>
+      <article data-key="5434"><h4>Horror Movies</h4></article>
+      <article data-key="5435"><h4>Horror Movies</h4></article>
       </div>
     </div>
     <div class="modal-footer">
@@ -92,59 +92,13 @@
               </button>
             </div>
             <h3>
-              <a href='#horrorFeed'>Horror Movies</a>
+              <a class="feed" href="#horrorFeed" data-key="5432">Horror Movies</a>
             </h3>
           </header>
           <aside>
             <p>Description of the feed.</p>
           </aside>
           <hr>
-          <ul class="torrents">
-            <li><a href='#'>Torrent 1</a></li>
-            <li><a href='#'>Torrent 2</a></li>
-            <li><a href='#'>Torrent 3</a></li>
-          </ul>
-        </article>
-        <article>
-          <header>
-            <div class="actions btn-group">
-              <button type='button' class='btn addTorrentBtn'>
-                <i class='icon-plus'></i>
-              </button>
-              <button type='button' class='btn shareFeed'>
-                <i class='icon-thumbs-up'></i>
-              </button>
-            </div>
-            <h3>
-              <a href='#horrorFeed'>Horror Movies</a>
-            </h3>
-          </header>
-          <aside>
-            <p>Description of the feed.</p>
-          </aside>
-          <ul class="torrents">
-            <li><a href='#'>Torrent 1</a></li>
-            <li><a href='#'>Torrent 2</a></li>
-            <li><a href='#'>Torrent 3</a></li>
-          </ul>
-        </article>
-        <article>
-          <header>
-            <div class="actions btn-group">
-              <button type='button' class='btn addTorrentBtn'>
-                <i class='icon-plus'></i>
-              </button>
-              <button type='button' class='btn shareFeed'>
-                <i class='icon-thumbs-up'></i>
-              </button>
-            </div>
-            <h3>
-              <a href='#horrorFeed'>Horror Movies</a>
-            </h3>
-          </header>
-          <aside>
-            <p>Description of the feed.</p>
-          </aside>
           <ul class="torrents">
             <li><a href='#'>Torrent 1</a></li>
             <li><a href='#'>Torrent 2</a></li>
@@ -163,37 +117,18 @@
         <article>
           <header>
             <div class='actions'>
-              <button class='btn'>
+              <button class='btn removeSubscribedFeed'>
                 <i class='icon-remove'></i>
               </button>
             </div>
             <h3>
-              <a href='#horrorFeed'>Horror Movies</a>
+              <a class="feed" href="#horrorFeed" data-key="5432">Awesome Subscribed Feed</a>
             </h3>
           </header>
           <aside>
-            <p>Description</p>
+            <p>Description of awesome subscribed feed.</p>
           </aside>
-          <ul class="torrents">
-            <li><a href='#'>Torrent 1</a></li>
-            <li><a href='#'>Torrent 2</a></li>
-            <li><a href='#'>Torrent 3</a></li>
-          </ul>
-        </article>
-        <article>
-          <header>
-            <div class='actions'>
-              <button class='btn'>
-                <i class='icon-remove'></i>
-              </button>
-            </div>
-            <h3>
-              <a href='#horrorFeed'>Horror Movies</a>
-            </h3>
-          </header>
-          <aside>
-            <p>Description</p>
-          </aside>
+          <hr>
           <ul class="torrents">
             <li><a href='#'>Torrent 1</a></li>
             <li><a href='#'>Torrent 2</a></li>
