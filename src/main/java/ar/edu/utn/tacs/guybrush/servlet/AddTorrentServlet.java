@@ -27,7 +27,7 @@ public class AddTorrentServlet extends HttpServlet {
 		
 		
 		if(fromFB.equalsIgnoreCase("true")){
-			resp.getWriter().write("Torrent agregado exitosamente!");
+			resp.sendRedirect("/index.jsp");
 		}
 	}
 }

@@ -93,14 +93,10 @@ function post() {
 
 function addTorrent() {
 	var link = $("#addTorrentTextBox").val();
-	if(link==""){
-		alert("Ingrese un link de un torrent");
-		
-	}
-	else{
 	
-		sendTorrentToServlet(link);
-	}
+	
+	sendTorrentToServlet(link);
+	
 }
 	
 function sendTorrentToServlet(link){
