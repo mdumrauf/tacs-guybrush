@@ -1,4 +1,5 @@
 <%@page pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html>
 <head>
   <html lang="en">
@@ -25,7 +26,36 @@
       </p>
     </div>
   </nav>
-
+  
+  <!-- Add Shared Torrent Modal -->
+  <div id="addSharedTorrentModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+      <h3 id="myModalLabel">Add Shared Torrent</h3>
+      <a href="#sharedTorrentUrl" class="sharedTorrent">Shared Torrent</a>
+    </div>
+    <div class="modal-body">
+      <h4>My Feeds</h4>
+      <p>Please choose one of your feeds to add the shared torrent.</p>
+      <hr>
+      <div id='myFeedsModal'>
+      <article><h4>Horror Movies</h4></article>
+      <article><h4>Horror Movies</h4></article>
+      <article><h4>Horror Movies</h4></article>
+      <article><h4>Horror Movies</h4></article>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn" data-dismiss="modal">Close</button>
+      <button class="btn btn-primary" type="submit" id="submitSharedTorrent">Save changes</button>
+      <!-- <div class="alert alert-error">
+              <button type="button" class="close" data-dismiss="alert">×</button>
+              <strong>Oh snap!</strong> This functionality is not implemented yet.
+          </div> -->
+    </div>
+  </div>
+  
+  <!-- Feeds -->
   <section class="row-fluid">
     <!-- My Feeds -->
     <section class="span6 feeds">

@@ -8,6 +8,13 @@ $(document).ready(function(){
 	}});
 	$("#login").bind({click: login});
 	//$("#logout").bind({click: closeFbSession});
+	$("#myFeedsModal article").bind({click: function(e){
+		e.preventDefault();
+		$("#myFeedsModal").find("article .active").removeClass("active");
+		$(this).addClass("active");
+		}
+	});
+	$("#submitSharedTorrent").bind({click: addSharedTorrent});
 	
 // One form for adding torrents for all the document.
 	var formAddTorrent = $("<form id='formAddTorrent'><h3>Add Torrent</h3><hr><fieldset><label>Name</label><input id='torrentName' type='text' placeholder='Type torrent name...'></fieldset>"
@@ -16,6 +23,7 @@ $(document).ready(function(){
 
 // Structure
 	$(formNewFeed).hide();
+	$("#addSharedTorrentModal").modal('show');
 
 // Action Functions
 	function newFeed(e){
@@ -73,6 +81,14 @@ $(document).ready(function(){
 		// success : function() {
 			// alert("Torrent agregado con éxito");
 		// }
+	}
+	
+	function addSharedTorrent(e){
+		e.preventDefault();
+		var torrentName = $("#addSharedTorrentModal").find(".sharedTorrent").text();
+		var torrentUrl = $("#addSharedTorrentModal").find(".sharedTorrent").attr("href");
+		
+		alert('Name: ' + torrentName + ' Url:' + torrentUrl);
 	}
 	
 	function shareFeed(){
