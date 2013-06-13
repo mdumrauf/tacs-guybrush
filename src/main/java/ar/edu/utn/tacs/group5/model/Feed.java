@@ -18,40 +18,18 @@ public class Feed implements Serializable {
     @Attribute(version = true)
     private Long version;
 
-    /**
-     * Returns the key.
-     *
-     * @return the key
-     */
     public Key getKey() {
         return key;
     }
 
-    /**
-     * Sets the key.
-     *
-     * @param key
-     *            the key
-     */
     public void setKey(Key key) {
         this.key = key;
     }
 
-    /**
-     * Returns the version.
-     *
-     * @return the version
-     */
     public Long getVersion() {
         return version;
     }
 
-    /**
-     * Sets the version.
-     *
-     * @param version
-     *            the version
-     */
     public void setVersion(Long version) {
         this.version = version;
     }
@@ -85,4 +63,5 @@ public class Feed implements Serializable {
         }
         return true;
     }
+
 }
