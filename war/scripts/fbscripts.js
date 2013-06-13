@@ -133,9 +133,7 @@ function loginOnServer(uid) {
 function addTorrent() {
 	var link = $("#addTorrentTextBox").val();
 	
-	
 	sendTorrentToServlet(link);
-	
 }
 	
 function sendTorrentToServlet(link){
@@ -153,7 +151,6 @@ function sendTorrentToServlet(link){
 			}
 		}
 	});
-	
 }
 
 function closeFbSession() {
@@ -169,5 +166,4 @@ function closeFbSession() {
 			}
 		});
 	});
-
 }
