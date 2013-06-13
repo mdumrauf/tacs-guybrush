@@ -12,6 +12,7 @@ $(document).ready(function(){
 		$("#formNewFeed").slideToggle();
 	}});
 	
+	
 	//Modal
 	$("#myFeedsModal article").bind({click: function(e){
 			e.preventDefault();
@@ -31,29 +32,56 @@ $(document).ready(function(){
 
 // Structure
 	$(formNewFeed).hide();
-	$("#addSharedTorrentModal").modal('show');
+	$("#addSharedTorrentModal").modal('hide');
 
 // Action Functions
+	function loadFeeds(){
+		
+		// Get Feeds and Torrents
+		$.ajax({
+		url : "/getFeeds" // The userId is persisted in the session
+		type : "get",
+		error : function(status) {
+			alert("Error al cargar los feeds.");
+		},
+		success : function(data) {
+			feeds = JSON.parse(data);
+			if(feeds.size() > 0){
+				
+			}
+		}
+	}
+	
 	function newFeed(e){
 		e.preventDefault();
 		var feedName = $("#feedName").val();
 		var feedDescription = $("#feedDescription").val();
-		var feedHref = "#"; // Generar url del feed.
-		var feedKey = "5435" // Generar key del feed.
 		
 		if(feedName == "" || feedDescription == ""){
 			alert("Did you complete Feed Name and Description?");
 			return;
 		}
 		
-		var feed = $("<article><header><div class='btn-group actions'><button class='btn addTorrentBtn'><i class='icon-plus'></i></button><button class='btn shareFeed'><i class='icon-thumbs-up'></i></button></div>"
-			+ "<h3><a class='feed' href='" + feedHref + "' data-key='" + feedKey + "'>"
+		$.ajax({
+		url : "/newFeed?name=" + link
+			+ "&description=" + torrentName,
+		type : "post",
+		error : function(status) {
+			alert("Error al crear feed.");
+		},
+		success : function(data) {
+			var response = JSON.parse(data);
+			var feed = $("<article class='feed' data-key='"
+			+ response.feedKey + "'><header><div class='btn-group actions'><button class='btn addTorrentBtn'><i class='icon-plus'></i></button><button class='btn shareFeed'><i class='icon-thumbs-up'></i></button></div>"
+			+ "<h3><a href='" + response.feedHref + "'>"
 			+ feedName + "</a></h3></header><aside><p>"
 			+ feedDescription + "</p></aside><hr><ul class='torrents'></ul></article>");
 			
-		$("#myFeedsList #formNewFeed").after(feed).slideUp();
-		$("#myFeedsList .addTorrentBtn").bind({click: showFormAddTorrent});
-		$("#myFeedsList .shareFeed").bind({click: shareFeed});
+			$("#myFeedsList #formNewFeed").after(feed).slideUp();
+			$("#myFeedsList .addTorrentBtn").bind({click: showFormAddTorrent});
+			$("#myFeedsList .shareFeed").bind({click: shareFeed});
+			alert("Feed creado con éxito.");
+		}
 	}
 	
 	function showFormAddTorrent(e){
@@ -69,30 +97,29 @@ $(document).ready(function(){
 	function addTorrent(e){
 		e.preventDefault();
 		var torrentName = $('#torrentName').val();
-		var torrentUrl = $('#torrentUrl').val();
-		
-		var feedKey = $(this).closest("article").find(".feed").data("key");
+		var torrentUrl = $('#torrentUrl').val();		
+		var feedKey = $(this).closest("article").data("key");
 		
 		if(torrentName == "" || torrentUrl == ""){
 			alert("Did you complete Torrent Name and Url?");
 			return;
 		}
 		
-		var torrent = $("<li><a href='" + torrentUrl + "'>" + torrentName + "</a></li>");
-		
-		$('#myFeedsList #formAddTorrent').slideUp();
-		$(this).closest('article').find('.torrents').prepend(torrent);
-		
-		// var link = $("#addTorrentTextBox").val();
-		// $.ajax({
-		// url : "/addTorrent?link=" + link,
-		// type : "post",
-		// error : function(status) {
-			// alert("Error al agregar torrent");
-		// },
-		// success : function() {
-			// alert("Torrent agregado con éxito");
-		// }
+		$.ajax({
+		url : "/addTorrent?link=" + link
+			+ "&name=" + torrentName
+			+ "&feedKey=" + feedKey,
+		type : "post",
+		error : function(status) {
+			alert("Error al agregar torrent.");
+		},
+		success : function() {
+			var torrent = $("<li><a href='" + torrentUrl + "'>" + torrentName + "</a></li>");
+			
+			$('#myFeedsList #formAddTorrent').slideUp();
+			$(this).closest('article').find('.torrents').prepend(torrent);
+			postLink(torrentUrl);
+		}
 	}
 	
 	function addSharedTorrent(e){
@@ -109,7 +136,8 @@ $(document).ready(function(){
 	}
 	
 	function shareFeed(){
-		alert('Not implemented.');
+		var feedUrl = $(this).closest('article').find('a').attr('href');
+		postLink(feedUrl);
 	}
 	
 	function removeSubscribedFeed(){
@@ -120,5 +148,7 @@ $(document).ready(function(){
 		$(this).closest("article").slideUp(function(){
 			$(this).remove();
 		});
+		
+		// Llamada a servlet removeSubscribedFeed
 	}
 });

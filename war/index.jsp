@@ -81,7 +81,7 @@
             <button id="submitNewFeed" type="submit" class="btn">Submit</button>
           </form>
         </article>
-        <article>
+        <article class="feed" data-key="5432">
           <header>
             <div class="actions btn-group">
               <button type='button' class='btn addTorrentBtn'>
@@ -92,7 +92,7 @@
               </button>
             </div>
             <h3>
-              <a class="feed" href="#horrorFeed" data-key="5432">Horror Movies</a>
+              <a href="#horrorFeed">Horror Movies</a>
             </h3>
           </header>
           <aside>
@@ -114,7 +114,7 @@
         <h2>Subscribed Feeds</h2>
       </header>
       <section id="subscribedFeedsList">
-        <article>
+        <article class="feed" data-key="5432">
           <header>
             <div class='actions'>
               <button class='btn removeSubscribedFeed'>
@@ -122,7 +122,7 @@
               </button>
             </div>
             <h3>
-              <a class="feed" href="#horrorFeed" data-key="5432">Awesome Subscribed Feed</a>
+              <a href="#horrorFeed">Awesome Subscribed Feed</a>
             </h3>
           </header>
           <aside>
