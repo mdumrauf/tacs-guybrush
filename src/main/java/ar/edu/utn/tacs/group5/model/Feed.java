@@ -3,7 +3,10 @@ package ar.edu.utn.tacs.group5.model;
 import java.io.Serializable;
 
 import org.slim3.datastore.Attribute;
+import org.slim3.datastore.InverseModelListRef;
 import org.slim3.datastore.Model;
+
+import ar.edu.utn.tacs.group5.meta.ItemMeta;
 
 import com.google.appengine.api.datastore.Key;
 
@@ -23,6 +26,10 @@ public class Feed implements Serializable {
     private String link;
 
     private String description;
+
+    @Attribute(persistent = false)
+	private InverseModelListRef<Item, Feed> itemListRef = new InverseModelListRef<Item, Feed>(
+			Item.class, ItemMeta.get().feedRef.getName(), this);
 
     public Key getKey() {
         return key;
@@ -62,6 +69,10 @@ public class Feed implements Serializable {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public InverseModelListRef<Item, Feed> getItemListRef() {
+		return itemListRef;
 	}
 
 	@Override

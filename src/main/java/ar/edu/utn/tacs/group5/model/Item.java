@@ -2,10 +2,11 @@ package ar.edu.utn.tacs.group5.model;
 
 import java.io.Serializable;
 
+import com.google.appengine.api.datastore.Key;
+
 import org.slim3.datastore.Attribute;
 import org.slim3.datastore.Model;
-
-import com.google.appengine.api.datastore.Key;
+import org.slim3.datastore.ModelRef;
 
 @Model(schemaVersion = 1)
 public class Item implements Serializable {
@@ -24,6 +25,8 @@ public class Item implements Serializable {
 
     private String description;
 
+    private ModelRef<Feed> feedRef = new ModelRef<Feed>(Feed.class);
+    
     public Key getKey() {
         return key;
     }
@@ -62,6 +65,10 @@ public class Item implements Serializable {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public ModelRef<Feed> getFeedRef() {
+		return feedRef;
 	}
 
 	@Override
