@@ -1,0 +1,119 @@
+#logo {
+	padding-left: 2px;
+	padding-right: 2px;
+	float: left;
+	display: inline-block;
+	width: 120px;
+	height: 40px;
+}
+
+#myFeedsList form {
+	padding: 10px;
+	background: #b0d0b6;
+	background: rgba(150, 208, 150, 0.4);
+	-webkit-border-bottom-right-radius: 10px;
+	-webkit-border-top-left-radius: 10px;
+	-moz-border-radius-bottomright: 10px;
+	-moz-border-radius-topleft: 10px;
+	border-bottom-right-radius: 10px;
+	border-top-left-radius: 10px;
+}
+
+form fieldset label {
+	display: inline-block;
+	padding-right: 3px;
+}
+
+form fieldset input {
+	display: inline-block;
+}
+
+form fieldset textarea {
+	display: inline-block;
+}
+
+#myFeedsModal article {
+	margin: 2px;
+	padding-left: 2px;
+	padding-right: 2px;
+	background: #b0d0b6;
+	background: rgba(150, 208, 150, 0.4);
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	-webkit-transition: box-shadow .1s ease-in-out;
+	-moz-transition: box-shadow .1s ease-in-out;
+	transition: box-shadow .1s ease-in-out;
+	/* transition: transform .1s linear; */
+}
+
+#myFeedsModal article:hover {
+	box-shadow: 2px 2px 3px #000;
+}
+
+#myFeedsModal article.active {
+	box-shadow: 2px 2px 3px #060;
+	transform: scale(1.2);
+	background: rgba(208, 208, 198, 0.5);
+}
+
+.feeds {
+	margin-top: 35px;
+	margin-bottom: 10px;
+	padding-top: 20px;
+	padding-left: 20px;
+	padding-right: 20px;
+	padding-bottom: 10px;
+	background: #d0d0c6;
+	background: rgba(208, 208, 198, 0.3);
+	-webkit-border-bottom-right-radius: 15px;
+	-webkit-border-bottom-left-radius: 15px;
+	-moz-border-radius-bottomright: 15px;
+	-moz-border-radius-bottomleft: 15px;
+	border-bottom-right-radius: 15px;
+	border-bottom-left-radius: 15px;
+}
+
+.feeds article {
+	padding-left: 20px;
+	background: rgba(208, 208, 198, 0.5);
+	-webkit-border-bottom-right-radius: 10px;
+	-webkit-border-top-left-radius: 10px;
+	-moz-border-radius-bottomright: 10px;
+	-moz-border-radius-topleft: 10px;
+	border-bottom-right-radius: 10px;
+	border-top-left-radius: 10px;
+}
+
+.feeds .actions {
+	float:right;
+}
+
+.feeds > header {
+	text-align: center;
+	-webkit-text-shadow: 2px 2px 3px #000;
+	-moz-text-shadow: 2px 2px 3px #000;
+	text-shadow: 2px 2px 3px #000;
+}
+
+.feeds span {
+	float: right;
+}
+
+.torrents li {
+	margin-top: 6px;
+	margin-bottom: 3px;
+	padding: 5px 0 5px 10px;
+	width: 100%;
+}
+
+.torrents li:hover {
+	background: #b0d0b6;
+	background: rgba(150, 208, 150, 0.4);
+	-webkit-border-top-right-radius: 5px;
+	-webkit-border-bottom-right-radius: 5px;
+	-moz-border-radius-topright: 5px;
+	-moz-border-radius-bottomright: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
