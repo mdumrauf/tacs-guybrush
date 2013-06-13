@@ -92,6 +92,11 @@
         </exclusion>
       </exclusions>
     </dependency>
+    <dependency>
+      <groupId>com.github.spullara.mustache.java</groupId>
+      <artifactId>compiler</artifactId>
+      <version>0.8.12</version>
+    </dependency>
 
     <dependency>
       <groupId>junit</groupId>
