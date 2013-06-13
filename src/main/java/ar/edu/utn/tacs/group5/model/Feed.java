@@ -2,10 +2,10 @@ package ar.edu.utn.tacs.group5.model;
 
 import java.io.Serializable;
 
-import com.google.appengine.api.datastore.Key;
-
 import org.slim3.datastore.Attribute;
 import org.slim3.datastore.Model;
+
+import com.google.appengine.api.datastore.Key;
 
 @Model(schemaVersion = 1)
 public class Feed implements Serializable {
@@ -17,6 +17,12 @@ public class Feed implements Serializable {
 
     @Attribute(version = true)
     private Long version;
+
+    private String title;
+
+    private String link;
+
+    private String description;
 
     public Key getKey() {
         return key;
@@ -34,7 +40,31 @@ public class Feed implements Serializable {
         this.version = version;
     }
 
-    @Override
+    public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getLink() {
+		return link;
+	}
+
+	public void setLink(String link) {
+		this.link = link;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	@Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
