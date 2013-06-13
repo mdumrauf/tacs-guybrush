@@ -11,8 +11,8 @@ public class LoginController extends Controller {
 
 	@Override
     public Navigation run() throws Exception {
-    	String userId = param("userId");
-		sessionScope("userId", userId);
+    	String userId = param(Constants.USER_ID);
+		sessionScope(Constants.USER_ID, userId);
 		logger.info("userId: " + userId);
         return null;
     }
