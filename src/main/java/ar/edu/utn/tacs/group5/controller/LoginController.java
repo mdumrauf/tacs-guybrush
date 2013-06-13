@@ -17,7 +17,10 @@ public class LoginController extends Controller {
     	String userId = param(Constants.USER_ID);
 		sessionScope(Constants.USER_ID, userId);
 		logger.info("userId: " + userId);
-		feedService.insert(Long.valueOf(userId));
+
+		if (feedService.getByUserId(Long.valueOf(userId)) == null) {
+			feedService.insert(Long.valueOf(userId));
+		}
         return null;
     }
 }
