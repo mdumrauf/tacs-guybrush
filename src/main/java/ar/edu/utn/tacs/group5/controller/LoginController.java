@@ -18,7 +18,7 @@ public class LoginController extends Controller {
 		sessionScope(Constants.USER_ID, userId);
 		logger.info("userId: " + userId);
 
-		if (feedService.getByUserId(Long.valueOf(userId)) == null) {
+		if (feedService.hasDefaultFeed(Long.valueOf(userId))) {
 			feedService.insert(Long.valueOf(userId));
 		}
         return null;

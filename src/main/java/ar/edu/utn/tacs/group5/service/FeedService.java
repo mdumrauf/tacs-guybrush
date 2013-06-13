@@ -1,6 +1,7 @@
 package ar.edu.utn.tacs.group5.service;
 
 import org.slim3.datastore.Datastore;
+import org.slim3.datastore.ModelQuery;
 
 import com.google.appengine.api.datastore.Query.FilterOperator;
 import com.google.appengine.api.datastore.Transaction;
@@ -28,10 +29,18 @@ public class FeedService {
 		tx.commit();
 	}
 
+	public boolean hasDefaultFeed(Long userId) {
+		return queryFeedBy(userId).count() == 0;
+	}
+
+	private ModelQuery<Feed> queryFeedBy(Long userId) {
+		return Datastore.query(feedMeta).filter(feedMeta.userId.getName(), FilterOperator.EQUAL, userId);
+	}
+
 	public Feed getByUserId(Long userId) {
-		return Datastore.query(feedMeta)
-						.filter(feedMeta.userId.getName(), FilterOperator.EQUAL, userId)
-						.asSingle();
+		Feed feed = queryFeedBy(userId).asSingle();
+		feed.setItems(feed.getItemListRef().getModelList());
+		return feed;
 	}
 
 	public void addTorrent(Long userId, String link) {
