@@ -11,3 +11,8 @@ target/
 .classpath
 .project
 .settings
+.apt_generated/
+war/WEB-INF/classes/
+.factorypath
+eclipse.lib
+appengine-generated
