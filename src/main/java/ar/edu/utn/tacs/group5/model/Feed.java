@@ -1,6 +1,7 @@
 package ar.edu.utn.tacs.group5.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 import org.slim3.datastore.Attribute;
 import org.slim3.datastore.InverseModelListRef;
@@ -28,6 +29,9 @@ public class Feed implements Serializable {
     private String link;
 
     private String description;
+    
+    @Attribute(persistent = false)
+    private List<Item> items;
 
     @Attribute(persistent = false)
 	private InverseModelListRef<Item, Feed> itemListRef = new InverseModelListRef<Item, Feed>(
@@ -114,5 +118,13 @@ public class Feed implements Serializable {
         }
         return true;
     }
+
+	public List<Item> getItems() {
+		return items;
+	}
+
+	public void setItems(List<Item> items) {
+		this.items = items;
+	}
 
 }
