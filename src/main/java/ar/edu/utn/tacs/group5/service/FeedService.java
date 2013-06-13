@@ -7,6 +7,7 @@ import com.google.appengine.api.datastore.Transaction;
 
 import ar.edu.utn.tacs.group5.meta.FeedMeta;
 import ar.edu.utn.tacs.group5.model.Feed;
+import ar.edu.utn.tacs.group5.model.Item;
 
 
 public class FeedService {
@@ -31,6 +32,14 @@ public class FeedService {
 		return Datastore.query(feedMeta)
 						.filter(feedMeta.userId.getName(), FilterOperator.EQUAL, userId)
 						.asSingle();
+	}
+
+	public void addTorrent(Long userId, String link) {
+		Feed feed = getByUserId(userId);
+		Item item = new Item();
+		item.setLink(link);
+		item.getFeedRef().setModel(feed);
+		Datastore.put(feed, item);
 	}
 
 }
