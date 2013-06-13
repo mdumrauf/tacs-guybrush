@@ -21,6 +21,8 @@ public class Feed implements Serializable {
     @Attribute(version = true)
     private Long version;
 
+    private long userId;
+
     private String title;
 
     private String link;
@@ -69,6 +71,14 @@ public class Feed implements Serializable {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public long getUserId() {
+		return userId;
+	}
+
+	public void setUserId(long userId) {
+		this.userId = userId;
 	}
 
 	public InverseModelListRef<Item, Feed> getItemListRef() {
