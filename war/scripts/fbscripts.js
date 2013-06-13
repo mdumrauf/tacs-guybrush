@@ -6,37 +6,37 @@ window.fbAsyncInit = function() {
 		channelUrl : '//' + domain + '/', // Channel File
 		status : true, // check login status
 		cookie : true, // enable cookies to allow the server to access the
-						// session
+		// session
 		xfbml : true
 	// parse XFBML - para escanear social plugins
 	});
 
-	FB.Event.subscribe('auth.login', function(response) {
-		loginOnServer(response.authResponse.userID);
+	//FB.Event.subscribe('auth.login', function(response) {
+	FB.getLoginStatus(function(response) {
+		if (response.status === 'connected') {
+		// the user is logged in and has authenticated your
+		// app, and response.authResponse supplies
+		// the user's ID, a valid access token, a signed
+		// request, and the time the access token 
+		// and signed request each expire
+			loginOnServer(response.authResponse.userID);
+		}
+		else if (response.status === 'not_authorized') {
+		// the user is logged in to Facebook, 
+		// but has not authenticated your app
+			FB.login(function(response){
+					loginOnServer(response.authResponse.userID);
+				}//,{scope: 'email,user_likes'}
+			);
+		} else {
+		// the user isn't logged in to Facebook.
+			FB.login(function(response){
+					loginOnServer(response.authResponse.userID);
+				}//,{scope: 'email,user_likes'}
+			);
+		}
 	});
 	
-	FB.getLoginStatus(function(response) {
-			  if (response.status === 'connected') {
-				  loginOnServer(response.authResponse.userID);
-			  }
-		}
-	);
-	
-	function loginOnServer(uid) {
-		userId = uid;
-		$.ajax({
-			url : "/login?userId=" + userId,
-			type : "post",
-			error : function(status) {
-				alert("Error al loguear el usuario en el servidor");
-			},
-			success : function() {
-				var feedLink = domain + '/getFeed?userId=' + userId;
-				$("#feedUrl").attr('href', feedLink);
-				$("#appCommands").show();
-			}
-		});
-	}
 };
 
 // Load the SDK Asynchronously
@@ -63,6 +63,30 @@ function postLink(torrent) {
     };
 
     FB.ui(obj, postCallback);
+}
+
+function login() {
+		FB.login(function(response){
+				loginOnServer(response.authResponse.userID);
+			}
+			//,{scope: 'email,user_likes'}
+		);
+}
+
+function loginOnServer(uid) {
+	userId = uid;
+	$.ajax({
+		url : "/login?userId=" + userId,
+		type : "post",
+		error : function(status) {
+			alert("Error al loguear el usuario en el servidor");
+		},
+		success : function() {
+			var feedLink = domain + '/getFeed?userId=' + userId;
+			$("#feedUrl").attr('href', feedLink);
+			$("#appCommands").show();
+		}
+	});
 }
 
 //@Deprecated
@@ -109,9 +133,7 @@ function loginOnServer(uid) {
 function addTorrent() {
 	var link = $("#addTorrentTextBox").val();
 	
-	
 	sendTorrentToServlet(link);
-	
 }
 	
 function sendTorrentToServlet(link){
@@ -129,9 +151,7 @@ function sendTorrentToServlet(link){
 			}
 		}
 	});
-	
 }
-
 
 function closeFbSession() {
 	FB.logout(function(response) {
@@ -146,5 +166,4 @@ function closeFbSession() {
 			}
 		});
 	});
-
 }
