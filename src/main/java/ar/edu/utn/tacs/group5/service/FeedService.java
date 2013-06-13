@@ -2,14 +2,17 @@ package ar.edu.utn.tacs.group5.service;
 
 import org.slim3.datastore.Datastore;
 
+import com.google.appengine.api.datastore.Query.FilterOperator;
 import com.google.appengine.api.datastore.Transaction;
 
+import ar.edu.utn.tacs.group5.meta.FeedMeta;
 import ar.edu.utn.tacs.group5.model.Feed;
 
 
 public class FeedService {
 
 	private static final String DEFAULT_FEED = "My Feed";
+	private FeedMeta feedMeta = FeedMeta.get();
 
 	public void insert(Long userId) {
 		Feed feed = new Feed();
@@ -22,6 +25,12 @@ public class FeedService {
 		Transaction tx = Datastore.beginTransaction();
 		Datastore.put(tx, feed);
 		tx.commit();
+	}
+
+	public Feed getByUserId(Long userId) {
+		return Datastore.query(feedMeta)
+						.filter(feedMeta.userId.getName(), FilterOperator.EQUAL, userId)
+						.asSingle();
 	}
 
 }
