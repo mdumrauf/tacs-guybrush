@@ -52,43 +52,58 @@ window.fbAsyncInit = function() {
 	ref.parentNode.insertBefore(js, ref);
 }(document));
 
-
 function postLink(torrent) {
     var obj = {
       method: 'feed',
-      link: domain + 'addTorrent?link=' +torrent +'&fromFB=true' ,
+      link: domain + 'addTorrent?link=' + torrent +'&fromFB=true' ,
       picture: 'http://blog.popcap.com/wp-content/blogs.dir/3/2013/01/guybrush.jpg',
       name: torrent,
       caption: 'Nuevo torrent!',
-      description: 'Has click en el link para agregar el torrent a tus feeds.'
+      description: 'Haz click en el link para agregar el torrent a tus feeds.'
     };
 
-    function callback(response) {
-    	if (response && response.post_id) {
-            // Se posteo bien
-          } else {   
-          	alert('El link no se posteó correctamente');
-          	}
-          }    
-
-    FB.ui(obj, callback);
+    FB.ui(obj, postCallback);
 }
 
+//@Deprecated
 function post() {
     var obj = {
       method: 'feed'
-      
     };
+	
+    FB.ui(obj, postCallback);
+}
 
-    function callback(response) {
+function postCallback(response) {
     	if (response && response.post_id) {
-            // Se posteo bien
+            //TODO: Se posteo bien
           } else {   
-          	alert('No se pudo postear en su muro');
+          	alert('El link no se posteó correctamente');
           	}
-          }    
+}
 
-    FB.ui(obj, callback);
+function login() {
+		FB.login(function(response){
+				loginOnServer(response.authResponse.userID);
+			}
+			//,{scope: 'email,user_likes'}
+		);
+}
+
+function loginOnServer(uid) {
+	userId = uid;
+	$.ajax({
+		url : "/login?userId=" + userId,
+		type : "post",
+		error : function(status) {
+			alert("Error al loguear el usuario en el servidor");
+		},
+		success : function() {
+			var feedLink = domain + '/getFeed?userId=' + userId;
+			$("#feedUrl").attr('href', feedLink);
+			$("#appCommands").show();
+		}
+	});
 }
 
 function addTorrent() {
