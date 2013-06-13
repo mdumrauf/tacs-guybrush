@@ -1,3 +1,4 @@
+<%@page pageEncoding="UTF-8"%>
 <html>
 
 <head>
@@ -27,7 +28,7 @@
 		  <li>
 		  	<a id="feedUrl">Link al feed</a>
 		  </li>
-		  <li id="logout"><a id="close-session" href="#">Cerrar sesión</a></li>
+		  <li id="logout"><a id="close-session" href="#">Cerrar sesiÃ³n</a></li>
 	  </ul>
   </nav>
   
