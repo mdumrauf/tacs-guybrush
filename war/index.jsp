@@ -5,7 +5,7 @@
   <html lang="en">
   <meta charset="UTF-8">
   <title>Guybrush</title>
-  <link href="style/bootstrap.css" rel="stylesheet">
+  <link href="style/bootstrap.min.css" rel="stylesheet">
   <link href="style/style.css" rel="stylesheet">
 </head>
 
