@@ -10,6 +10,7 @@ import ar.edu.utn.tacs.group5.service.FeedService;
 
 public class AddTorrentController extends Controller {
 	
+	private static final String ALLOWED_METHODS = "Allowed methods: GET";
 	private Logger logger = Logger.getLogger(this.getClass().getName());
 	private FeedService feedService = new FeedService();
 
@@ -18,6 +19,11 @@ public class AddTorrentController extends Controller {
     	Long userId = sessionScope(Constants.USER_ID);
     	if (userId == null) {
     		response.setStatus(HttpStatus.SC_FORBIDDEN);
+			return null;
+		}
+    	if (!isGet()) {
+			response.setStatus(HttpStatus.SC_METHOD_NOT_ALLOWED);
+			response.getWriter().print(ALLOWED_METHODS);
 			return null;
 		}
     	String link = param(Constants.LINK);
