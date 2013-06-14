@@ -5,6 +5,7 @@ import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.assertThat;
 
+import org.apache.commons.httpclient.HttpStatus;
 import org.junit.Test;
 
 public class LoginControllerTest extends AbstractControllerTest {
@@ -19,9 +20,12 @@ public class LoginControllerTest extends AbstractControllerTest {
         assertThat(tester.getDestinationPath(), is(nullValue()));
     }
 
-    @Test(expected=NullPointerException.class)
+    @Test
     public void runWithNullUserId() throws Exception {
         tester.start("/login");
+        LoginController controller = tester.getController();
+        assertThat(controller, is(notNullValue()));
+        assertThat(tester.response.getStatus(), is(HttpStatus.SC_BAD_REQUEST));
     }
 
     @Test(expected=IllegalArgumentException.class)
