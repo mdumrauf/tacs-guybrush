@@ -27,6 +27,10 @@ public class AddTorrentController extends Controller {
 			return null;
 		}
     	String link = param(Constants.LINK);
+    	if (link == null) {
+			response.setStatus(HttpStatus.SC_BAD_REQUEST);
+			return null;
+		}
     	logger.info(link);
 		feedService.addTorrent(userId, link);
 
