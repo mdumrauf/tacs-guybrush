@@ -15,7 +15,8 @@ import com.github.mustachejava.MustacheFactory;
 
 public class GetFeedController extends Controller {
 
-    private MustacheFactory mustacheFactory = new DefaultMustacheFactory();
+    private static final String FEED_TEMPLATE = "feed.mustache";
+	private MustacheFactory mustacheFactory = new DefaultMustacheFactory();
 	private FeedService feedService = new FeedService();
 
 	@Override
@@ -25,8 +26,8 @@ public class GetFeedController extends Controller {
 			response.setStatus(HttpStatus.SC_FORBIDDEN);
 			return null;
 		}
-        Mustache mustache = mustacheFactory.compile("feed.mustache");
-        Feed feed = feedService.getByUserId(userId);
+        Mustache mustache = mustacheFactory.compile(FEED_TEMPLATE);
+		Feed feed = feedService.getByUserId(userId);
 		mustache.execute(new PrintWriter(response.getWriter()), feed).flush();
     	return null;
     }
