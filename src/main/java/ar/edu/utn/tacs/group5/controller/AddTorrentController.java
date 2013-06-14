@@ -2,6 +2,7 @@ package ar.edu.utn.tacs.group5.controller;
 
 import java.util.logging.Logger;
 
+import org.apache.commons.httpclient.HttpStatus;
 import org.slim3.controller.Controller;
 import org.slim3.controller.Navigation;
 
@@ -15,6 +16,10 @@ public class AddTorrentController extends Controller {
     @Override
     public Navigation run() throws Exception {
     	Long userId = sessionScope(Constants.USER_ID);
+    	if (userId == null) {
+    		response.setStatus(HttpStatus.SC_FORBIDDEN);
+			return null;
+		}
     	String link = param(Constants.LINK);
     	logger.info(link);
 		feedService.addTorrent(userId, link);

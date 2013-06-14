@@ -2,6 +2,7 @@ package ar.edu.utn.tacs.group5.controller;
 
 import java.io.PrintWriter;
 
+import org.apache.commons.httpclient.HttpStatus;
 import org.slim3.controller.Controller;
 import org.slim3.controller.Navigation;
 
@@ -20,6 +21,10 @@ public class GetFeedController extends Controller {
 	@Override
     public Navigation run() throws Exception {
     	Long userId = sessionScope(Constants.USER_ID);
+    	if (userId == null) {
+			response.setStatus(HttpStatus.SC_FORBIDDEN);
+			return null;
+		}
         Mustache mustache = mustacheFactory.compile("feed.mustache");
         Feed feed = feedService.getByUserId(userId);
 		mustache.execute(new PrintWriter(response.getWriter()), feed).flush();
