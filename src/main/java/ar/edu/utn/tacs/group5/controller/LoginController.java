@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 import org.slim3.controller.Controller;
 import org.slim3.controller.Navigation;
 
+import ar.edu.utn.tacs.group5.controller.Constants;
 import ar.edu.utn.tacs.group5.service.FeedService;
 
 public class LoginController extends Controller {

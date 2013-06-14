@@ -3,12 +3,12 @@ package ar.edu.utn.tacs.group5.service;
 import org.slim3.datastore.Datastore;
 import org.slim3.datastore.ModelQuery;
 
-import com.google.appengine.api.datastore.Query.FilterOperator;
-import com.google.appengine.api.datastore.Transaction;
-
 import ar.edu.utn.tacs.group5.meta.FeedMeta;
 import ar.edu.utn.tacs.group5.model.Feed;
 import ar.edu.utn.tacs.group5.model.Item;
+
+import com.google.appengine.api.datastore.Query.FilterOperator;
+import com.google.appengine.api.datastore.Transaction;
 
 
 public class FeedService {
