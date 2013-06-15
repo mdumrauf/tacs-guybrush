@@ -1,8 +1,12 @@
 $(document).ready(function(){
 // Bindings
 	//Nav Bar
-	$('#login').on('click', login);
-	$('#logout').on('click', closeFbSession);
+	$('nav').find('.login').on('click', login);
+	$('nav').find('.logout').on('click', closeFbSession);
+	$('nav').find('.about').on('click', function(e){
+		e.preventDefault();
+		$('#aboutModal').modal();
+	});
 	
 	//My Feeds
 	$('#myFeedsList').on('click', '.addTorrentBtn', showFormAddTorrent);
@@ -40,8 +44,8 @@ $(document).ready(function(){
 	$('#formAddTorrent').hide();
 	$('#formNewFeed').hide();
 	//Refresh page.
-	$('#logo').on('click',loadMyFeeds);
-	$('#logo').on('click',loadSubscribedFeeds);
+	$('nav .logo').on('click',loadMyFeeds);
+	$('nav .logo').on('click',loadSubscribedFeeds);
 	
 // Load Feeds Dinamically
 	function loadMyFeeds(){

@@ -2,7 +2,7 @@
 	display: none;
 }
 
-#logo img{
+.logo img{
 	padding-left: 2px;
 	padding-right: 2px;
 	float: left;
@@ -13,8 +13,16 @@
 	transition: opacity .2s ease-in-out;
 }
 
-#logo img:hover{
+.logo img:hover{
 	opacity: 1;
+}
+
+.aboutImg {
+	position: absolute;
+	right: 15px;
+	top: 20px;
+	width: 30%;
+	box-shadow: 5px 5px 4px #000;
 }
 
 #myFeedsList form {
