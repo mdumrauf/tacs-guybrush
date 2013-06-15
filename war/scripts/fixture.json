@@ -1,0 +1,13 @@
+{"feed": {
+  "key": "5432",
+  "name": "Horror Movies",
+  "description": "Collection of my favourite Horror Movies.",
+  "owner": "Alan Accurso",
+  "torrents": [
+      {"name": "From Dusk Till Dawn", "url": "#www.fromdusktilldawn.com"},
+      {"name": "From Dusk Till Dawn", "url": "#www.fromdusktilldawn.com"},
+      {"name": "From Dusk Till Dawn", "url": "#www.fromdusktilldawn.com"}
+    ]
+}
+
+}
