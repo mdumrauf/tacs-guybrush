@@ -114,7 +114,7 @@ $(document).ready(function(){
 		var feedDescription = $formNewFeed.find('.feedDescription').val();
 		
 		if(feedName == "" || feedDescription == ""){
-			alert('The name or url of the feed are missing.');
+			alert('The name or description of the feed are missing.');
 			return;
 		}
 		
@@ -148,7 +148,7 @@ $(document).ready(function(){
 		var feedKey = $(this).closest("article").data("feed-key");
 		
 		if(torrentName == "" || torrentUrl == ""){
-			$formAddTorrent.find('.alert').slideDown();
+			alert('The name or url of the torrent are missing.');
 			return;
 		}
 		
