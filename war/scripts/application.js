@@ -79,6 +79,7 @@ $(document).ready(function(){
 		
 		$newFeed.insertAfter($formNewFeed).slideDown();
 		
+		$formNewFeed.slideUp();
 		// $.ajax({
 		// url : "/newFeed?name=" + link
 			// + "&description=" + torrentName,
@@ -104,19 +105,26 @@ $(document).ready(function(){
 		e.preventDefault();
 		$formAddTorrent = $('#formAddTorrent');
 		$formAddTorrent.hide();
-		$formAddTorrent.insertBefore($(this).closest("article").find("ul")).slideDown();
+		$formAddTorrent.appendTo($(this).closest("article").find("ul")).slideDown();
 	}
 	
 	function addTorrent(e){
 		e.preventDefault();
-		var torrentName = $('#torrentName').val();
-		var torrentUrl = $('#torrentUrl').val();		
+		$formAddTorrent = $('#formAddTorrent');
+		var torrentName = $formAddTorrent.find('.torrentName').val();
+		var torrentUrl = $formAddTorrent.find('.torrentUrl').val();		
 		var feedKey = $(this).closest("article").data("feed-key");
 		
 		if(torrentName == "" || torrentUrl == ""){
 			alert("Did you complete Torrent Name and Url?");
 			return;
 		}
+		
+		var $torrents = $(this).closest('.torrents');
+		var $newTorrent = $torrents.find('.template').clone().removeClass('template');
+		$newTorrent.find('.torrent').text(torrentName);
+		$newTorrent.find('.torrent').attr('href',torrentUrl);
+		$newTorrent.prependTo($torrents).hide().slideDown();
 		
 		// $.ajax({
 		// url : "/addTorrent?link=" + link
