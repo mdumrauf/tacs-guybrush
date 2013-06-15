@@ -45,31 +45,7 @@ $(document).ready(function(){
 	
 // Load Feeds Dinamically
 	function loadMyFeeds(){
-		//Replace with $.getJSON('url/getFeeds');
-		var json = [
-			{'feed': {
-				'key': '5432',
-				'name': 'Horror Movies',
-				'description': 'My favourite horror movies.',
-				'owner': 'Alan Accurso',
-				'torrents': [
-						{'name': 'From dusk till dawn.', 'url': '#www.indiana.com/indy.torrent'},
-						{'name': 'From dusk till dawn.', 'url': '#www.indiana.com/indy.torrent'}
-					]
-				}
-			},
-			{'feed': {
-				'key': '5433',
-				'name': 'Adventure Movies',
-				'description': 'My favourite adventure movies.',
-				'owner': 'Alan Accurso',
-				'torrents': [
-						{'name': 'Indiana Jones', 'url': '#www.indiana.com/indy.torrent'},
-						{'name': 'Indiana Jones', 'url': '#www.indiana.com/indy.torrent'}
-					]
-				}
-			}
-		];
+		//TODO: $.getJSON('url/getFeeds');
 		
 		var $myFeedsList = $('#myFeedsList');
 		
@@ -99,7 +75,7 @@ $(document).ready(function(){
 	}
 	
 	function loadSubscribedFeeds(){
-		//TODO: $.getJSON('url/getFeeds');
+		//TODO: $.getJSON('url/getSubsFeeds');
 		
 		var $subscribedFeedsList = $('#subscribedFeedsList');
 		
@@ -153,26 +129,6 @@ $(document).ready(function(){
 		$newFeed.insertAfter($formNewFeed).slideDown();
 		
 		$formNewFeed.slideUp();
-		
-		// $.ajax({
-		// url : "/newFeed?name=" + link
-			// + "&description=" + torrentName,
-		// type : "post",
-		// error : function(status) {
-			// alert("Error al crear feed.");
-			// },
-		// success : function(data) {
-			// var response = JSON.parse(data);
-			// var feed = $("<article class='feed' feed-key='"
-			// + response.feedKey + "'><header><div class='btn-group actions'><button class='btn addTorrentBtn'><i class='icon-plus'></i></button><button class='btn shareFeed'><i class='icon-thumbs-up'></i></button></div>"
-			// + "<h3><a href='" + response.feedHref + "'>"
-			// + feedName + "</a></h3></header><aside><p>"
-			// + feedDescription + "</p></aside><hr><ul class='torrents'></ul></article>");
-			
-			// $("#myFeedsList #formNewFeed").after(feed).slideUp();
-			// alert("Feed creado con éxito.");
-			// }
-		// });
 	}
 	
 	function showFormAddTorrent(e){
@@ -201,23 +157,6 @@ $(document).ready(function(){
 		$newTorrent.prependTo($torrents).hide().slideDown();
 		
 		$formAddTorrent.slideUp();
-		
-		// $.ajax({
-		// url : "/addTorrent?link=" + link
-			// + "&name=" + torrentName
-			// + "&feedKey=" + feedKey,
-		// type : "post",
-		// error : function(status) {
-			// alert("Error al agregar torrent.");
-			// },
-		// success : function() {
-			// var torrent = $("<li><a href='" + torrentUrl + "'>" + torrentName + "</a></li>");
-			
-			// $('#myFeedsList #formAddTorrent').slideUp();
-			// $(this).closest('article').find('.torrents').prepend(torrent);
-			// postLink(torrentUrl);
-			// }
-		// });
 	}
 	
 	function addSharedTorrent(e){
