@@ -57,7 +57,7 @@
   
 	<!-- Form Add Torrent -->
 	<form id='formAddTorrent'>
-	  <h3>Add Torrent</h3>
+	  <h4>Add Torrent</h4>
 	  <hr>
 	  <fieldset>
 		<label>Name</label>
@@ -67,27 +67,11 @@
 		<label>Url</label>
 		<input id='torrentUrl' type='text' placeholder='Copy torrent url...'>
 	  </fieldset>
-	  <button id='addTorrent' class='btn'>
-	  <i class='icon-ok'></i>
-	  </button><span id='cancelTorrent' class='btn'><i class='icon-remove'></i></span>
+	  <div class="actions">
+		<button class='btn addTorrent'><i class='icon-ok'></i></button>
+		<button class='btn cancelTorrent'><i class='icon-remove'></i></button>
+		</div>
 	</form>
-  
-  <!-- New Feed Form -->
-	<article id='formNewFeed'>
-	  <form>
-		<h3>New Feed</h3>
-		<hr>
-		<fieldset>
-		  <label>Name</label> <input id="feedName" type="text"
-			placeholder="Type feed name...">
-		</fieldset>
-		<fieldset>
-		  <label>Description</label>
-		  <textarea id="feedDescription" rows="2"></textarea>
-		</fieldset>
-		<button id="submitNewFeedBtn" type="submit" class="btn">Submit</button>
-	  </form>
-	</article>
   
   <!-- Feeds -->
   <section class="row-fluid">
@@ -101,7 +85,7 @@
       </header>
       <section id="myFeedsList">
 		<!-- Feed Template -->
-        <article class="feed template" data-key="5432">
+        <article class="feed template">
           <header>
             <div class="actions btn-group">
               <button type='button' class='btn addTorrentBtn'>
@@ -112,17 +96,34 @@
               </button>
             </div>
             <h3>
-              <a href="#feedRss">Feed Name</a>
+              <a class='feedName' href="#feedRss">Feed Name</a>
             </h3>
           </header>
           <aside>
-            <p>Description of the feed.</p>
+            <p class='feedDescription'>Description of the feed.</p>
           </aside>
           <hr>
           <ul class="torrents">
-            <li class="template"><a href='#torrentUrl'>Torrent Name</a></li>
+            <li class="template"><a class='torrent' href='#torrentUrl'>Torrent Name</a></li>
           </ul>
         </article>
+		<!-- New Feed Form -->
+		<article id='formNewFeed'>
+		  <form>
+			<h3>New Feed</h3>
+			<hr>
+			<fieldset>
+			  <label>Name</label> <input class="feedName" type="text"
+				placeholder="Type feed name...">
+			</fieldset>
+			<fieldset>
+			  <label>Description</label>
+			  <textarea class="feedDescription" rows="2"></textarea>
+			</fieldset>
+			<button class="submitNewFeedBtn" type="submit" class="btn">Submit</button>
+		  </form>
+		</article>
+		<!-- List of Feeds -->
       </section>
     </section>
 
