@@ -1,19 +1,21 @@
 $(document).ready(function(){
 // Bindings
 	//Nav Bar
-	$("#login").bind({click: login});
-	//$("#logout").bind({click: closeFbSession});}
+	$('#login').on('click', login);
+	$('#logout').on('click', closeFbSession);
 	
 	//My Feeds
-	$("#myFeedsList .addTorrentBtn").bind({click: showFormAddTorrent});
-	$("#myFeedsList .shareFeed").bind({click: shareFeed});
-	$("#submitNewFeed").bind({click: newFeed});
-	$("#newFeedBtn").bind({click: function (){
-		$("#formNewFeed").slideToggle();
-	}});
+	$('#myFeedsList').on('click', '.addTorrentBtn', showFormAddTorrent);
+	$('#myFeedsList').on('click', '.shareFeed', shareFeed);
+	$('#submitNewFeedBtn').on('click', newFeed);
+	$('#newFeedBtn').on('click', function (){
+		$('#formNewFeed').slideToggle();
+	});
 	
+	//Subscribed Feeds
+	$('#subscribedFeedsList').on('click', '.removeSubscribedFeed', removeSubscribedFeed);
 	
-	//Modal
+	//Modal Add Shared Torrent
 	$("#myFeedsModal article").bind({click: function(e){
 			e.preventDefault();
 			$("#myFeedsModal").find(".active").removeClass("active");
@@ -22,34 +24,28 @@ $(document).ready(function(){
 	});
 	$("#submitSharedTorrent").bind({click: addSharedTorrent});
 	
-	//Subscribed Feeds
-	$("#subscribedFeedsList").find('.removeSubscribedFeed').bind({click: removeSubscribedFeed});
-	
-// One form for adding torrents for all the document.
-	var formAddTorrent = $("<form id='formAddTorrent'><h3>Add Torrent</h3><hr><fieldset><label>Name</label><input id='torrentName' type='text' placeholder='Type torrent name...'></fieldset>"
-				  + "<fieldset><label>Url</label><input id='torrentUrl' type='text' placeholder='Copy torrent url...'></fieldset>"
-				  + "<button id='addTorrent' class='btn'><i class='icon-ok'></i></button><span id='cancelTorrent' class='btn'><i class='icon-remove'></i></span></form>").hide();
-
 // Structure
-	$(formNewFeed).hide();
-	$("#addSharedTorrentModal").modal('hide');
+	$('#addSharedTorrentModal').modal('hide');
+	$('#formAddTorrent').hide();
+	$('#formNewFeed').hide();
 
 // Action Functions
 	function loadFeeds(){
 		
 		// Get Feeds and Torrents
 		$.ajax({
-		url : "/getFeeds" // The userId is persisted in the session
+		url : "/getFeeds", // The userId is persisted in the session
 		type : "get",
 		error : function(status) {
 			alert("Error al cargar los feeds.");
 		},
 		success : function(data) {
 			feeds = JSON.parse(data);
-			if(feeds.size() > 0){
+			// if(feeds.size() > 0){
 				
+				// }
 			}
-		}
+		});
 	}
 	
 	function newFeed(e){
@@ -68,7 +64,7 @@ $(document).ready(function(){
 		type : "post",
 		error : function(status) {
 			alert("Error al crear feed.");
-		},
+			},
 		success : function(data) {
 			var response = JSON.parse(data);
 			var feed = $("<article class='feed' data-key='"
@@ -78,10 +74,9 @@ $(document).ready(function(){
 			+ feedDescription + "</p></aside><hr><ul class='torrents'></ul></article>");
 			
 			$("#myFeedsList #formNewFeed").after(feed).slideUp();
-			$("#myFeedsList .addTorrentBtn").bind({click: showFormAddTorrent});
-			$("#myFeedsList .shareFeed").bind({click: shareFeed});
 			alert("Feed creado con éxito.");
-		}
+			}
+		});
 	}
 	
 	function showFormAddTorrent(e){
@@ -112,14 +107,15 @@ $(document).ready(function(){
 		type : "post",
 		error : function(status) {
 			alert("Error al agregar torrent.");
-		},
+			},
 		success : function() {
 			var torrent = $("<li><a href='" + torrentUrl + "'>" + torrentName + "</a></li>");
 			
 			$('#myFeedsList #formAddTorrent').slideUp();
 			$(this).closest('article').find('.torrents').prepend(torrent);
 			postLink(torrentUrl);
-		}
+			}
+		});
 	}
 	
 	function addSharedTorrent(e){

@@ -55,6 +55,40 @@
     </div>
   </div>
   
+	<!-- Form Add Torrent -->
+	<form id='formAddTorrent'>
+	  <h3>Add Torrent</h3>
+	  <hr>
+	  <fieldset>
+		<label>Name</label>
+		<input id='torrentName' type='text' placeholder='Type torrent name...'>
+	  </fieldset>
+	  <fieldset>
+		<label>Url</label>
+		<input id='torrentUrl' type='text' placeholder='Copy torrent url...'>
+	  </fieldset>
+	  <button id='addTorrent' class='btn'>
+	  <i class='icon-ok'></i>
+	  </button><span id='cancelTorrent' class='btn'><i class='icon-remove'></i></span>
+	</form>
+  
+  <!-- New Feed Form -->
+	<article id='formNewFeed'>
+	  <form>
+		<h3>New Feed</h3>
+		<hr>
+		<fieldset>
+		  <label>Name</label> <input id="feedName" type="text"
+			placeholder="Type feed name...">
+		</fieldset>
+		<fieldset>
+		  <label>Description</label>
+		  <textarea id="feedDescription" rows="2"></textarea>
+		</fieldset>
+		<button id="submitNewFeedBtn" type="submit" class="btn">Submit</button>
+	  </form>
+	</article>
+  
   <!-- Feeds -->
   <section class="row-fluid">
     <!-- My Feeds -->
@@ -66,22 +100,8 @@
         <h2>My Feeds</h2>
       </header>
       <section id="myFeedsList">
-        <article id='formNewFeed'>
-          <form>
-            <h3>New Feed</h3>
-            <hr>
-            <fieldset>
-              <label>Name</label> <input id="feedName" type="text"
-                placeholder="Type feed name...">
-            </fieldset>
-            <fieldset>
-              <label>Description</label>
-              <textarea id="feedDescription" rows="2"></textarea>
-            </fieldset>
-            <button id="submitNewFeed" type="submit" class="btn">Submit</button>
-          </form>
-        </article>
-        <article class="feed" data-key="5432">
+		<!-- Feed Template -->
+        <article class="feed template" data-key="5432">
           <header>
             <div class="actions btn-group">
               <button type='button' class='btn addTorrentBtn'>
@@ -92,7 +112,7 @@
               </button>
             </div>
             <h3>
-              <a href="#horrorFeed">Horror Movies</a>
+              <a href="#feedRss">Feed Name</a>
             </h3>
           </header>
           <aside>
@@ -100,9 +120,7 @@
           </aside>
           <hr>
           <ul class="torrents">
-            <li><a href='#'>Torrent 1</a></li>
-            <li><a href='#'>Torrent 2</a></li>
-            <li><a href='#'>Torrent 3</a></li>
+            <li class="template"><a href='#torrentUrl'>Torrent Name</a></li>
           </ul>
         </article>
       </section>
@@ -114,7 +132,8 @@
         <h2>Subscribed Feeds</h2>
       </header>
       <section id="subscribedFeedsList">
-        <article class="feed" data-key="5432">
+		<!-- Subscribed Feed Template -->
+        <article class="feed subscribed template" data-key="5432">
           <header>
             <div class='actions'>
               <button class='btn removeSubscribedFeed'>
@@ -122,15 +141,15 @@
               </button>
             </div>
             <h3>
-              <a href="#horrorFeed">Awesome Subscribed Feed</a>
+              <a href="#subscribedFeedRss">Name Subscribed Feed</a>
             </h3>
           </header>
           <aside>
-            <p>Description of awesome subscribed feed.</p>
+            <p>Description of subscribed feed.</p>
           </aside>
           <hr>
           <ul class="torrents">
-            <li><a href='#'>Torrent 1</a></li>
+            <li class="template"><a href='#'>Torrent 1</a></li>
             <li><a href='#'>Torrent 2</a></li>
             <li><a href='#'>Torrent 3</a></li>
           </ul>

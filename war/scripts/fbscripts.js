@@ -1,5 +1,9 @@
 var userId;
 var domain = 'localhost:8080';
+var offline = true;
+
+if(!offline){
+
 window.fbAsyncInit = function() {
 	FB.init({
 		appId : 175661185922694, // App ID
@@ -140,4 +144,5 @@ function closeFbSession() {
 			}
 		});
 	});
+}
 }
