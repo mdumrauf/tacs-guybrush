@@ -124,27 +124,28 @@
       </header>
       <section id="subscribedFeedsList">
 		<!-- Subscribed Feed Template -->
-        <article class="feed subscribed template" data-key="5432">
+        <article class="feed template">
           <header>
-            <div class='actions'>
-              <button class='btn removeSubscribedFeed'>
-                <i class='icon-remove'></i>
+            <div class="actions btn-group">
+              <button type='button' class='btn addTorrentBtn'>
+                <i class='icon-plus'></i>
+              </button>
+              <button type='button' class='btn shareFeed'>
+                <i class='icon-thumbs-up'></i>
               </button>
             </div>
             <h3>
-              <a href="#subscribedFeedRss">Name Subscribed Feed</a>
+              <a class='feedName' href="#feedRss">Feed Name</a>
             </h3>
           </header>
           <aside>
-            <p>Description of subscribed feed.</p>
+            <p class='feedDescription'>Description of the feed.</p> | 
+			<a class='owner' href='#ownerFB'>Owner Name</a>
           </aside>
           <hr>
           <ul class="torrents">
-            <li class="template"><a href='#'>Torrent 1</a></li>
-            <li><a href='#'>Torrent 2</a></li>
-            <li><a href='#'>Torrent 3</a></li>
+            <li class="template"><a class='torrent' href='#torrentUrl'>Torrent Name</a></li>
           </ul>
-        </article>
       </section>
     </section>
   </section>
