@@ -39,7 +39,7 @@ $(document).ready(function(){
 	$('#addSharedTorrentModal').modal('hide');
 	$('#formAddTorrent').hide();
 	$('#formNewFeed').hide();
-
+	//Refresh page.
 	$('#logo').on('click',loadMyFeeds);
 	$('#logo').on('click',loadSubscribedFeeds);
 	
@@ -118,6 +118,8 @@ $(document).ready(function(){
 			return;
 		}
 		
+		//TODO: Llamada a servlet newFeed
+		
 		var $newFeedTemplate = $('#myFeedsList').find('.feed.template');
 		var $newFeed = $newFeedTemplate.clone().removeClass('template');
 		
@@ -150,6 +152,8 @@ $(document).ready(function(){
 			return;
 		}
 		
+		//TODO: Llamada a servlet addTorrent
+		
 		var $torrents = $(this).closest('.torrents');
 		var $newTorrent = $torrents.find('.template').clone().removeClass('template');
 		$newTorrent.find('.torrent').text(torrentName);
@@ -161,10 +165,11 @@ $(document).ready(function(){
 	
 	function addSharedTorrent(e){
 		e.preventDefault();
-		var torrentName = $("#addSharedTorrentModal").find(".sharedTorrent").text();
-		var torrentUrl = $("#addSharedTorrentModal").find(".sharedTorrent").attr("href");
+		$addSharedTorrentModal = $("#addSharedTorrentModal");
+		var torrentName = $addSharedTorrentModal.find(".sharedTorrent").text();
+		var torrentUrl = $addSharedTorrentModal.find(".sharedTorrent").attr("href");
 		
-		var feedKey = $("#myFeedsModal").find(".active").data("feed-key");
+		var feedKey = $addSharedTorrentModal.find(".myFeeds").find(".active").data("feed-key");
 		
 		alert('Name: ' + torrentName + '\nUrl:' + torrentUrl + '\nFeed:' + feedKey);
 		
@@ -173,20 +178,19 @@ $(document).ready(function(){
 	}
 	
 	function shareFeed(){
-		var feedUrl = $(this).closest('article').find('a').attr('href');
+		var feedUrl = $(this).closest('article').find('.torrent').attr('href');
 		postLink(feedUrl);
 	}
 	
 	function removeSubscribedFeed(){
 		var feedKey = $(this).closest("article").find(".feed").data("feed-key");
 		
+		//TODO: Llamada a servlet removeSubscribedFeed
 		alert('Feed: ' + feedKey);
 		
 		$(this).closest("article").slideUp(function(){
 			$(this).remove();
 		});
-		
-		// Llamada a servlet removeSubscribedFeed
 	}
 	
 	//Mock data for Feeds
