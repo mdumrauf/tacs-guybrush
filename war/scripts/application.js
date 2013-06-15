@@ -187,7 +187,7 @@ $(document).ready(function(){
 	}
 	
 	function removeSubscribedFeed(){
-		var feedKey = $(this).closest("article").find(".feed").data("feed-key");
+		var feedKey = $(this).closest("article").data("feed-key");
 		
 		//TODO: Llamada a servlet removeSubscribedFeed
 		alert('Feed: ' + feedKey);
