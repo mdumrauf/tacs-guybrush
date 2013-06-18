@@ -28,66 +28,6 @@
     </div>
   </nav>
   
-  <!-- About Modal -->
-  <div id="aboutModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-    <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-      <h3 id="myModalLabel">About Guybrush</h3>
-    </div>
-    <div class="modal-body">
-      <h4>Members</h4>
-	  <img class='aboutImg' src='img/guybrush.jpg'>
-      <ul>
-		<li>Accurso Alan</li>
-		<li>Dumrauf Matías</li>
-		<li>Galante Agustín</li>
-		<li>Kosloff Guido</li>
-		<li>Ponzo Natasha</li>
-	  </ul>
-      <hr>
-    </div>
-	<div class="modal-footer">
-		<a href="#" class='logo'><img src='img/logo/Black_and_white_266x75.png'></a>
-		<h4>TACS</h4>
-	</div>
-  </div>
-  
-  <!-- Add Shared Torrent Modal -->
-  <div id="addSharedTorrentModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-    <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-      <h3 id="myModalLabel">Add Shared Torrent</h3>
-      <a href="#sharedTorrentUrl" class="sharedTorrent">Shared Torrent</a>
-    </div>
-    <div class="modal-body">
-      <h4>My Feeds</h4>
-      <p>Please choose one of your feeds to add the shared torrent.</p>
-      <hr>
-      <div class='myFeeds'>
-		  <article data-key="5432"><h4>Horror Movies</h4></article>
-		  <article data-key="5433"><h4>Horror Movies</h4></article>
-		  <article data-key="5434"><h4>Horror Movies</h4></article>
-		  <article data-key="5435"><h4>Horror Movies</h4></article>
-      </div>
-    </div>
-  </div>
-  
-	<!-- Form Add Torrent -->
-	<form id='formAddTorrent'>
-	  <h4>Add Torrent</h4>
-	  <hr>
-	  <fieldset>
-		<label>Name</label>
-		<input class='torrentName' type='text' placeholder='Type torrent name...'>
-	  </fieldset>
-	  <fieldset>
-		<label>Url</label>
-		<input class='torrentUrl' type='text' placeholder='Copy torrent url...'>
-	  </fieldset>
-		<button class='btn addTorrent'><i class='icon-ok'></i></button>
-		<button class='btn cancelTorrent'><i class='icon-remove'></i></button>
-	</form>
-  
   <!-- Feeds -->
   <section class="row-fluid">
     <!-- My Feeds -->
@@ -140,7 +80,7 @@
 		</article>
 		<!-- List of Feeds -->
       </section>
-    </section>
+	  </section>
 
     <!-- Subscribed Feeds -->
     <section class="span6 feeds">
@@ -170,11 +110,67 @@
           </ul>
       </section>
     </section>
-  </section>
-
-  <footer>
-    <p>&copy TACS</p>
-  </footer>
+	</section>
+  
+  <!-- About Modal -->
+  <div id="aboutModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+      <h3 id="myModalLabel">About Guybrush</h3>
+    </div>
+    <div class="modal-body">
+      <h4>Team</h4>
+	  <img class='aboutImg' src='img/guybrush.jpg'>
+      <ul>
+		<li>Accurso Alan</li>
+		<li>Dumrauf Matías</li>
+		<li>Galante Agustín</li>
+		<li>Kosloff Guido</li>
+		<li>Ponzo Natasha</li>
+	  </ul>
+      <hr>
+    </div>
+	<div class="modal-footer">
+		<a href="#" class='logo'><img src='img/logo/Black_and_white_266x75.png'></a>
+		<h4>TACS</h4>
+	</div>
+  </div>
+  
+  <!-- Add Shared Torrent Modal -->
+  <div id="addSharedTorrentModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+      <h3 id="myModalLabel">Add Shared Torrent</h3>
+      <a href="#sharedTorrentUrl" class="sharedTorrent">Shared Torrent</a>
+    </div>
+    <div class="modal-body">
+      <h4>My Feeds</h4>
+      <p>Please choose one of your feeds to add the shared torrent.</p>
+      <hr>
+      <div class='myFeeds'>
+		  <article data-key="5432"><h4>Horror Movies</h4></article>
+		  <article data-key="5433"><h4>Horror Movies</h4></article>
+		  <article data-key="5434"><h4>Horror Movies</h4></article>
+		  <article data-key="5435"><h4>Horror Movies</h4></article>
+      </div>
+    </div>
+  </div>
+  
+	<!-- Form Add Torrent -->
+	<form id='formAddTorrent'>
+	  <h4>Add Torrent</h4>
+	  <hr>
+	  <fieldset>
+		<label>Name</label>
+		<input class='torrentName' type='text' placeholder='Type torrent name...'>
+	  </fieldset>
+	  <fieldset>
+		<label>Url</label>
+		<input class='torrentUrl' type='text' placeholder='Copy torrent url...'>
+	  </fieldset>
+		<button class='btn addTorrent'><i class='icon-ok'></i></button>
+		<button class='btn cancelTorrent'><i class='icon-remove'></i></button>
+	</form>
 
   <!-- Scripts -->
   <!-- Placed at the end of the document so the pages load faster -->
