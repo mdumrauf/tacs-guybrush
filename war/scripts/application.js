@@ -1,8 +1,8 @@
 $(document).ready(function(){
 // Bindings
 	//Nav Bar
-	$('nav').find('.login').on('click', login);
-	$('nav').find('.logout').on('click', closeFbSession);
+	//$('nav').find('.login').on('click', login);
+	//$('nav').find('.logout').on('click', closeFbSession);
 	$('nav').find('.about').on('click', function(e){
 		e.preventDefault();
 		$('#aboutModal').modal();
