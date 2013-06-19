@@ -15,10 +15,10 @@ public class AddTorrentController extends Controller {
 
     @Override
     public Navigation run() throws Exception {
-    	String userId = sessionScope(Constants.USER_ID);
+    	Long userId = sessionScope(Constants.USER_ID);
     	String link = param(Constants.LINK);
     	logger.info(link);
-		feedService.addTorrent(Long.valueOf(userId), link);
+		feedService.addTorrent(userId, link);
 
 		if(Boolean.valueOf(param(Constants.FROM_FB))){
 			return redirect("index.jsp");
