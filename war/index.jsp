@@ -23,7 +23,7 @@
         <li><a class="logout" href="#logout">Logout</a></li> -->
       </ul>
       <p class="navbar-text pull-right">
-        Logged in as <a href='#'>Username</a> | <div class="fb-like" data-href="http://developers.facebook.com/docs/reference/plugins/like" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false" data-font="tahoma"></div>
+        Logged in as <a href='#'>Username</a> | <span class="fb-like" data-href="http://developers.facebook.com/docs/reference/plugins/like" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false" data-font="tahoma"></span>
       </p>
     </div>
   </nav>

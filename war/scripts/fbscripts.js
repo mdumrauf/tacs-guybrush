@@ -104,6 +104,10 @@ function loginOnServer(uid) {
 			$("#appCommands").show();
 		}
 	});
+	
+	FB.api('/me', function(response) {
+		$('.navbar-inner .navbar-text').find('a').text(response.name);
+	});
 }
 
 function addTorrent() {
