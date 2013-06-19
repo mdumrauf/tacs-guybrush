@@ -16,4 +16,15 @@ public class LoginControllerTest extends ControllerTestCase {
         assertThat(tester.isRedirect(), is(false));
         assertThat(tester.getDestinationPath(), is(nullValue()));
     }
+
+    @Test(expected=NullPointerException.class)
+    public void runWithNullUserId() throws Exception {
+        tester.start("/login");
+    }
+
+    @Test(expected=IllegalArgumentException.class)
+    public void runWithInvalidUserId() throws Exception {
+    	tester.param(Constants.USER_ID, "alphanumeric2342value999");
+        tester.start("/login");
+    }
 }
