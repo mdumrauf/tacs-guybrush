@@ -20,10 +20,11 @@ public class GetFeedController extends Controller {
 
 	@Override
     public Navigation run() throws Exception {
-    	String userId = sessionScope(Constants.USER_ID);
+    	Long userId = sessionScope(Constants.USER_ID);
         Mustache mustache = mustacheFactory.compile("feed.mustache");
-        Feed feed = feedService.getByUserId(Long.valueOf(userId));
+        Feed feed = feedService.getByUserId(userId);
 		mustache.execute(new PrintWriter(response.getWriter()), feed).flush();
     	return null;
     }
+
 }
