@@ -20,7 +20,7 @@ public class NewFeedControllerTest extends AbstractAuthorizedControllerTest {
 	@Test
 	public void testRunIsCreated() throws Exception {
 		doLogin();
-		String feed = "{ name: \"foo\", description: \"bar\" }";
+		String feed = "{ title: \"foo\", description: \"bar\" }";
 		BufferedReader reader = Mockito.mock(BufferedReader.class);
 		when(reader.readLine()).thenReturn(feed);
 		tester.request.setReader(reader);
@@ -53,6 +53,24 @@ public class NewFeedControllerTest extends AbstractAuthorizedControllerTest {
 		doLogin();
 		tester.request.setMethod(HttpMethod.POST);
 		tester.request.setContentType(MediaType.FORM_DATA.toString());
+		tester.start(resource());
+
+		NewFeedController controller = tester.getController();
+		assertThat(controller, is(notNullValue()));
+		assertThat(tester.isRedirect(), is(false));
+		assertThat(tester.getDestinationPath(), is(nullValue()));
+		assertThat(tester.response.getStatus(), is(HttpStatus.SC_BAD_REQUEST));
+	}
+
+	@Test
+	public void testRunIsNotValidFeed() throws Exception {
+		doLogin();
+		String feed = "{  }";
+		BufferedReader reader = Mockito.mock(BufferedReader.class);
+		when(reader.readLine()).thenReturn(feed);
+		tester.request.setReader(reader);
+		tester.request.setMethod(HttpMethod.POST);
+		tester.request.setContentType(MediaType.JSON_UTF_8.toString());
 		tester.start(resource());
 
 		NewFeedController controller = tester.getController();

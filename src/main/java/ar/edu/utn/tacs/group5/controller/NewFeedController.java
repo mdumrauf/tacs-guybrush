@@ -47,7 +47,7 @@ public class NewFeedController extends Controller {
 		} finally {
 			Closeables.closeQuietly(reader);
 		}
-		if (feed == null) {
+		if (!feed.isValid()) {
 			response.setStatus(HttpStatus.SC_BAD_REQUEST);
 			return null;
 		}
@@ -56,4 +56,5 @@ public class NewFeedController extends Controller {
 		response.setStatus(HttpStatus.SC_CREATED);
 		return null;
 	}
+
 }
