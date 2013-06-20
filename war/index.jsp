@@ -19,8 +19,6 @@
       <ul class="nav">
         <li class="active"><a href="#">Home</a></li>
         <li><a class="about" href='#about'>About</a></li>
-        <!-- <li><a class="login" href="#login">Login</a></li>
-        <li><a class="logout" href="#logout">Logout</a></li> -->
       </ul>
       <p class="navbar-text pull-right">
         Logged in as <a href='#'>Username</a> | <span class="fb-like" data-href="http://developers.facebook.com/docs/reference/plugins/like" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false" data-font="tahoma"></span>
