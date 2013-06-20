@@ -43,7 +43,7 @@ function postTorrent(torrentUrl, torrentName) {
 	var obj = {
 		method : 'feed',
 		link : domain + 'addTorrent?link=' + torrentUrl + '&fromFB=true',
-		picture : 'img/guybrush.jpg',
+		picture : 'http://blog.doblajevideojuegos.es/wp-content/uploads/291135-gt3.jpg',
 		name : torrentName,
 		caption : 'Nuevo torrent!',
 		description : 'Haz click en el link para agregar el torrent a tus feeds.'
@@ -56,7 +56,7 @@ function postFeed(feedKey, feedName) {
 	var obj = {
 		method : 'feed',
 		link : domain + 'subscribeToFeed?feed-key=' + feedKey + '&fromFB=true',
-		picture : 'img/guybrush.jpg',
+		picture : 'http://blog.doblajevideojuegos.es/wp-content/uploads/291135-gt3.jpg',
 		name : feedName,
 		caption : 'Feed Subscription!',
 		description : 'Haz click en el link para suscribirte al feed.'
