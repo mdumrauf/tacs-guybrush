@@ -1,0 +1,24 @@
+[
+	{'feed': {
+		'key': '5432',
+		'name': 'Horror Movies',
+		'description': 'My favourite horror movies.',
+		'owner': 'Alan Accurso',
+		'torrents': [
+				{'name': 'From dusk till dawn.', 'url': '#www.indiana.com/indy.torrent'},
+				{'name': 'From dusk till dawn.', 'url': '#www.indiana.com/indy.torrent'}
+			]
+		}
+	},
+	{'feed': {
+		'key': '5433',
+		'name': 'Adventure Movies',
+		'description': 'My favourite adventure movies.',
+		'owner': 'Alan Accurso',
+		'torrents': [
+				{'name': 'Indiana Jones', 'url': '#www.indiana.com/indy.torrent'},
+				{'name': 'Indiana Jones', 'url': '#www.indiana.com/indy.torrent'}
+			]
+		}
+	}
+]
