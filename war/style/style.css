@@ -104,7 +104,7 @@ form fieldset textarea {
 	border-bottom-left-radius: 15px;
 }
 
-.feeds article {
+.feeds .feed {
 	padding-left: 20px;
 	background: rgba(208, 208, 198, 0.5);
 	-webkit-border-bottom-right-radius: 10px;

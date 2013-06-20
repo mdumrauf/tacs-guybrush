@@ -166,7 +166,9 @@ $(document).ready(function() {
 
 		$formAddTorrent.slideUp();
 		
-		// TODO: postTorrent(torrentUrl);
+		if(confirm("Torrent agregado con éxito\n\n¿Querés compartirlo en tu muro?") == true){
+			postTorrent(torrentUrl);
+		}
 	}
 	
 	// TODO: Not Used
@@ -185,8 +187,8 @@ $(document).ready(function() {
 	}
 
 	function shareFeed() {
-		var feedUrl = $(this).closest('.feed').find('.feedName').attr('href');
-		// TODO: postFeed(feedUrl);
+		var feedKey = $(this).closest('.feed').find('.feedName').data('feed-key');
+		postFeed(feedUrl);
 	}
 
 	function removeSubscribedFeed() {

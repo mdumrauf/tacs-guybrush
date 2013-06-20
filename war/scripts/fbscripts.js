@@ -39,14 +39,27 @@ window.fbAsyncInit = function() {
 	ref.parentNode.insertBefore(js, ref);
 }(document));
 
-function postTorrent(link) {
+function postTorrent(torrentUrl) {
 	var obj = {
 		method : 'feed',
-		link : domain + 'addTorrent?link=' + link + '&fromFB=true',
+		link : domain + 'addTorrent?link=' + torrentUrl + '&fromFB=true',
 		picture : 'img/guybrush.jpg',
-		name : link,
+		name : torrentUrl,
 		caption : 'Nuevo torrent!',
 		description : 'Haz click en el link para agregar el torrent a tus feeds.'
+	};
+
+	FB.ui(obj, postCallback);
+}
+
+function postFeed(feedKey) {
+	var obj = {
+		method : 'feed',
+		link : domain + 'subscribeToFeed?feed-key=' + feedKey + '&fromFB=true',
+		picture : 'img/guybrush.jpg',
+		name : feedKey,
+		caption : 'Feed Subscription!',
+		description : 'Haz click en el link para suscribirte al feed.'
 	};
 
 	FB.ui(obj, postCallback);
@@ -82,18 +95,3 @@ function loginOnServer(uid) {
 	});
 }
 
-function sendTorrentToServlet(link) {
-	$.ajax({
-		url : "/addTorrent?link=" + link + '&fromFB=false',
-		type : "get",
-		error : function(status) {
-			alert("Error al agregar torrent");
-		},
-		success : function() {
-			var response = confirm("Torrent agregado con éxito\n\n¿Querés compartirlo en tu muro?");
-			if (response == true) {
-				postTorrent(link);
-			}
-		}
-	});
-}
