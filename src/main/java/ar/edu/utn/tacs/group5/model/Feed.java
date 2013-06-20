@@ -127,4 +127,8 @@ public class Feed implements Serializable {
 		this.items = items;
 	}
 
+	public boolean isValid() {
+		return title != null && description != null;
+	}
+
 }
