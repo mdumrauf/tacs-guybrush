@@ -60,12 +60,6 @@ function postCallback(response) {
 	}
 }
 
-function login() {
-	FB.login(function(response) {
-		loginOnServer(response.authResponse.userID);
-	});
-}
-
 function loginOnServer(uid) {
 	userId = uid;
 	$.ajax({
@@ -75,51 +69,32 @@ function loginOnServer(uid) {
 			alert("Error al loguear el usuario en el servidor");
 		},
 		success : function() {
-			var feedLink = domain + '/getFeed?userId=' + userId;
-			$("#feedUrl").attr('href', feedLink);
-			$("#appCommands").show();
+
+			// TODO: Load all user feeds (also subscribed feeds).
+
 		}
 	});
-	
+
 	FB.api('/me', function(response) {
-		var userName=$('.navbar #userName');
+		var userName = $('.navbar #userName');
 		userName.text(response.name);
 		userName.attr("href", response.link);
 	});
 }
 
-function addTorrent() {
-	var link = $("#addTorrentTextBox").val();
-	sendTorrentToServlet(link);
-}
-
 function sendTorrentToServlet(link) {
-	$.ajax({
-		url : "/addTorrent?link=" + link + '&fromFB=false',
-		type : "get",
-		error : function(status) {
-			alert("Error al agregar torrent");
-		},
-		success : function() {
-			var response = confirm("Torrent agregado con éxito\n\n¿Querés compartirlo en tu muro?");
-			if (response == true) {
-				postLink(link);
-			}
-		}
-	});
-}
-
-function closeFbSession() {
-	FB.logout(function(response) {
-		$.ajax({
-			url : "/logout?userId=" + response.authResponse.userID,
-			type : "post",
-			error : function(status) {
-				alert("Error al desloguear el usuario en el servidor");
-			},
-			success : function() {
-				$("#appCommands").hide();
-			}
-		});
-	});
+	$
+			.ajax({
+				url : "/addTorrent?link=" + link + '&fromFB=false',
+				type : "get",
+				error : function(status) {
+					alert("Error al agregar torrent");
+				},
+				success : function() {
+					var response = confirm("Torrent agregado con éxito\n\n¿Querés compartirlo en tu muro?");
+					if (response == true) {
+						postLink(link);
+					}
+				}
+			});
 }
