@@ -146,10 +146,6 @@
       <p>Please choose one of your feeds to add the shared torrent.</p>
       <hr>
       <div class='myFeeds'>
-		  <article data-key="5432"><h4>Horror Movies</h4></article>
-		  <article data-key="5433"><h4>Horror Movies</h4></article>
-		  <article data-key="5434"><h4>Horror Movies</h4></article>
-		  <article data-key="5435"><h4>Horror Movies</h4></article>
       </div>
     </div>
   </div>
