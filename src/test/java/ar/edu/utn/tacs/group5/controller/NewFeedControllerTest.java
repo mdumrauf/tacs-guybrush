@@ -33,6 +33,19 @@ public class NewFeedControllerTest extends AbstractAuthorizedControllerTest {
 		assertThat(tester.response.getStatus(), is(HttpStatus.SC_CREATED));
 	}
 
+	@Test
+	public void testRunIsNotAllowed() throws Exception {
+		doLogin();
+		tester.request.setMethod(HttpMethod.GET);
+		tester.start(resource());
+
+		NewFeedController controller = tester.getController();
+		assertThat(controller, is(notNullValue()));
+		assertThat(tester.isRedirect(), is(false));
+		assertThat(tester.getDestinationPath(), is(nullValue()));
+		assertThat(tester.response.getStatus(), is(HttpStatus.SC_METHOD_NOT_ALLOWED));
+	}
+	
 	@Override
 	protected String resource() {
 		return "/NewFeed";
