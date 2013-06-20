@@ -39,12 +39,12 @@ window.fbAsyncInit = function() {
 	ref.parentNode.insertBefore(js, ref);
 }(document));
 
-function postTorrent(torrentUrl) {
+function postTorrent(torrentUrl, torrentName) {
 	var obj = {
 		method : 'feed',
 		link : domain + 'addTorrent?link=' + torrentUrl + '&fromFB=true',
 		picture : 'img/guybrush.jpg',
-		name : torrentUrl,
+		name : torrentName,
 		caption : 'Nuevo torrent!',
 		description : 'Haz click en el link para agregar el torrent a tus feeds.'
 	};
@@ -52,12 +52,12 @@ function postTorrent(torrentUrl) {
 	FB.ui(obj, postCallback);
 }
 
-function postFeed(feedKey) {
+function postFeed(feedKey, feedName) {
 	var obj = {
 		method : 'feed',
 		link : domain + 'subscribeToFeed?feed-key=' + feedKey + '&fromFB=true',
 		picture : 'img/guybrush.jpg',
-		name : feedKey,
+		name : feedName,
 		caption : 'Feed Subscription!',
 		description : 'Haz click en el link para suscribirte al feed.'
 	};
