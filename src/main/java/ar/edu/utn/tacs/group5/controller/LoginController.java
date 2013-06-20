@@ -2,12 +2,11 @@ package ar.edu.utn.tacs.group5.controller;
 
 import java.util.logging.Logger;
 
+import org.apache.commons.httpclient.HttpStatus;
 import org.slim3.controller.Controller;
 import org.slim3.controller.Navigation;
 
 import ar.edu.utn.tacs.group5.service.FeedService;
-
-import com.google.common.base.Preconditions;
 
 public class LoginController extends Controller {
 
@@ -17,8 +16,17 @@ public class LoginController extends Controller {
 	@Override
     public Navigation run() throws Exception {
     	String param = param(Constants.USER_ID);
-    	Preconditions.checkNotNull(param);
-    	Long userId = Long.valueOf(param);
+    	if (param == null) {
+			response.setStatus(HttpStatus.SC_BAD_REQUEST);
+			return null;
+		}
+    	Long userId;
+		try {
+			userId = Long.valueOf(param);
+		} catch (NumberFormatException e) {
+			response.setStatus(HttpStatus.SC_BAD_REQUEST);
+			return null;
+		}
 		sessionScope(Constants.USER_ID, userId);
 		logger.info("userId: " + param);
 
