@@ -27,12 +27,7 @@ public class NewFeedControllerTest extends AbstractAuthorizedControllerTest {
 		tester.request.setContentType(MediaType.JSON_UTF_8.toString());
 		tester.request.setMethod(HttpMethod.POST);
 		tester.start(resource());
-
-		NewFeedController controller = tester.getController();
-		assertThat(controller, is(notNullValue()));
-		assertThat(tester.isRedirect(), is(false));
-		assertThat(tester.getDestinationPath(), is(nullValue()));
-		assertThat(tester.response.getStatus(), is(HttpStatus.SC_CREATED));
+		assertController(HttpStatus.SC_CREATED);
 	}
 
 	@Test
@@ -40,12 +35,7 @@ public class NewFeedControllerTest extends AbstractAuthorizedControllerTest {
 		doLogin();
 		tester.request.setMethod(HttpMethod.GET);
 		tester.start(resource());
-
-		NewFeedController controller = tester.getController();
-		assertThat(controller, is(notNullValue()));
-		assertThat(tester.isRedirect(), is(false));
-		assertThat(tester.getDestinationPath(), is(nullValue()));
-		assertThat(tester.response.getStatus(), is(HttpStatus.SC_METHOD_NOT_ALLOWED));
+		assertController(HttpStatus.SC_METHOD_NOT_ALLOWED);
 	}
 	
 	@Test
@@ -54,12 +44,7 @@ public class NewFeedControllerTest extends AbstractAuthorizedControllerTest {
 		tester.request.setMethod(HttpMethod.POST);
 		tester.request.setContentType(MediaType.FORM_DATA.toString());
 		tester.start(resource());
-
-		NewFeedController controller = tester.getController();
-		assertThat(controller, is(notNullValue()));
-		assertThat(tester.isRedirect(), is(false));
-		assertThat(tester.getDestinationPath(), is(nullValue()));
-		assertThat(tester.response.getStatus(), is(HttpStatus.SC_BAD_REQUEST));
+		assertController(HttpStatus.SC_BAD_REQUEST);
 	}
 
 	@Test
@@ -72,12 +57,15 @@ public class NewFeedControllerTest extends AbstractAuthorizedControllerTest {
 		tester.request.setMethod(HttpMethod.POST);
 		tester.request.setContentType(MediaType.JSON_UTF_8.toString());
 		tester.start(resource());
+		assertController(HttpStatus.SC_BAD_REQUEST);
+	}
 
+	private void assertController(int expectedStatusCode) {
 		NewFeedController controller = tester.getController();
 		assertThat(controller, is(notNullValue()));
 		assertThat(tester.isRedirect(), is(false));
 		assertThat(tester.getDestinationPath(), is(nullValue()));
-		assertThat(tester.response.getStatus(), is(HttpStatus.SC_BAD_REQUEST));
+		assertThat(tester.response.getStatus(), is(expectedStatusCode));
 	}
 
 	@Override
