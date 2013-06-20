@@ -41,8 +41,8 @@ $(document).ready(function() {
 	$('#formAddTorrent').hide();
 	$('#formNewFeed').hide();
 	// Refresh page.
-	$('nav .logo').on('click', loadMyFeeds);
-	$('nav .logo').on('click', loadSubscribedFeeds);
+	$('.navbar').find('.logo').on('click', loadMyFeeds);
+	$('.navbar').find('.logo').on('click', loadSubscribedFeeds);
 
 // Load Feeds Dinamically
 	function loadMyFeeds() {
