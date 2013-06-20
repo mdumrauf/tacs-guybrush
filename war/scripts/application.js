@@ -177,9 +177,7 @@ $(document).ready(function() {
 
 		$formAddTorrent.slideUp();
 		
-		if(confirm("Torrent agregado con éxito\n\n¿Querés compartirlo en tu muro?") == true){
-			postTorrent(torrentUrl,torrentName);
-		}
+		postTorrent(torrentUrl,torrentName);
 	}
 	
 	// TODO: Not Used
