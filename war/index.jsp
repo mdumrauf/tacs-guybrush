@@ -11,49 +11,20 @@
 
 <body>
   <div id="fb-root"></div>
+  
   <!-- Navigation Bar -->
   <nav class='navbar navbar-fixed-top navbar-inverse'>
     <div class="navbar-inner">
-      <a href="#"><img id='logo' src='img/logo/Original_266x75.png'></a>
+      <a href="#" class='logo'><img src='img/logo/Original_266x75.png'></a>
       <ul class="nav">
         <li class="active"><a href="#">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a id="login" href="#login">Login</a></li>
-        <li><a id="logout" href="#logout">Logout</a></li>
+        <li><a class="about" href='#about'>About</a></li>
       </ul>
       <p class="navbar-text pull-right">
-        Logged in as <a href='#'>Username</a>
+        Logged in as <a id="userName" href='#'>Username</a> | <span class="fb-like" data-href="http://developers.facebook.com/docs/reference/plugins/like" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false" data-font="tahoma"></span>
       </p>
     </div>
   </nav>
-  
-  <!-- Add Shared Torrent Modal -->
-  <div id="addSharedTorrentModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-    <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-      <h3 id="myModalLabel">Add Shared Torrent</h3>
-      <a href="#sharedTorrentUrl" class="sharedTorrent">Shared Torrent</a>
-    </div>
-    <div class="modal-body">
-      <h4>My Feeds</h4>
-      <p>Please choose one of your feeds to add the shared torrent.</p>
-      <hr>
-      <div id='myFeedsModal'>
-      <article data-key="5432"><h4>Horror Movies</h4></article>
-      <article data-key="5433"><h4>Horror Movies</h4></article>
-      <article data-key="5434"><h4>Horror Movies</h4></article>
-      <article data-key="5435"><h4>Horror Movies</h4></article>
-      </div>
-    </div>
-    <div class="modal-footer">
-      <button class="btn" data-dismiss="modal">Close</button>
-      <button class="btn btn-primary" type="submit" id="submitSharedTorrent">Save changes</button>
-      <!-- <div class="alert alert-error">
-              <button type="button" class="close" data-dismiss="alert">×</button>
-              <strong>Oh snap!</strong> This functionality is not implemented yet.
-          </div> -->
-    </div>
-  </div>
   
   <!-- Feeds -->
   <section class="row-fluid">
@@ -66,22 +37,8 @@
         <h2>My Feeds</h2>
       </header>
       <section id="myFeedsList">
-        <article id='formNewFeed'>
-          <form>
-            <h3>New Feed</h3>
-            <hr>
-            <fieldset>
-              <label>Name</label> <input id="feedName" type="text"
-                placeholder="Type feed name...">
-            </fieldset>
-            <fieldset>
-              <label>Description</label>
-              <textarea id="feedDescription" rows="2"></textarea>
-            </fieldset>
-            <button id="submitNewFeed" type="submit" class="btn">Submit</button>
-          </form>
-        </article>
-        <article>
+		<!-- Feed Template -->
+        <article class="feed template">
           <header>
             <div class="actions btn-group">
               <button type='button' class='btn addTorrentBtn'>
@@ -92,21 +49,36 @@
               </button>
             </div>
             <h3>
-              <a class="feed" href="#horrorFeed" data-key="5432">Horror Movies</a>
+              <a class='feedName' href="#feedRss">Feed Name</a>
             </h3>
           </header>
           <aside>
-            <p>Description of the feed.</p>
+            <p class='feedDescription'>Description of the feed.</p>
           </aside>
           <hr>
           <ul class="torrents">
-            <li><a href='#'>Torrent 1</a></li>
-            <li><a href='#'>Torrent 2</a></li>
-            <li><a href='#'>Torrent 3</a></li>
+            <li class="template"><a class='torrent' href='#torrentUrl'>Torrent Name</a></li>
           </ul>
         </article>
+		<!-- New Feed Form -->
+		<article id='formNewFeed'>
+		  <form>
+			<h3>New Feed</h3>
+			<hr>
+			<fieldset>
+			  <label>Name</label>
+			  <input class="feedName" type="text" placeholder="Type feed name...">
+			</fieldset>
+			<fieldset>
+			  <label>Description</label>
+			  <textarea class="feedDescription" rows="2"></textarea>
+			</fieldset>
+			<button class="submitNewFeedBtn" type="submit" class="btn">Submit</button>
+		  </form>
+		</article>
+		<!-- List of Feeds -->
       </section>
-    </section>
+	  </section>
 
     <!-- Subscribed Feeds -->
     <section class="span6 feeds">
@@ -114,37 +86,89 @@
         <h2>Subscribed Feeds</h2>
       </header>
       <section id="subscribedFeedsList">
-        <article>
+		<!-- Subscribed Feed Template -->
+        <article class="feed template">
           <header>
-            <div class='actions'>
-              <button class='btn removeSubscribedFeed'>
+            <div class="actions btn-group">
+              <button type='button' class='btn removeSubscribedFeed'>
                 <i class='icon-remove'></i>
               </button>
             </div>
             <h3>
-              <a class="feed" href="#horrorFeed" data-key="5432">Awesome Subscribed Feed</a>
+              <a class='feedName' href="#feedRss">Feed Name</a>
             </h3>
           </header>
           <aside>
-            <p>Description of awesome subscribed feed.</p>
+            <p class='feedDescription'>Description of the feed.</p> | 
+			<a class='owner' href='#ownerFB'>Owner Name</a>
           </aside>
           <hr>
           <ul class="torrents">
-            <li><a href='#'>Torrent 1</a></li>
-            <li><a href='#'>Torrent 2</a></li>
-            <li><a href='#'>Torrent 3</a></li>
+            <li class="template"><a class='torrent' href='#torrentUrl'>Torrent Name</a></li>
           </ul>
-        </article>
       </section>
     </section>
-  </section>
-
-  <footer>
-    <p>&copy TACS</p>
-  </footer>
+	</section>
+  
+  <!-- About Modal -->
+  <div id="aboutModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+      <h3 id="myModalLabel">About Guybrush</h3>
+    </div>
+    <div class="modal-body">
+      <h4>Team</h4>
+	  <img class='aboutImg' src='img/guybrush.jpg'>
+      <ul>
+		<li>Accurso Alan</li>
+		<li>Dumrauf Matías</li>
+		<li>Galante Agustín</li>
+		<li>Kosloff Guido</li>
+		<li>Ponzo Natasha</li>
+	  </ul>
+      <hr>
+    </div>
+	<div class="modal-footer">
+		<a href="#" class='logo'><img src='img/logo/Black_and_white_266x75.png'></a>
+		<h4>TACS</h4>
+	</div>
+  </div>
+  
+  <!-- Add Shared Torrent Modal -->
+  <div id="addSharedTorrentModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+      <h3 id="myModalLabel">Add Shared Torrent</h3>
+      <a href="#sharedTorrentUrl" class="sharedTorrent">Shared Torrent</a>
+    </div>
+    <div class="modal-body">
+      <h4>My Feeds</h4>
+      <p>Please choose one of your feeds to add the shared torrent.</p>
+      <hr>
+      <div class='myFeeds'>
+      </div>
+    </div>
+  </div>
+  
+	<!-- Form Add Torrent -->
+	<form id='formAddTorrent'>
+	  <h4>Add Torrent</h4>
+	  <hr>
+	  <fieldset>
+		<label>Name</label>
+		<input class='torrentName' type='text' placeholder='Type torrent name...'>
+	  </fieldset>
+	  <fieldset>
+		<label>Url</label>
+		<input class='torrentUrl' type='text' placeholder='Copy torrent url...'>
+	  </fieldset>
+		<button class='btn addTorrent'><i class='icon-ok'></i></button>
+		<button class='btn cancelTorrent'><i class='icon-remove'></i></button>
+	</form>
 
   <!-- Scripts -->
   <!-- Placed at the end of the document so the pages load faster -->
+  
   <script src="scripts/fbscripts.js"></script>
   <script src="scripts/jquery-2.0.2.js"></script>
   <script src="scripts/application.js"></script>

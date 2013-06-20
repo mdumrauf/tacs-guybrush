@@ -16,3 +16,6 @@ war/WEB-INF/classes/
 .factorypath
 eclipse.lib
 appengine-generated
+
+.idea/
+bin/
