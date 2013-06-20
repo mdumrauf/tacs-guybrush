@@ -128,14 +128,14 @@ $(document).ready(function() {
 			error : function(status) {
 				alert("Error al intentar guardar el Feed");
 			},
-			success : function() {
+			success : function(feedJson) {
 				var $newFeedTemplate = $('#myFeedsList').find('.feed.template');
 				var $newFeed = $newFeedTemplate.clone().removeClass('template');
-				var feedKey = '5432';
+				var feed = $.parseJSON(feedJson);
 
-				$newFeed.data('feed-key', feedKey);
+				$newFeed.data('feed-key', feed.key);
 				$newFeed.find('.feedName').text(feed.title);
-				$newFeed.find('.feedName').attr('href', '/getFeedRss?feedKey=' + feedKey);
+				$newFeed.find('.feedName').attr('href', '/getFeedRss?feedKey=' + feed.key);
 				$newFeed.find('.feedDescription').text(feed.description);
 				
 				$newFeed.insertAfter($formNewFeed).slideDown();
