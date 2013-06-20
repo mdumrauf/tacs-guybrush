@@ -123,6 +123,7 @@ $(document).ready(function() {
 		$.ajax({
 			url : "/NewFeed",
 			type : "post",
+			contentType : "application/json;charset=UTF-8",
 			data : JSON.stringify(feed),
 			error : function(status) {
 				alert("Error al intentar guardar el Feed");
