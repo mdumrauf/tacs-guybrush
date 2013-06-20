@@ -191,12 +191,12 @@ $(document).ready(function() {
 	}
 
 	function removeSubscribedFeed() {
-		var feedKey = $(this).closest("article").data("feed-key");
+		var feedKey = $(this).closest(".feed").data("feed-key");
 
 		// TODO: Llamada a servlet removeSubscribedFeed
 		alert('Feed: ' + feedKey);
 
-		$(this).closest("article").slideUp(function() {
+		$(this).closest(".feed").slideUp(function() {
 			$(this).remove();
 		});
 	}
