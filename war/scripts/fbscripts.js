@@ -103,7 +103,9 @@ function loginOnServer(uid) {
 	});
 	
 	FB.api('/me', function(response) {
-		$('.navbar-inner .navbar-text').find('a').text(response.name);
+		var userName=$('.navbar #userName');
+		userName.text(response.name);
+		userName.attr("href", response.link);
 	});
 }
 
