@@ -1,9 +1,11 @@
 package ar.edu.utn.tacs.group5.model;
 
-import org.slim3.tester.AppEngineTestCase;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.junit.Assert.assertThat;
+
 import org.junit.Test;
-import static org.junit.Assert.*;
-import static org.hamcrest.CoreMatchers.*;
+import org.slim3.tester.AppEngineTestCase;
 
 public class ItemTest extends AppEngineTestCase {
 
