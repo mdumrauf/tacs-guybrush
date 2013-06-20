@@ -130,9 +130,9 @@ $(document).ready(function() {
 		$newFeed.find('.feedName').attr('href', '/getFeedRss?feedKey=' + feedKey);
 		$newFeed.find('.feedDescription').text(feedDescription);
 
-		$newFeed.insertAfter($formNewFeed).slideDown();
-
-		$formNewFeed.slideUp();
+		$formNewFeed.slideUp('fast', function(){
+			$newFeed.insertAfter($formNewFeed).hide().slideDown();
+		});
 	}
 
 	function showFormAddTorrent(e) {
