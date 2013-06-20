@@ -13,6 +13,7 @@ import org.junit.Test;
 import org.mockito.Mockito;
 
 import com.google.api.server.spi.config.ApiMethod.HttpMethod;
+import com.google.common.net.MediaType;
 
 public class NewFeedControllerTest extends AbstractAuthorizedControllerTest {
 
@@ -23,6 +24,7 @@ public class NewFeedControllerTest extends AbstractAuthorizedControllerTest {
 		BufferedReader reader = Mockito.mock(BufferedReader.class);
 		when(reader.readLine()).thenReturn(feed);
 		tester.request.setReader(reader);
+		tester.request.setContentType(MediaType.JSON_UTF_8.toString());
 		tester.request.setMethod(HttpMethod.POST);
 		tester.start(resource());
 
@@ -46,6 +48,20 @@ public class NewFeedControllerTest extends AbstractAuthorizedControllerTest {
 		assertThat(tester.response.getStatus(), is(HttpStatus.SC_METHOD_NOT_ALLOWED));
 	}
 	
+	@Test
+	public void testRunContentTypeIsNotJson() throws Exception {
+		doLogin();
+		tester.request.setMethod(HttpMethod.POST);
+		tester.request.setContentType(MediaType.FORM_DATA.toString());
+		tester.start(resource());
+
+		NewFeedController controller = tester.getController();
+		assertThat(controller, is(notNullValue()));
+		assertThat(tester.isRedirect(), is(false));
+		assertThat(tester.getDestinationPath(), is(nullValue()));
+		assertThat(tester.response.getStatus(), is(HttpStatus.SC_BAD_REQUEST));
+	}
+
 	@Override
 	protected String resource() {
 		return "/NewFeed";
