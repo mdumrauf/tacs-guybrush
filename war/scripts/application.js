@@ -31,8 +31,7 @@ $(document).ready(function() {
 	// Modal Add Shared Torrent
 	$("#myFeedsModal article").on('click', function(e) {
 				e.preventDefault();
-				$("#myFeedsModal").find(".active").removeClass(
-						"active");
+				$("#myFeedsModal").find(".active").removeClass("active");
 				$(this).addClass("active");
 			});
 	$("#submitSharedTorrent").on('click', addSharedTorrent);
@@ -138,8 +137,12 @@ $(document).ready(function() {
 	function showFormAddTorrent(e) {
 		e.preventDefault();
 		var $formAddTorrent = $('#formAddTorrent');
+		if($(this).closest('.feed').find('#formAddTorrent').length > 0){
+			$formAddTorrent.toggleSlide();
+			return;
+		}
 		$formAddTorrent.hide();
-		$formAddTorrent.appendTo($(this).closest("article").find("ul")).slideDown();
+		$formAddTorrent.appendTo($(this).closest(".feed").find(".torrents")).slideDown();
 	}
 
 	function addTorrent(e) {
@@ -147,7 +150,7 @@ $(document).ready(function() {
 		var $formAddTorrent = $('#formAddTorrent');
 		var torrentName = $formAddTorrent.find('.torrentName').val();
 		var torrentUrl = $formAddTorrent.find('.torrentUrl').val();
-		var feedKey = $(this).closest("article").data("feed-key");
+		var feedKey = $(this).closest(".feed").data("feed-key");
 
 		if (torrentName == "" || torrentUrl == "") {
 			alert('The name or url of the torrent are missing.');
@@ -163,6 +166,8 @@ $(document).ready(function() {
 		$newTorrent.prependTo($torrents).hide().slideDown();
 
 		$formAddTorrent.slideUp();
+		
+		// TODO: postTorrent(torrentUrl);
 	}
 	
 	// TODO: Not Used
@@ -181,8 +186,8 @@ $(document).ready(function() {
 	}
 
 	function shareFeed() {
-		var feedUrl = $(this).closest('article').find('.torrent').attr('href');
-		postLink(feedUrl);
+		var feedUrl = $(this).closest('.feed').find('.feedName').attr('href');
+		// TODO: postFeed(feedUrl);
 	}
 
 	function removeSubscribedFeed() {
