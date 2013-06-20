@@ -110,10 +110,10 @@ $(document).ready(function() {
 		e.preventDefault();
 		var $formNewFeed = $('#formNewFeed');
 		var feed = {};
-		feed.feedName = $formNewFeed.find('.feedName').val();
-		feed.feedDescription = $formNewFeed.find('.feedDescription').val();
+		feed.title = $formNewFeed.find('.feedName').val();
+		feed.description = $formNewFeed.find('.feedDescription').val();
 
-		if (feed.feedName == "" || feed.feedDescription == "") {
+		if (feed.title == "" || feed.description == "") {
 			alert('The name or description of the feed are missing.');
 			return;
 		}
@@ -134,12 +134,11 @@ $(document).ready(function() {
 				var feedKey = '5432';
 
 				$newFeed.data('feed-key', feedKey);
-				$newFeed.find('.feedName').text(feed.feedName);
+				$newFeed.find('.feedName').text(feed.title);
 				$newFeed.find('.feedName').attr('href', '/getFeedRss?feedKey=' + feedKey);
-				$newFeed.find('.feedDescription').text(feed.feedDescription);
+				$newFeed.find('.feedDescription').text(feed.description);
 				
 				$newFeed.insertAfter($formNewFeed).slideDown();
-				
 				$formNewFeed.slideUp();
 			}
 		});
