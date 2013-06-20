@@ -138,11 +138,11 @@ $(document).ready(function() {
 		e.preventDefault();
 		var $formAddTorrent = $('#formAddTorrent');
 		if($(this).closest('.feed').find('#formAddTorrent').length > 0){
-			$formAddTorrent.toggleSlide();
+			$formAddTorrent.slideToggle();
 			return;
 		}
 		$formAddTorrent.hide();
-		$formAddTorrent.appendTo($(this).closest(".feed").find(".torrents")).slideDown();
+		$formAddTorrent.prependTo($(this).closest(".feed").find(".torrents")).slideDown();
 	}
 
 	function addTorrent(e) {
