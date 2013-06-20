@@ -1,7 +1,7 @@
 $(document).ready(function() {
 // Bindings
 	// Nav Bar
-	$('nav').find('.about').on('click', function(e) {
+	$('.navbar').find('.about').on('click', function(e) {
 		e.preventDefault();
 		$('#aboutModal').modal();
 	});
@@ -16,7 +16,6 @@ $(document).ready(function() {
 		$('#formNewFeed').slideToggle();
 	});
 	$('#formNewFeed').find('.submitNewFeedBtn').on('click', newFeed);
-	$('#formNewFeed').find('alert').hide();
 
 	// Form Add Torrent
 	$('#formAddTorrent').find('.addTorrent').on('click', addTorrent);
