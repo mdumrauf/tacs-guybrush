@@ -5,4 +5,5 @@ interface Constants {
 	String USER_ID = "userId";
 	String LINK = "link";
 	String FROM_FB = "from fb";
+
 }
