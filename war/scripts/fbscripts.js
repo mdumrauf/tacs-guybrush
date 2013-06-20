@@ -32,8 +32,7 @@ window.fbAsyncInit = function() {
 			// the user isn't logged in to Facebook.
 			FB.login(function(response) {
 				loginOnServer(response.authResponse.userID);
-			}// ,{scope: 'email,user_likes'}
-			);
+			});
 		}
 	});
 
@@ -85,9 +84,7 @@ function postCallback(response) {
 function login() {
 	FB.login(function(response) {
 		loginOnServer(response.authResponse.userID);
-	}
-	// ,{scope: 'email,user_likes'}
-	);
+	});
 }
 
 function loginOnServer(uid) {
