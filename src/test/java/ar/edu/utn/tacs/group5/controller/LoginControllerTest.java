@@ -5,6 +5,10 @@ import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.assertThat;
 
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+
 import org.apache.commons.httpclient.HttpStatus;
 import org.junit.Test;
 
@@ -22,15 +26,20 @@ public class LoginControllerTest extends AbstractControllerTest {
 
     @Test
     public void runWithNullUserId() throws Exception {
-        tester.start("/login");
+        assertBadRequest();
+    }
+
+    @Test
+    public void runWithInvalidUserId() throws Exception {
+    	tester.param(Constants.USER_ID, "alphanumeric2342value999");
+    	assertBadRequest();
+    }
+
+	private void assertBadRequest() throws IOException, ServletException {
+		tester.start("/login");
         LoginController controller = tester.getController();
         assertThat(controller, is(notNullValue()));
         assertThat(tester.response.getStatus(), is(HttpStatus.SC_BAD_REQUEST));
-    }
-
-    @Test(expected=IllegalArgumentException.class)
-    public void runWithInvalidUserId() throws Exception {
-    	tester.param(Constants.USER_ID, "alphanumeric2342value999");
-        tester.start("/login");
-    }
+	}
+	
 }

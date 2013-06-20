@@ -20,7 +20,13 @@ public class LoginController extends Controller {
 			response.setStatus(HttpStatus.SC_BAD_REQUEST);
 			return null;
 		}
-    	Long userId = Long.valueOf(param);
+    	Long userId;
+		try {
+			userId = Long.valueOf(param);
+		} catch (NumberFormatException e) {
+			response.setStatus(HttpStatus.SC_BAD_REQUEST);
+			return null;
+		}
 		sessionScope(Constants.USER_ID, userId);
 		logger.info("userId: " + param);
 
