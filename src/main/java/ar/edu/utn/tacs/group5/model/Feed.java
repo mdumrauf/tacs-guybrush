@@ -31,9 +31,6 @@ public class Feed implements Serializable {
     private String description;
     
     @Attribute(persistent = false)
-    private List<Item> items;
-
-    @Attribute(persistent = false)
 	private InverseModelListRef<Item, Feed> itemListRef = new InverseModelListRef<Item, Feed>(
 			Item.class, ItemMeta.get().feedRef.getName(), this);
 
@@ -124,11 +121,7 @@ public class Feed implements Serializable {
     }
 
 	public List<Item> getItems() {
-		return items;
-	}
-
-	public void setItems(List<Item> items) {
-		this.items = items;
+		return getItemListRef().getModelList();
 	}
 
 	@Override
@@ -147,7 +140,7 @@ public class Feed implements Serializable {
 		builder.append(", description=");
 		builder.append(description);
 		builder.append(", items=");
-		builder.append(items);
+		builder.append(getItems());
 		builder.append(", itemListRef=");
 		builder.append(itemListRef);
 		builder.append("]");

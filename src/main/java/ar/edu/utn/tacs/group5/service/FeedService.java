@@ -41,9 +41,7 @@ public class FeedService {
 	}
 
 	public Feed getByUserId(Long userId) {
-		Feed feed = queryFeedBy(userId).asSingle();
-		feed.setItems(feed.getItemListRef().getModelList());
-		return feed;
+		return queryFeedBy(userId).asSingle();
 	}
 
 	public void addTorrent(Long userId, String link) {
