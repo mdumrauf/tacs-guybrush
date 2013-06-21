@@ -131,4 +131,27 @@ public class Feed implements Serializable {
 		this.items = items;
 	}
 
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Feed [key=");
+		builder.append(key);
+		builder.append(", version=");
+		builder.append(version);
+		builder.append(", userId=");
+		builder.append(userId);
+		builder.append(", title=");
+		builder.append(title);
+		builder.append(", link=");
+		builder.append(link);
+		builder.append(", description=");
+		builder.append(description);
+		builder.append(", items=");
+		builder.append(items);
+		builder.append(", itemListRef=");
+		builder.append(itemListRef);
+		builder.append("]");
+		return builder.toString();
+	}
+
 }
