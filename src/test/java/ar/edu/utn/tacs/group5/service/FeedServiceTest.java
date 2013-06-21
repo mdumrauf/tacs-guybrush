@@ -4,6 +4,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
@@ -73,6 +74,21 @@ public class FeedServiceTest extends AppEngineTestCase {
 	@Test(expected = NullPointerException.class)
 	public void testGetByKeyWithNullKey() throws Exception {
 		service.getByKey(null);
+	}
+
+	@Test
+	public void testGetByUserId() throws Exception {
+		long userId = 123456789L;
+		service.insert(userId);
+		Feed feed = service.getByUserId(userId);
+		assertNotNull(feed);
+		assertThat(feed.getTitle(), is(FeedService.DEFAULT_FEED));
+	}
+
+	@Test
+	public void testGetByUserIdWithInvalidId() throws Exception {
+		Feed feed = service.getByUserId(9999999L);
+		assertNull(feed);
 	}
 
 }
