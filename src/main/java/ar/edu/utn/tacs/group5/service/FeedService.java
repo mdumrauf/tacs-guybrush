@@ -44,10 +44,9 @@ public class FeedService {
 		return queryFeedBy(userId).asSingle();
 	}
 
-	public void addTorrent(Long userId, String link) {
-		Feed feed = getByUserId(userId);
-		Item item = new Item();
-		item.setLink(link);
+	public void addItem(Feed feed, Item item) {
+		checkNotNull(feed);
+		checkNotNull(item);
 		item.getFeedRef().setModel(feed);
 		Datastore.put(feed, item);
 	}
