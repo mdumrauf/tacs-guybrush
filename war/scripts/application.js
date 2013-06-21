@@ -200,8 +200,8 @@ $(document).ready(function() {
 	}
 
 	function shareFeed() {
-		var $feed = $(this).closest('.feed').find('.feedName');
-		postFeed($feed.data('feed-key'), $feed.text());
+		var $feed = $(this).closest('.feed');
+		postFeed($feed.data('feed-key'), $feed.find('.feedName').text());
 	}
 
 	function removeSubscribedFeed() {
