@@ -30,7 +30,7 @@ public class FeedService {
 	}
 
 	public boolean hasDefaultFeed(Long userId) {
-		return queryFeedBy(userId).count() == 0;
+		return queryFeedBy(userId).count() > 0;
 	}
 
 	private ModelQuery<Feed> queryFeedBy(Long userId) {
