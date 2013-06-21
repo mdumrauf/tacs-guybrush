@@ -82,6 +82,10 @@ public class Item implements Serializable {
 		this.feed = feed;
 	}
 
+	public boolean isValid() {
+		return title != null && link != null && feed != null && feed.isValid();
+	}
+
 	@Override
     public int hashCode() {
         final int prime = 31;
