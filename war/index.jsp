@@ -22,11 +22,7 @@
 				<li><a class="help" href='#help'>Help</a></li>
 			</ul>
 			<p class="navbar-text pull-right">
-				Logged in as <a id="userName" href='#'>Username</a> | <span
-					class="fb-like"
-					data-href="http://localhost:8080"
-					data-send="false" data-layout="button_count" data-width="450"
-					data-show-faces="false" data-font="tahoma"></span>
+				Logged in as <a id="userName" href='#'>Username</a>
 			</p>
 		</div>
 	</nav>
@@ -38,7 +34,7 @@
 		<section class="span6 feeds">
 			<header>
 				<div class='actions'>
-					<button id='newFeedBtn' class='btn btn-primary'>New Feed</button>
+					<button id='newFeedBtn' class='btn btn-primary'>New Feed <i class="icon-plus icon-white"></i></button>
 				</div>
 				<h2>My Feeds</h2>
 			</header>
@@ -137,21 +133,25 @@
 				<li>Ponzo Natasha</li>
 			</ul>
 			<hr>
+			<div class="fb-like"
+					data-href="http://localhost:8080"
+					data-send="false" data-layout="button_count" data-width="450"
+					data-show-faces="false" data-font="tahoma"></div>
 		</div>
 		<div class="modal-footer">
-			<a href="#" class='logo'><img
-				src='img/logo/Black_and_white_266x75.png'></a>
+			<div class='logo'><img
+				src='img/logo/Black_and_white_266x75.png'></div>
 			<h4>TACS</h4>
 		</div>
 	</div>
 	
 	<!-- Help Modal -->
-	<div id="aboutModal" class="modal hide fade" tabindex="-1"
+	<div id="helpModal" class="modal hide fade" tabindex="-1"
 		role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
 		style="display: none;">
 		<div class="modal-header">
 			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-			<h3 id="myModalLabel">About Guybrush</h3>
+			<h3 id="myModalLabel">Help Guybrush</h3>
 		</div>
 		<div class="modal-body">
 			<h4>Team</h4>
@@ -166,8 +166,8 @@
 			<hr>
 		</div>
 		<div class="modal-footer">
-			<a href="#" class='logo'><img
-				src='img/logo/Black_and_white_266x75.png'></a>
+			<div class='logo'><img
+				src='img/logo/Black_and_white_266x75.png'></div>
 			<h4>TACS</h4>
 		</div>
 	</div>
