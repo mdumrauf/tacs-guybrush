@@ -1,45 +1,38 @@
 package ar.edu.utn.tacs.group5.controller;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.hamcrest.CoreMatchers.nullValue;
-import static org.junit.Assert.assertThat;
-
-import java.io.IOException;
-
-import javax.servlet.ServletException;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import org.apache.commons.httpclient.HttpStatus;
 import org.junit.Test;
 
-public class LoginControllerTest extends AbstractControllerTest {
+import ar.edu.utn.tacs.group5.service.FeedService;
+
+public class LoginControllerTest extends AbstractControllerTest<LoginController> {
 
     @Test
-    public void run() throws Exception {
-        tester.param(Constants.USER_ID, "123456789");
+    public void runOk() throws Exception {
+        FeedService feedService = new FeedService();
+        String userIdString = "123456789";
+        Long userId = Long.valueOf(userIdString);
+        assertFalse(feedService.hasDefaultFeed(userId));
+        tester.param(Constants.USER_ID, userIdString);
         tester.start("/login");
-        LoginController controller = tester.getController();
-        assertThat(controller, is(notNullValue()));
-        assertThat(tester.isRedirect(), is(false));
-        assertThat(tester.getDestinationPath(), is(nullValue()));
+        assertController(HttpStatus.SC_OK);
+        assertTrue(feedService.hasDefaultFeed(userId));
     }
 
     @Test
     public void runWithNullUserId() throws Exception {
-        assertBadRequest();
+        tester.start("/login");
+        assertController(HttpStatus.SC_BAD_REQUEST);
     }
 
     @Test
     public void runWithInvalidUserId() throws Exception {
-    	tester.param(Constants.USER_ID, "alphanumeric2342value999");
-    	assertBadRequest();
+        tester.param(Constants.USER_ID, "alphanumeric2342value999");
+        tester.start("/login");
+        assertController(HttpStatus.SC_BAD_REQUEST);
     }
 
-	private void assertBadRequest() throws IOException, ServletException {
-		tester.start("/login");
-        LoginController controller = tester.getController();
-        assertThat(controller, is(notNullValue()));
-        assertThat(tester.response.getStatus(), is(HttpStatus.SC_BAD_REQUEST));
-	}
-	
 }
