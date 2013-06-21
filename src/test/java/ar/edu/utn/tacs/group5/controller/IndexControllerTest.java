@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.junit.Test;
 
-public class IndexControllerTest extends AbstractControllerTest {
+public class IndexControllerTest extends AbstractControllerTest<IndexController> {
 
 
 	@Test

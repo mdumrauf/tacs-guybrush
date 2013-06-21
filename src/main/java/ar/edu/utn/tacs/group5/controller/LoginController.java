@@ -30,7 +30,7 @@ public class LoginController extends Controller {
 		sessionScope(Constants.USER_ID, userId);
 		logger.info("userId: " + param);
 
-		if (feedService.hasDefaultFeed(userId)) {
+		if (!feedService.hasDefaultFeed(userId)) {
 			feedService.insert(userId);
 		}
         return null;
