@@ -6,7 +6,7 @@ import static org.junit.Assert.assertThat;
 
 import org.junit.Test;
 
-public class LogoutControllerTest extends AbstractControllerTest {
+public class LogoutControllerTest extends AbstractControllerTest<LogoutController> {
 
     @Test
     public void run() throws Exception {

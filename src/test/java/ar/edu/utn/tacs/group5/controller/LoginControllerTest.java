@@ -12,7 +12,7 @@ import javax.servlet.ServletException;
 import org.apache.commons.httpclient.HttpStatus;
 import org.junit.Test;
 
-public class LoginControllerTest extends AbstractControllerTest {
+public class LoginControllerTest extends AbstractControllerTest<LoginController> {
 
     @Test
     public void run() throws Exception {
