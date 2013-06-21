@@ -26,7 +26,10 @@ public class Item implements Serializable {
     private String description;
 
     private ModelRef<Feed> feedRef = new ModelRef<Feed>(Feed.class);
-    
+
+    @Attribute(persistent = false)
+    private Feed feed;
+
     public Key getKey() {
         return key;
     }
@@ -71,6 +74,14 @@ public class Item implements Serializable {
 		return feedRef;
 	}
 
+	public Feed getFeed() {
+		return feed;
+	}
+
+	public void setFeed(Feed feed) {
+		this.feed = feed;
+	}
+
 	@Override
     public int hashCode() {
         final int prime = 31;
@@ -100,4 +111,5 @@ public class Item implements Serializable {
         }
         return true;
     }
+
 }
