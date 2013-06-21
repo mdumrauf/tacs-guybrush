@@ -1,3 +1,7 @@
+hr {
+	width: 95%;
+}
+
 .wrapper {
 	margin-left: 10%;
 	margin-right: 10%;
@@ -120,6 +124,10 @@ form fieldset textarea {
 	border-top-left-radius: 10px;
 }
 
+.feeds .feed .feedDescription {
+	margin-bottom: 0px;
+}
+
 .feeds .actions {
 	float:right;
 }
@@ -129,14 +137,6 @@ form fieldset textarea {
 	-webkit-text-shadow: 2px 2px 3px #000;
 	-moz-text-shadow: 2px 2px 3px #000;
 	text-shadow: 2px 2px 3px #000;
-}
-
-.feeds span {
-	float: right;
-}
-
-.feed aside *{
-	display: inline-block;
 }
 
 .torrents, .modal-body ul {

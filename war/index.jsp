@@ -19,6 +19,7 @@
 			<ul class="nav">
 				<li class="active"><a href="#">Home</a></li>
 				<li><a class="about" href='#about'>About</a></li>
+				<li><a class="help" href='#help'>Help</a></li>
 			</ul>
 			<p class="navbar-text pull-right">
 				Logged in as <a id="userName" href='#'>Username</a> | <span
@@ -118,6 +119,33 @@
 	</div>
 
 	<!-- About Modal -->
+	<div id="aboutModal" class="modal hide fade" tabindex="-1"
+		role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+		style="display: none;">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+			<h3 id="myModalLabel">About Guybrush</h3>
+		</div>
+		<div class="modal-body">
+			<h4>Team</h4>
+			<img class='aboutImg' src='img/guybrush.jpg'>
+			<ul>
+				<li>Accurso Alan</li>
+				<li>Dumrauf Matías</li>
+				<li>Galante Agustín</li>
+				<li>Kosloff Guido</li>
+				<li>Ponzo Natasha</li>
+			</ul>
+			<hr>
+		</div>
+		<div class="modal-footer">
+			<a href="#" class='logo'><img
+				src='img/logo/Black_and_white_266x75.png'></a>
+			<h4>TACS</h4>
+		</div>
+	</div>
+	
+	<!-- Help Modal -->
 	<div id="aboutModal" class="modal hide fade" tabindex="-1"
 		role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
 		style="display: none;">

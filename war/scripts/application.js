@@ -5,6 +5,10 @@ $(document).ready(function() {
 		e.preventDefault();
 		$('#aboutModal').modal();
 	});
+	$('.navbar').find('.help').on('click', function(e) {
+		e.preventDefault();
+		$('#helpModal').modal();
+	});
 
 	// My Feeds
 	$('#myFeedsList').on('click', '.addTorrentBtn', showFormAddTorrent);
