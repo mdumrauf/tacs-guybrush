@@ -23,7 +23,7 @@ public class GetFeedControllerTest extends AbstractAuthorizedControllerTest<GetF
 		tester.start(resource());
 		assertController(HttpStatus.SC_METHOD_NOT_ALLOWED);
 	}
-	
+
 	@Override
 	protected String resource() {
 		return "/GetFeed";

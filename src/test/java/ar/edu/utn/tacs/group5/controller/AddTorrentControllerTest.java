@@ -1,24 +1,27 @@
 package ar.edu.utn.tacs.group5.controller;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.hamcrest.CoreMatchers.nullValue;
-import static org.junit.Assert.assertThat;
-
+import org.apache.commons.httpclient.HttpStatus;
 import org.junit.Test;
+
+import com.google.api.server.spi.config.ApiMethod.HttpMethod;
 
 public class AddTorrentControllerTest extends AbstractAuthorizedControllerTest<AddTorrentController> {
 
-    @Test
-    public void runOk() throws Exception {
-    	doLogin();
-    	tester.param(Constants.LINK, "http://www.foo.com");
-        tester.start(resource());
-        AddTorrentController controller = tester.getController();
-        assertThat(controller, is(notNullValue()));
-        assertThat(tester.isRedirect(), is(false));
-        assertThat(tester.getDestinationPath(), is(nullValue()));
-    }
+	@Test
+	public void runOk() throws Exception {
+		doLogin();
+		tester.param(Constants.LINK, "http://www.foo.com");
+		tester.start(resource());
+		assertController(HttpStatus.SC_OK);
+	}
+
+	@Test
+	public void testRunIsNotAllowed() throws Exception {
+		doLogin();
+		tester.request.setMethod(HttpMethod.POST);
+		tester.start(resource());
+		assertController(HttpStatus.SC_METHOD_NOT_ALLOWED);
+	}
 
 	@Override
 	protected String resource() {
