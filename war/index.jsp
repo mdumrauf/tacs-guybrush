@@ -79,8 +79,8 @@
 					</form>
 				</article>
 				<!-- List of Feeds -->
-			</section>
-		</section>
+			</section><!-- End of Feeds List -->
+		</section><!-- End of My Feeds -->
 
 		<!-- Subscribed Feeds -->
 		<section class="span6 feeds">
@@ -109,10 +109,10 @@
 						<li class="template"><a class='torrent' href='#torrentUrl'>Torrent Name</a></li>
 					</ul>
 				</article>
-			</section>
-		</section>
-	</section>
-	</div>
+			</section><!-- End of Subscribed Feeds List -->
+		</section><!-- End of Subscribed Feeds -->
+	</section><!-- End of Feeds -->
+	</div><!-- End of Wrapper -->
 
 	<!-- About Modal -->
 	<div id="aboutModal" class="modal hide fade" tabindex="-1"
@@ -151,19 +151,27 @@
 		style="display: none;">
 		<div class="modal-header">
 			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-			<h3 id="myModalLabel">Help Guybrush</h3>
+			<h3 id="myModalLabel">Guybrush Help</h3>
 		</div>
 		<div class="modal-body">
-			<h4>Team</h4>
-			<img class='aboutImg' src='img/guybrush.jpg'>
-			<ul>
-				<li>Accurso Alan</li>
-				<li>Dumrauf Matías</li>
-				<li>Galante Agustín</li>
-				<li>Kosloff Guido</li>
-				<li>Ponzo Natasha</li>
-			</ul>
+			<h4>New Feed</h4>
+			<p>To create a new feed click <button class='btn btn-primary btn-small'>New Feed <i class="icon-plus icon-white"></i></button></p>
+			<p>Choose a name and description for the feed and click <button class="btn btn-small">Submit</button> to save it.</p>
 			<hr>
+			<h4>Add Torrent</h4>
+			<p>To add a new torrent to an existing feed click <button type='button' class='btn btn-small'><i class='icon-plus'></i></button></p>
+			<p>Insert the torrent url and choose an appropriate name.</p>
+			<p>To save it click <button class='btn btn-small'><i class='icon-ok'></i></button></p>
+			<p>To cancel the addition click <button class='btn btn-small'><i class='icon-remove'></i></button></p>
+			<hr>
+			<h4>Share Feed</h4>
+			<p>To share a feed on Facebook click <button type='button' class='btn btn-small'><i class='icon-thumbs-up'></i></button></p>
+			<hr>
+			<h4>Guides to Use Rss Feed</h4>
+			<ul>
+			<li><a href='http://www.bittorrent.com/intl/es/help/guides/using-rss-feeds'>BitTorrent</a></li>
+			<li><a href='http://www.utorrent.com/help/guides/rss'>uTorrent</a></li>
+			</ul>
 		</div>
 		<div class="modal-footer">
 			<div class='logo'><img
@@ -189,26 +197,28 @@
 		</div>
 	</div>
 
-	<!-- Form Add Torrent -->
-	<form id='formAddTorrent'>
-		<h4>Add Torrent</h4>
-		<hr>
-		<fieldset>
-			<label>Name</label> <input class='torrentName' type='text'
-				placeholder='Type torrent name...'>
-		</fieldset>
-		<fieldset>
-			<label>Url</label> <input class='torrentUrl' type='text'
-				placeholder='Copy torrent url...'>
-		</fieldset>
-		<button class='btn addTorrent'>
-			<i class='icon-ok'></i>
-		</button>
-		<button class='btn cancelTorrent'>
-			<i class='icon-remove'></i>
-		</button>
-	</form>
-
+	<div style='display: none;'>
+		<!-- Form Add Torrent -->
+		<form id='formAddTorrent'>
+			<h4>Add Torrent</h4>
+			<hr>
+			<fieldset>
+				<label>Name</label> <input class='torrentName' type='text'
+					placeholder='Type torrent name...'>
+			</fieldset>
+			<fieldset>
+				<label>Url</label> <input class='torrentUrl' type='text'
+					placeholder='Copy torrent url...'>
+			</fieldset>
+			<button class='btn addTorrent'>
+				<i class='icon-ok'></i>
+			</button>
+			<button class='btn cancelTorrent'>
+				<i class='icon-remove'></i>
+			</button>
+		</form>
+	</div>
+	
 	<!-- Scripts -->
 	<!-- Placed at the end of the document so the pages load faster -->
 
