@@ -5,29 +5,24 @@ import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.assertThat;
 
-import java.io.IOException;
-
-import javax.servlet.ServletException;
-
-import org.junit.Before;
 import org.junit.Test;
 
-public class AddTorrentControllerTest extends AbstractControllerTest {
+public class AddTorrentControllerTest extends AbstractAuthorizedControllerTest<AddTorrentController> {
 
-	@Before
-	public void before() throws IOException, ServletException {
-		tester.param(Constants.USER_ID, "123456789");
-	    tester.start("/Login");
-	}
-	
     @Test
-    public void run() throws Exception {
+    public void runOk() throws Exception {
+    	doLogin();
     	tester.param(Constants.LINK, "http://www.foo.com");
-        tester.start("/AddTorrent");
+        tester.start(resource());
         AddTorrentController controller = tester.getController();
         assertThat(controller, is(notNullValue()));
         assertThat(tester.isRedirect(), is(false));
         assertThat(tester.getDestinationPath(), is(nullValue()));
     }
+
+	@Override
+	protected String resource() {
+		return "/AddTorrent";
+	}
 
 }
