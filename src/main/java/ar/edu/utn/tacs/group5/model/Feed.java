@@ -89,6 +89,10 @@ public class Feed implements Serializable {
 		return itemListRef;
 	}
 
+	public boolean isValid() {
+		return title != null && description != null;
+	}
+
 	@Override
     public int hashCode() {
         final int prime = 31;
@@ -125,10 +129,6 @@ public class Feed implements Serializable {
 
 	public void setItems(List<Item> items) {
 		this.items = items;
-	}
-
-	public boolean isValid() {
-		return title != null && description != null;
 	}
 
 }
