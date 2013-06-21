@@ -3,6 +3,7 @@ package ar.edu.utn.tacs.group5.service;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
@@ -16,7 +17,7 @@ public class FeedServiceTest extends AppEngineTestCase {
     private FeedService service = new FeedService();
 
     @Test
-    public void insert() throws Exception {
+    public void testInsert() throws Exception {
         Feed feed = new Feed();
         service.insert(feed);
         assertThat(feed.getKey(), is(notNullValue()));
@@ -30,6 +31,23 @@ public class FeedServiceTest extends AppEngineTestCase {
 		feed.setUserId(userId);
         service.insert(feed);
         assertTrue(service.hasDefaultFeed(userId));
+	}
+
+	@Test
+	public void testGetByKey() throws Exception {
+		Feed feed = new Feed();
+		feed.setTitle("foo");
+		feed.setDescription("Foo description");
+        service.insert(feed);
+        Feed feedByKey = service.getByKey(feed.getKey());
+        assertNotNull(feedByKey);
+        assertThat(feedByKey.getTitle(), is("foo"));
+        assertThat(feedByKey.getDescription(), is("Foo description"));
+	}
+
+	@Test(expected = NullPointerException.class)
+	public void testGetByKeyWithNullKey() throws Exception {
+		service.getByKey(null);
 	}
 
 }

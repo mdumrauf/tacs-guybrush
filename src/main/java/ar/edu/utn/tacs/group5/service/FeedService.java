@@ -1,5 +1,7 @@
 package ar.edu.utn.tacs.group5.service;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import org.slim3.datastore.Datastore;
 import org.slim3.datastore.ModelQuery;
 
@@ -7,6 +9,7 @@ import ar.edu.utn.tacs.group5.meta.FeedMeta;
 import ar.edu.utn.tacs.group5.model.Feed;
 import ar.edu.utn.tacs.group5.model.Item;
 
+import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.Query.FilterOperator;
 import com.google.appengine.api.datastore.Transaction;
 
@@ -49,6 +52,11 @@ public class FeedService {
 		item.setLink(link);
 		item.getFeedRef().setModel(feed);
 		Datastore.put(feed, item);
+	}
+
+	public Feed getByKey(Key key) {
+		checkNotNull(key);
+		return Datastore.get(feedMeta, key);
 	}
 
 }
