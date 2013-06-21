@@ -30,6 +30,7 @@
 		</div>
 	</nav>
 
+	<div class='wrapper'>
 	<!-- Feeds -->
 	<section class="row-fluid">
 		<!-- My Feeds -->
@@ -114,6 +115,7 @@
 			</section>
 		</section>
 	</section>
+	</div>
 
 	<!-- About Modal -->
 	<div id="aboutModal" class="modal hide fade" tabindex="-1"
