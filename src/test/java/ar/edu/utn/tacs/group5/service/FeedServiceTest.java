@@ -14,11 +14,6 @@ public class FeedServiceTest extends AppEngineTestCase {
     private FeedService service = new FeedService();
 
     @Test
-    public void test() throws Exception {
-        assertThat(service, is(notNullValue()));
-    }
-
-    @Test
     public void insert() throws Exception {
         Feed feed = new Feed();
         service.insert(feed);
