@@ -1,9 +1,5 @@
 package ar.edu.utn.tacs.group5.controller;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.hamcrest.CoreMatchers.nullValue;
-import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.when;
 
 import java.io.BufferedReader;
@@ -15,7 +11,7 @@ import org.mockito.Mockito;
 import com.google.api.server.spi.config.ApiMethod.HttpMethod;
 import com.google.common.net.MediaType;
 
-public class NewFeedControllerTest extends AbstractAuthorizedControllerTest {
+public class NewFeedControllerTest extends AbstractAuthorizedControllerTest<NewFeedController> {
 
 	@Test
 	public void testRunIsCreated() throws Exception {
@@ -58,14 +54,6 @@ public class NewFeedControllerTest extends AbstractAuthorizedControllerTest {
 		tester.request.setContentType(MediaType.JSON_UTF_8.toString());
 		tester.start(resource());
 		assertController(HttpStatus.SC_BAD_REQUEST);
-	}
-
-	private void assertController(int expectedStatusCode) {
-		NewFeedController controller = tester.getController();
-		assertThat(controller, is(notNullValue()));
-		assertThat(tester.isRedirect(), is(false));
-		assertThat(tester.getDestinationPath(), is(nullValue()));
-		assertThat(tester.response.getStatus(), is(expectedStatusCode));
 	}
 
 	@Override
