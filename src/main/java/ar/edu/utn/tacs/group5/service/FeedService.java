@@ -16,13 +16,13 @@ import com.google.appengine.api.datastore.Transaction;
 
 public class FeedService {
 
-    static final String DEFAULT_FEED = "My Feed";
+    static final String DEFAULT_FEED_TITLE = "My Feed";
     private FeedMeta feedMeta = FeedMeta.get();
 
     public void insert(Long userId) {
         Feed feed = new Feed();
         feed.setUserId(userId);
-        feed.setTitle(DEFAULT_FEED);
+        feed.setTitle(DEFAULT_FEED_TITLE);
         insert(feed);
     }
 
