@@ -21,6 +21,8 @@ $(document).ready(function() {
 				var $myFeedsList = $('#myFeedsList');
 				var feeds = $.parseJSON(feedsJson);
 	
+				$('.feed').not('.template').fadeOut(function(){$(this).remove()});
+
 				feeds.forEach(function(feed) {
 					var $newFeedTemplate = $myFeedsList.find('.feed.template');
 					var $newFeed = $newFeedTemplate.clone().removeClass('template');
