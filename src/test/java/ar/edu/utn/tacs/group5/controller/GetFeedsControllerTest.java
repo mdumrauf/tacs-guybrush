@@ -1,5 +1,6 @@
 package ar.edu.utn.tacs.group5.controller;
 
+import static ar.edu.utn.tacs.group5.model.Feed.newFeed;
 import static com.google.common.collect.Lists.newArrayList;
 import static org.junit.Assert.assertEquals;
 
@@ -24,15 +25,10 @@ public class GetFeedsControllerTest extends AbstractAuthorizedControllerTest<Get
         doLogin();
         List<Feed> feeds = newArrayList();
         Long userId = tester.sessionScope(Constants.USER_ID);
+
         Feed defaultFeed = feedService.getDefaultFeed(userId);
-        Feed feed = new Feed();
-        feed.setTitle("One More Feed");
-        feed.setDescription("Feed description");
-        feed.setUserId(userId);
-        Feed feed2 = new Feed();
-        feed2.setTitle("One More Feed 2");
-        feed2.setDescription("Feed description 2");
-        feed2.setUserId(userId);
+        Feed feed = newFeed(userId, "One More Feed", "Feed description");
+        Feed feed2 = newFeed(userId, "One More Feed 2", "Feed description 2");
 
         feeds.add(defaultFeed);
         feeds.add(feed);
