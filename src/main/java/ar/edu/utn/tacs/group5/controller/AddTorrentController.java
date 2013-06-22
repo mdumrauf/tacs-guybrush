@@ -78,6 +78,7 @@ public class AddTorrentController extends Controller {
 			return redirect("index.jsp");
 		}
 		response.setStatus(HttpStatus.SC_CREATED);
+		response.getWriter().print(itemMeta.modelToJson(item));
 		return null;
     }
 
