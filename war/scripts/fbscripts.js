@@ -88,7 +88,6 @@ $(document).ready(function() {
 			},
 			success : function() {
 				guybrushApp.loadMyFeeds();
-				guybrushApp.loadSubscribedFeeds();
 			}
 		});
 	
