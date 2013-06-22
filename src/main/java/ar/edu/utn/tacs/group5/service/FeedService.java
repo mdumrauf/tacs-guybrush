@@ -2,6 +2,8 @@ package ar.edu.utn.tacs.group5.service;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import java.util.List;
+
 import org.slim3.datastore.Datastore;
 import org.slim3.datastore.ModelQuery;
 
@@ -50,17 +52,28 @@ public class FeedService {
         checkNotNull(feed);
         checkNotNull(item);
         item.getFeedRef().setModel(feed);
+        feed.getItems().add(item);
         Datastore.put(feed, item);
     }
 
     public Feed getByKey(Key key) {
         checkNotNull(key);
-        return Datastore.get(feedMeta, key);
+        Feed feed = Datastore.get(feedMeta, key);
+        feed.setItems(feed.getItemListRef().getModelList());
+        return feed;
     }
 
     public Feed getByKey(String key) {
         checkNotNull(key);
         return getByKey(KeyFactory.stringToKey(key));
+    }
+
+    public List<Feed> getAll(Long userId) {
+        List<Feed> feeds = queryFeedBy(userId).asList();
+        for (Feed feed : feeds) {
+            feed.setItems(feed.getItemListRef().getModelList());
+        }
+        return feeds;
     }
 
 }
