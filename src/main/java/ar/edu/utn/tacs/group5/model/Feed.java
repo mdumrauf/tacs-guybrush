@@ -1,5 +1,7 @@
 package ar.edu.utn.tacs.group5.model;
 
+import static com.google.common.collect.Lists.newArrayList;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -10,6 +12,7 @@ import org.slim3.datastore.Model;
 import ar.edu.utn.tacs.group5.meta.ItemMeta;
 
 import com.google.appengine.api.datastore.Key;
+import com.google.gson.annotations.Expose;
 
 @Model(schemaVersion = 1)
 public class Feed implements Serializable {
@@ -17,22 +20,31 @@ public class Feed implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Attribute(primaryKey = true)
+    @Expose
     private Key key;
 
     @Attribute(version = true)
     private Long version;
 
+    @Expose
     private long userId;
 
+    @Expose
     private String title;
 
+    @Expose
     private String link;
 
+    @Expose
     private String description;
 
     @Attribute(persistent = false)
     private InverseModelListRef<Item, Feed> itemListRef = new InverseModelListRef<Item, Feed>(Item.class,
             ItemMeta.get().feedRef.getName(), this);
+
+    @Expose
+    @Attribute(persistent = false)
+    private List<Item> items = newArrayList();
 
     public Key getKey() {
         return key;
@@ -121,7 +133,7 @@ public class Feed implements Serializable {
     }
 
     public List<Item> getItems() {
-        return getItemListRef().getModelList();
+        return items;
     }
 
     @Override
@@ -140,11 +152,23 @@ public class Feed implements Serializable {
         builder.append(", description=");
         builder.append(description);
         builder.append(", items=");
-        builder.append(getItems());
+        builder.append(items);
         builder.append(", itemListRef=");
         builder.append(itemListRef);
         builder.append("]");
         return builder.toString();
+    }
+
+    public static Feed newFeed(long userId, String title, String description) {
+        Feed feed = new Feed();
+        feed.setUserId(userId);
+        feed.setTitle(title);
+        feed.setDescription(description);
+        return feed;
+    }
+
+    public void setItems(List<Item> items) {
+        this.items = items;
     }
 
 }

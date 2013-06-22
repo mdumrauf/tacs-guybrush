@@ -1,5 +1,7 @@
 package ar.edu.utn.tacs.group5.service;
 
+import static ar.edu.utn.tacs.group5.model.Feed.newFeed;
+import static ar.edu.utn.tacs.group5.model.Item.newItem;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.Assert.assertEquals;
@@ -43,6 +45,7 @@ public class FeedServiceTest extends AbstractServiceTest {
         Feed feed = new Feed();
         service.insert(feed);
         service.addItem(feed, new Item());
+        assertThat(feed.getItems().size(), is(1));
         feed = service.getByKey(feed.getKey());
         assertThat(feed.getItems().size(), is(1));
     }
@@ -129,6 +132,29 @@ public class FeedServiceTest extends AbstractServiceTest {
         Feed feedByKey = service.getByKey(KeyFactory.keyToString(feed.getKey()));
         assertNotNull(feedByKey);
         assertEquals(feed, feedByKey);
+    }
+
+    @Test
+    public void testGetAll() throws Exception {
+        long userId = 123456789L;
+        service.insert(userId);
+        assertThat(service.getAll(userId).size(), is(1));
+        assertThat(service.getAll(userId).get(0).getItems().size(), is(0));
+
+        Feed defaultFeed = service.getDefaultFeed(userId);
+        service.addItem(defaultFeed, newItem("Item 1", "http://item1.com"));
+        service.addItem(defaultFeed, newItem("Item 2", "http://item2.com"));
+        service.addItem(defaultFeed, newItem("Item 3", "http://item3.com"));
+        assertThat(service.getAll(userId).size(), is(1));
+        assertThat(service.getAll(userId).get(0).getItems().size(), is(3));
+        Item item = service.getAll(userId).get(0).getItems().get(0);
+        assertThat(item.getTitle(), is("Item 1"));
+        assertThat(item.getLink(), is("http://item1.com"));
+
+        service.insert(newFeed(userId, "Foo1", "Foo1 description"));
+        service.insert(newFeed(userId, "Foo2", "Foo2 description"));
+        service.insert(newFeed(userId, "Foo3", "Foo3 description"));
+        assertThat(service.getAll(userId).size(), is(4));
     }
 
 }
