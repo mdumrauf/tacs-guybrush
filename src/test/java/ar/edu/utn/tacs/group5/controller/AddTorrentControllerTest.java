@@ -6,6 +6,7 @@ import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.when;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 
 import org.apache.commons.httpclient.HttpStatus;
 import org.junit.Test;
@@ -27,20 +28,7 @@ public class AddTorrentControllerTest extends AbstractAuthorizedControllerTest<A
 	@Test
 	public void testRunAddedOk() throws Exception {
 		doLogin();
-		String torrent = "{ title: \"foo\", description: \"bar\", link: \"http://www.foo.com\" }";
-
-		Feed feed = new Feed();
-		feed.setTitle("My Feed");
-		feed.setDescription("My Feed description");
-		feedService.insert(feed);
-
-		BufferedReader reader = Mockito.mock(BufferedReader.class);
-		when(reader.readLine()).thenReturn(torrent);
-		MockHttpServletRequest request = tester.request;
-		request.setReader(reader);
-		request.setContentType(MediaType.JSON_UTF_8.toString());
-		request.setMethod(HttpMethod.POST);
-		request.addParameter(Constants.FEED, KeyFactory.keyToString(feed.getKey()));
+		Feed feed = prepareValidRequest();
 		tester.start(resource());
 		assertController(HttpStatus.SC_CREATED);
 
@@ -108,6 +96,24 @@ public class AddTorrentControllerTest extends AbstractAuthorizedControllerTest<A
 	@Override
 	protected String resource() {
 		return "/AddTorrent";
+	}
+
+	private Feed prepareValidRequest() throws IOException {
+		String torrent = "{ title: \"foo\", description: \"bar\", link: \"http://www.foo.com\" }";
+
+		Feed feed = new Feed();
+		feed.setTitle("My Feed");
+		feed.setDescription("My Feed description");
+		feedService.insert(feed);
+
+		BufferedReader reader = Mockito.mock(BufferedReader.class);
+		when(reader.readLine()).thenReturn(torrent);
+		MockHttpServletRequest request = tester.request;
+		request.setReader(reader);
+		request.setContentType(MediaType.JSON_UTF_8.toString());
+		request.setMethod(HttpMethod.POST);
+		request.addParameter(Constants.FEED, KeyFactory.keyToString(feed.getKey()));
+		return feed;
 	}
 
 }
