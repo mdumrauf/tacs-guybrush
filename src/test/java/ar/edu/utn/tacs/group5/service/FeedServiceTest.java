@@ -9,12 +9,11 @@ import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
-import org.slim3.tester.AppEngineTestCase;
 
 import ar.edu.utn.tacs.group5.model.Feed;
 import ar.edu.utn.tacs.group5.model.Item;
 
-public class FeedServiceTest extends AppEngineTestCase {
+public class FeedServiceTest extends AbstractServiceTest {
 
 	private FeedService service = new FeedService();
 
