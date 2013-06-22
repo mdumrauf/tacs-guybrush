@@ -42,7 +42,7 @@ window.fbAsyncInit = function() {
 function postTorrent(torrentUrl, torrentName) {
 	var obj = {
 		method : 'feed',
-		link : domain + 'addTorrent?title=' + torrenName + '&link=' + torrentUrl + '&fromFB=true',
+		link : domain + 'addTorrent?title=' + torrentName + '&link=' + torrentUrl + '&fromFB=true',
 		picture : 'http://blog.doblajevideojuegos.es/wp-content/uploads/291135-gt3.jpg',
 		name : torrentName,
 		caption : 'Nuevo torrent!',
