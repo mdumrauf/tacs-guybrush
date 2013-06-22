@@ -187,7 +187,7 @@ $(document).ready(function() {
 
 				$formAddTorrent.slideUp();
 
-				postTorrent(torrentUrl, torrentName);
+				postTorrent(torrent.link, torrent.title);
 			}
 		});
 
