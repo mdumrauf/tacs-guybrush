@@ -49,7 +49,7 @@ public class AddTorrentControllerTest extends AbstractAuthorizedControllerTest<A
         assertThat(controller, is(notNullValue()));
         assertThat(tester.response.getStatus(), is(HttpStatus.SC_MOVED_TEMPORARILY));
         assertThat(tester.isRedirect(), is(true));
-        assertThat(tester.getDestinationPath(), is("index.jsp"));
+        assertThat(tester.getDestinationPath(), is("/"));
 
         feed = feedService.getByKey(feed.getKey());
         assertThat(feed.getItems().size(), is(1));

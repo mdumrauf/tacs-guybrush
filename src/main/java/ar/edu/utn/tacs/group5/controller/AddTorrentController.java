@@ -99,13 +99,16 @@ public class AddTorrentController extends Controller {
             return null;
         }
         Feed feed = feedService.getDefaultFeed(userId);
+        if (feed == null) {
+            return redirect("/");
+        }
         // XXX: Implementar un builder
         Item item = new Item();
         item.setTitle(title);
         item.setLink(link);
         item.setFeed(feed);
         feedService.addItem(feed, item);
-        return redirect("index.jsp");
+        return redirect("/");
     }
 
 }
