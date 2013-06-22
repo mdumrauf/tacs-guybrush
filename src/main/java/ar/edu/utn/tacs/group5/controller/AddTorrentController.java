@@ -1,6 +1,7 @@
 package ar.edu.utn.tacs.group5.controller;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.util.logging.Logger;
 
 import org.apache.commons.httpclient.HttpStatus;
@@ -32,12 +33,17 @@ public class AddTorrentController extends Controller {
     		response.setStatus(HttpStatus.SC_FORBIDDEN);
 			return null;
 		}
-    	if (!isPost()) {
+    	if (isPost()) {
+    	    return handlePost();
+        } else {
 			response.setStatus(HttpStatus.SC_METHOD_NOT_ALLOWED);
 			response.getWriter().print(ALLOWED_METHODS);
 			return null;
 		}
-    	if (!MediaType.parse(request.getContentType()).is(MediaType.JSON_UTF_8)) {
+    }
+
+    private Navigation handlePost() throws IOException {
+        if (!MediaType.parse(request.getContentType()).is(MediaType.JSON_UTF_8)) {
 			response.setStatus(HttpStatus.SC_BAD_REQUEST);
 			response.getWriter().print(ALLOWED_CONTENT_TYPES);
 			return null;
