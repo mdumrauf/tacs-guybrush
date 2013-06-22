@@ -1,6 +1,7 @@
 package ar.edu.utn.tacs.group5.controller;
 
 import java.io.PrintWriter;
+import java.util.logging.Logger;
 
 import org.apache.commons.httpclient.HttpStatus;
 import org.slim3.controller.Controller;
@@ -12,11 +13,15 @@ import ar.edu.utn.tacs.group5.service.FeedService;
 import com.github.mustachejava.DefaultMustacheFactory;
 import com.github.mustachejava.Mustache;
 import com.github.mustachejava.MustacheFactory;
+import com.google.appengine.api.datastore.KeyFactory;
 
 public class GetFeedController extends Controller {
 
+    private static final String INVALID_FEED_KEY = "The provided feed key is invalid";
     private static final String ALLOWED_METHODS = "Allowed methods: GET";
-    private static final String FEED_TEMPLATE = "feed.mustache";
+    static final String FEED_TEMPLATE = "feed.mustache";
+
+    private Logger logger = Logger.getLogger(this.getClass().getName());
     private MustacheFactory mustacheFactory = new DefaultMustacheFactory();
     private FeedService feedService = new FeedService();
 
@@ -32,10 +37,39 @@ public class GetFeedController extends Controller {
             response.getWriter().print(ALLOWED_METHODS);
             return null;
         }
+        String encodedFeedKey = param(Constants.FEED);
+        if (encodedFeedKey == null) {
+            response.setStatus(HttpStatus.SC_BAD_REQUEST);
+            return null;
+        }
+        logger.info("Encoded Feed key: " + encodedFeedKey);
+        Feed feed;
+        try {
+            feed = feedService.getByKey(encodedFeedKey);
+        } catch (IllegalArgumentException e) {
+            response.setStatus(HttpStatus.SC_BAD_REQUEST);
+            response.getWriter().print(INVALID_FEED_KEY);
+            return null;
+        }
+        logger.info(feed.toString());
+        feed.setLink(getHostUrl() + "GetFeed?feed=" + KeyFactory.keyToString(feed.getKey()));
         Mustache mustache = mustacheFactory.compile(FEED_TEMPLATE);
-        Feed feed = feedService.getDefaultFeed(userId);
         mustache.execute(new PrintWriter(response.getWriter()), feed).flush();
+        response.setStatus(HttpStatus.SC_OK);
         return null;
     }
 
+    private String getHostUrl() {
+        final String hostUrl;
+        String environment = System.getProperty("com.google.appengine.runtime.environment");
+
+        if ("Production".contentEquals(environment)) {
+            String applicationId = System.getProperty("com.google.appengine.application.id");
+            String version = System.getProperty("com.google.appengine.application.version");
+            hostUrl = String.format("http://%s.%s.appspot.com/", version, applicationId);
+        } else {
+            hostUrl = "http://localhost:8888/";
+        }
+        return hostUrl;
+    }
 }
