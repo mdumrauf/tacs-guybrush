@@ -13,6 +13,7 @@ import ar.edu.utn.tacs.group5.service.FeedService;
 import com.github.mustachejava.DefaultMustacheFactory;
 import com.github.mustachejava.Mustache;
 import com.github.mustachejava.MustacheFactory;
+import com.google.appengine.api.datastore.KeyFactory;
 
 public class GetFeedController extends Controller {
 
@@ -51,10 +52,24 @@ public class GetFeedController extends Controller {
             return null;
         }
         logger.info(feed.toString());
-
+        feed.setLink(getHostUrl() + "GetFeed?feed=" + KeyFactory.keyToString(feed.getKey()));
         Mustache mustache = mustacheFactory.compile(FEED_TEMPLATE);
         mustache.execute(new PrintWriter(response.getWriter()), feed).flush();
         response.setStatus(HttpStatus.SC_OK);
         return null;
+    }
+
+    private String getHostUrl() {
+        final String hostUrl;
+        String environment = System.getProperty("com.google.appengine.runtime.environment");
+
+        if ("Production".contentEquals(environment)) {
+            String applicationId = System.getProperty("com.google.appengine.application.id");
+            String version = System.getProperty("com.google.appengine.application.version");
+            hostUrl = String.format("http://%s.%s.appspot.com/", version, applicationId);
+        } else {
+            hostUrl = "http://localhost:8888/";
+        }
+        return hostUrl;
     }
 }
