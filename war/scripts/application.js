@@ -45,7 +45,11 @@ $(document).ready(function() {
 	$('#formNewFeed').hide();
 	// Refresh page.
 	$('.navbar').find('.logo').on('click', loadMyFeeds);
-	//$('.navbar').find('.logo').on('click', loadSubscribedFeeds);
+	$('.navbar').find('.logo').on('click', loadSubscribedFeeds);
+
+// Main
+	loadMyFeeds();
+	loadSubscribedFeeds();
 
 // Load Feeds Dinamically
 	function loadMyFeeds() {
@@ -59,7 +63,7 @@ $(document).ready(function() {
 				var $myFeedsList = $('#myFeedsList');
 				var feeds = $.parseJSON(feedsJson);
 
-				$.each(feeds, function(feed) {
+				feeds.forEach(function(feed) {
 					var $newFeedTemplate = $myFeedsList.find('.feed.template');
 					var $newFeed = $newFeedTemplate.clone().removeClass('template');
 
@@ -70,13 +74,13 @@ $(document).ready(function() {
 
 					var $torrents = $newFeed.find('.torrents');
 
-					feed.torrents
-						.forEach(function(torrent) {
-							var $newTorrent = $torrents.find('.template').clone().removeClass('template');
-							$newTorrent.find('.torrent').text(torrent.title);
-							$newTorrent.find('.torrent').attr('href', torrent.link);
-							$newTorrent.prependTo($torrents);
-						});
+//					feed.torrents
+//						.forEach(function(torrent) {
+//							var $newTorrent = $torrents.find('.template').clone().removeClass('template');
+//							$newTorrent.find('.torrent').text(torrent.title);
+//							$newTorrent.find('.torrent').attr('href', torrent.link);
+//							$newTorrent.prependTo($torrents);
+//						});
 
 					$newFeed.appendTo($myFeedsList).hide().slideDown();
 				});
