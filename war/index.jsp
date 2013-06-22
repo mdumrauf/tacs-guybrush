@@ -32,10 +32,8 @@
 	</nav>
 
 	<div class='wrapper'>
-	<!-- Feeds -->
-	<section class="row-fluid">
 		<!-- My Feeds -->
-		<section class="span6 feeds">
+		<section class="container feeds">
 			<header>
 				<div class='actions'>
 					<button id='newFeedBtn' class='btn btn-primary'>New Feed <i class="icon-plus icon-white"></i></button>
@@ -85,7 +83,6 @@
 				<!-- List of Feeds -->
 			</section><!-- End of Feeds List -->
 		</section><!-- End of My Feeds -->
-	</section><!-- End of Feeds -->
 	</div><!-- End of Wrapper -->
 
 	<!-- About Modal -->
