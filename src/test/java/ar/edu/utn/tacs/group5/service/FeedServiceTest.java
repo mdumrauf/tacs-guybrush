@@ -97,7 +97,21 @@ public class FeedServiceTest extends AbstractServiceTest {
         service.insert(userId);
         Feed feed = service.getDefaultFeed(userId);
         assertNotNull(feed);
-        assertThat(feed.getTitle(), is(FeedService.DEFAULT_FEED));
+        assertThat(feed.getTitle(), is(FeedService.DEFAULT_FEED_TITLE));
+    }
+
+    @Test
+    public void testGetDefaultFeedWhenHavingMultipleFeeds() throws Exception {
+        long userId = 123456789L;
+        service.insert(userId);
+        Feed feed1 = new Feed();
+        feed1.setUserId(userId);
+        service.insert(feed1);
+        service.insert(feed1);
+        service.insert(feed1);
+        Feed feed = service.getDefaultFeed(userId);
+        assertNotNull(feed);
+        assertThat(feed.getTitle(), is(FeedService.DEFAULT_FEED_TITLE));
     }
 
     @Test

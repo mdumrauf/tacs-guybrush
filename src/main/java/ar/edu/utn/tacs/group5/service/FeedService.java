@@ -41,7 +41,9 @@ public class FeedService {
     }
 
     public Feed getDefaultFeed(Long userId) {
-        return queryFeedBy(userId).asSingle();
+        return queryFeedBy(userId)
+                .filter(feedMeta.title.getName(), FilterOperator.EQUAL, DEFAULT_FEED_TITLE)
+                .asSingle();
     }
 
     public void addItem(Feed feed, Item item) {
