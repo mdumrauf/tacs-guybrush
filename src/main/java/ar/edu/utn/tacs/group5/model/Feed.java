@@ -1,5 +1,7 @@
 package ar.edu.utn.tacs.group5.model;
 
+import static com.google.common.collect.Lists.newArrayList;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -33,6 +35,9 @@ public class Feed implements Serializable {
     @Attribute(persistent = false)
     private InverseModelListRef<Item, Feed> itemListRef = new InverseModelListRef<Item, Feed>(Item.class,
             ItemMeta.get().feedRef.getName(), this);
+
+    @Attribute(persistent = false)
+    private List<Item> items = newArrayList();
 
     public Key getKey() {
         return key;
@@ -121,7 +126,7 @@ public class Feed implements Serializable {
     }
 
     public List<Item> getItems() {
-        return getItemListRef().getModelList();
+        return items;
     }
 
     @Override
@@ -140,7 +145,7 @@ public class Feed implements Serializable {
         builder.append(", description=");
         builder.append(description);
         builder.append(", items=");
-        builder.append(getItems());
+        builder.append(items);
         builder.append(", itemListRef=");
         builder.append(itemListRef);
         builder.append("]");
@@ -153,6 +158,10 @@ public class Feed implements Serializable {
         feed.setTitle(title);
         feed.setDescription(description);
         return feed;
+    }
+
+    public void setItems(List<Item> items) {
+        this.items = items;
     }
 
 }
