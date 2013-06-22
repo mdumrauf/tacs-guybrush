@@ -59,6 +59,38 @@ public class AddTorrentControllerTest extends AbstractAuthorizedControllerTest<A
     }
     
 	@Test
+    public void testRunFromFBHasNoItemParameters() throws Exception {
+        doLogin();
+        MockHttpServletRequest request = tester.request;
+        request.setMethod(HttpMethod.GET);
+        request.addParameter(Constants.FROM_FB, String.valueOf(true));
+        tester.start(resource());
+        assertController(HttpStatus.SC_BAD_REQUEST);
+    }
+
+    @Test
+    public void testRunFromFBHasNoItemTitle() throws Exception {
+        doLogin();
+        MockHttpServletRequest request = tester.request;
+        request.setMethod(HttpMethod.GET);
+        request.addParameter(Constants.TITLE, "foo");
+        request.addParameter(Constants.FROM_FB, String.valueOf(true));
+        tester.start(resource());
+        assertController(HttpStatus.SC_BAD_REQUEST);
+    }
+    
+    @Test
+    public void testRunFromFBHasNoItemLink() throws Exception {
+        doLogin();
+        MockHttpServletRequest request = tester.request;
+        request.setMethod(HttpMethod.GET);
+        request.addParameter(Constants.LINK, "http://www.foo.com");
+        request.addParameter(Constants.FROM_FB, String.valueOf(true));
+        tester.start(resource());
+        assertController(HttpStatus.SC_BAD_REQUEST);
+    }
+    
+	@Test
 	public void testRunIsNotAllowed() throws Exception {
 		doLogin();
 		tester.request.setMethod(HttpMethod.PUT);
