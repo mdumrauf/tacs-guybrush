@@ -45,6 +45,7 @@ public class FeedServiceTest extends AbstractServiceTest {
         Feed feed = new Feed();
         service.insert(feed);
         service.addItem(feed, new Item());
+        assertThat(feed.getItems().size(), is(1));
         feed = service.getByKey(feed.getKey());
         assertThat(feed.getItems().size(), is(1));
     }
