@@ -59,7 +59,7 @@ public class FeedService {
 
 	public Feed getByKey(String key) {
 		checkNotNull(key);
-		return Datastore.get(feedMeta, KeyFactory.stringToKey(key));
+		return getByKey(KeyFactory.stringToKey(key));
 	}
 
 }

@@ -86,6 +86,11 @@ public class FeedServiceTest extends AbstractServiceTest {
 		service.getByKey(key);
 	}
 
+	@Test(expected = IllegalArgumentException.class)
+	public void testGetByKeyWithInvalidStringKey() throws Exception {
+		service.getByKey("xxxx92xxxx42");
+	}
+
 	@Test
 	public void testGetByUserId() throws Exception {
 		long userId = 123456789L;
