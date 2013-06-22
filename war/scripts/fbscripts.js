@@ -60,7 +60,7 @@ $(document).ready(function() {
 	function postFeed(feedKey, feedName) {
 		var obj = {
 			method : 'feed',
-			link : domain + 'subscribeToFeed?feed-key=' + feedKey + '&fromFB=true',
+			link : domain + '/GetFeed?feed=' + feedKey,
 			picture : 'http://blog.doblajevideojuegos.es/wp-content/uploads/291135-gt3.jpg',
 			name : feedName,
 			caption : 'Feed Subscription!',
