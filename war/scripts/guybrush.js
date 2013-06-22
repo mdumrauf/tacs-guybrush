@@ -1,11 +1,9 @@
 $(document).ready(function() {
 
 	guybrushApp.loadMyFeeds = loadMyFeeds;
-	guybrushApp.loadSubscribedFeeds = loadSubscribedFeeds;
 	guybrushApp.newFeed = newFeed;
 	guybrushApp.showFormAddTorrent = showFormAddTorrent;
 	guybrushApp.addTorrent = addTorrent;
-	guybrushApp.addSharedTorrent = addSharedTorrent;
 	guybrushApp.shareFeed = shareFeed;
 	guybrushApp.removeSubscribedFeed = removeSubscribedFeed;
 
@@ -47,38 +45,7 @@ $(document).ready(function() {
 			}
 		});
 	}
-	
-	function loadSubscribedFeeds() {
-		// TODO: $.getJSON('url/getSubsFeeds');
-	
-		var $subscribedFeedsList = $('#subscribedFeedsList');
-	
-		$.each(json, function(key, feeds) {
-			var feed = feeds.feed;
-	
-			var $newSubsFeedTemplate = $subscribedFeedsList.find('.feed.template');
-			var $newSubsFeed = $newSubsFeedTemplate.clone().removeClass('template');
-	
-			$newSubsFeed.data('feed-key', feed.key);
-			$newSubsFeed.find('.feedName').text(feed.name);
-			$newSubsFeed.find('.feedName').attr('href', '/GetFeed?feed=' + feed.key);
-			$newSubsFeed.find('.feedDescription').text(feed.description);
-			$newSubsFeed.find('.owner').text(feed.owner);
-	
-			var $torrents = $newSubsFeed.find('.torrents');
-	
-			feed.torrents
-				.forEach(function(torrent) {
-					var $newTorrent = $torrents.find('.template').clone().removeClass('template');
-					$newTorrent.find('.torrent').text(torrent.name);
-					$newTorrent.find('.torrent').attr('href', torrent.url);
-					$newTorrent.prependTo($torrents);
-				});
-	
-			$newSubsFeed.appendTo($subscribedFeedsList).hide().slideDown();
-		});
-	}
-	
+
 	// Action Functions
 	function newFeed(e) {
 		e.preventDefault();
@@ -166,21 +133,6 @@ $(document).ready(function() {
 			}
 		});
 	
-	}
-	
-	// TODO: Not Used
-	function addSharedTorrent(e) {
-		e.preventDefault();
-		$addSharedTorrentModal = $("#addSharedTorrentModal");
-		var torrentName = $addSharedTorrentModal.find(".sharedTorrent").text();
-		var torrentUrl = $addSharedTorrentModal.find(".sharedTorrent").attr("href");
-	
-		var feedKey = $addSharedTorrentModal.find(".myFeeds").find(".active").data("feed-key");
-	
-		alert('Name: ' + torrentName + '\nUrl:' + torrentUrl + '\nFeed:' + feedKey);
-	
-		// Falta definir si se recarga el home con todos los feeds
-		// ó si se agrega el nuevo torrent al feed ya cargado en el home.
 	}
 	
 	function shareFeed() {

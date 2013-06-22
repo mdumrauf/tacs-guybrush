@@ -31,14 +31,6 @@ $(document).ready(function() {
 	// Subscribed Feeds
 	$('#subscribedFeedsList').on('click', '.removeSubscribedFeed', guybrushApp.removeSubscribedFeed);
 
-	// Modal Add Shared Torrent
-	$("#myFeedsModal article").on('click', function(e) {
-		e.preventDefault();
-		$("#myFeedsModal").find(".active").removeClass("active");
-		$(this).addClass("active");
-	});
-	$("#submitSharedTorrent").on('click', guybrushApp.addSharedTorrent);
-
 	// Structure
 	$('#addSharedTorrentModal').modal('hide');
 	$('#formAddTorrent').hide();
@@ -46,6 +38,5 @@ $(document).ready(function() {
 
 	// Refresh page
 	$('.navbar').find('.logo').on('click', guybrushApp.loadMyFeeds);
-	$('.navbar').find('.logo').on('click', guybrushApp.loadSubscribedFeeds);
 
 });
