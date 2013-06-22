@@ -7,8 +7,8 @@ import org.apache.commons.httpclient.HttpStatus;
 import org.slim3.controller.Controller;
 import org.slim3.controller.Navigation;
 
-import ar.edu.utn.tacs.group5.meta.FeedMeta;
 import ar.edu.utn.tacs.group5.model.Feed;
+import ar.edu.utn.tacs.group5.parser.GAEGson;
 import ar.edu.utn.tacs.group5.service.FeedService;
 
 public class GetFeedsController extends Controller {
@@ -17,7 +17,7 @@ public class GetFeedsController extends Controller {
 
     private Logger logger = Logger.getLogger(this.getClass().getName());
     private FeedService feedService = new FeedService();
-    private FeedMeta feedMeta = FeedMeta.get();;
+    private GAEGson gaeGson = new GAEGson();
 
     @Override
     public Navigation run() throws Exception {
@@ -33,7 +33,7 @@ public class GetFeedsController extends Controller {
         }
         List<Feed> all = feedService.getAll(userId);
         logger.info(all.toString());
-        response.getWriter().print(feedMeta.modelsToJson(all));
+        response.getWriter().print(gaeGson.toJsonString(all));
         return null;
     }
 
