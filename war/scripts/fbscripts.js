@@ -1,5 +1,8 @@
 $(document).ready(function() {
 
+  guybrushApp.postTorrent = postTorrent;
+  guybrushApp.postFeed = postFeed;
+
 	var userId;
 	var domain = 'localhost:8080';
 

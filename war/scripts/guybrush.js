@@ -160,7 +160,7 @@ $(document).ready(function() {
 	
 				$formAddTorrent.slideUp();
 	
-				postTorrent(torrent.link, torrent.title);
+				guybrushApp.postTorrent(torrent.link, torrent.title);
 			}
 		});
 	
@@ -183,7 +183,7 @@ $(document).ready(function() {
 	
 	function shareFeed() {
 		var $feed = $(this).closest('.feed');
-		postFeed($feed.data('feed-key'), $feed.find('.feedName').text());
+		guybrushApp.postFeed($feed.data('feed-key'), $feed.find('.feedName').text());
 	}
 	
 	function removeSubscribedFeed() {
