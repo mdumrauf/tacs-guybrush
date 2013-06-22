@@ -9,6 +9,8 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
+import java.util.List;
+
 import org.junit.Test;
 
 import ar.edu.utn.tacs.group5.model.Feed;
@@ -129,6 +131,26 @@ public class FeedServiceTest extends AbstractServiceTest {
         Feed feedByKey = service.getByKey(KeyFactory.keyToString(feed.getKey()));
         assertNotNull(feedByKey);
         assertEquals(feed, feedByKey);
+    }
+
+    @Test
+    public void testGetAll() throws Exception {
+        long userId = 123456789L;
+        service.insert(userId);
+        List<Feed> all = service.getAll(userId);
+        assertThat(all.size(), is(1));
+        service.insert(newStubFeed(userId, "Foo1"));
+        service.insert(newStubFeed(userId, "Foo2"));
+        service.insert(newStubFeed(userId, "Foo3"));
+        all = service.getAll(userId);
+        assertThat(all.size(), is(4));
+    }
+
+    private Feed newStubFeed(long userId, String title) {
+        Feed feed = new Feed();
+        feed.setUserId(userId);
+        feed.setTitle(title);
+        return feed;
     }
 
 }
