@@ -5,6 +5,10 @@ $(document).ready(function() {
 		e.preventDefault();
 		$('#aboutModal').modal();
 	});
+	$('.navbar').find('.help').on('click', function(e) {
+		e.preventDefault();
+		$('#helpModal').modal();
+	});
 
 	// My Feeds
 	$('#myFeedsList').on('click', '.addTorrentBtn', showFormAddTorrent);
@@ -20,19 +24,19 @@ $(document).ready(function() {
 	// Form Add Torrent
 	$('#formAddTorrent').find('.addTorrent').on('click', addTorrent);
 	$('#formAddTorrent').find('.cancelTorrent').on('click', function(e) {
-				e.preventDefault();
-				$('#formAddTorrent').slideUp();
-			});
+		e.preventDefault();
+		$('#formAddTorrent').slideUp();
+	});
 
 	// Subscribed Feeds
 	$('#subscribedFeedsList').on('click', '.removeSubscribedFeed', removeSubscribedFeed);
 
 	// Modal Add Shared Torrent
 	$("#myFeedsModal article").on('click', function(e) {
-				e.preventDefault();
-				$("#myFeedsModal").find(".active").removeClass("active");
-				$(this).addClass("active");
-			});
+		e.preventDefault();
+		$("#myFeedsModal").find(".active").removeClass("active");
+		$(this).addClass("active");
+	});
 	$("#submitSharedTorrent").on('click', addSharedTorrent);
 
 // Structure
@@ -63,12 +67,12 @@ $(document).ready(function() {
 			var $torrents = $newFeed.find('.torrents');
 
 			feed.torrents
-					.forEach(function(torrent) {
-						var $newTorrent = $torrents.find('.template').clone().removeClass('template');
-						$newTorrent.find('.torrent').text(torrent.name);
-						$newTorrent.find('.torrent').attr('href', torrent.url);
-						$newTorrent.prependTo($torrents);
-					});
+				.forEach(function(torrent) {
+					var $newTorrent = $torrents.find('.template').clone().removeClass('template');
+					$newTorrent.find('.torrent').text(torrent.name);
+					$newTorrent.find('.torrent').attr('href', torrent.url);
+					$newTorrent.prependTo($torrents);
+				});
 
 			$newFeed.appendTo($myFeedsList).hide().slideDown();
 		});
@@ -94,12 +98,12 @@ $(document).ready(function() {
 			var $torrents = $newSubsFeed.find('.torrents');
 
 			feed.torrents
-					.forEach(function(torrent) {
-						var $newTorrent = $torrents.find('.template').clone().removeClass('template');
-						$newTorrent.find('.torrent').text(torrent.name);
-						$newTorrent.find('.torrent').attr('href', torrent.url);
-						$newTorrent.prependTo($torrents);
-					});
+				.forEach(function(torrent) {
+					var $newTorrent = $torrents.find('.template').clone().removeClass('template');
+					$newTorrent.find('.torrent').text(torrent.name);
+					$newTorrent.find('.torrent').attr('href', torrent.url);
+					$newTorrent.prependTo($torrents);
+				});
 
 			$newSubsFeed.appendTo($subscribedFeedsList).hide().slideDown();
 		});
@@ -152,7 +156,7 @@ $(document).ready(function() {
 			return;
 		}
 		$formAddTorrent.hide();
-		$formAddTorrent.prependTo($(this).closest(".feed").find(".torrents")).slideDown();
+		$formAddTorrent.appendTo($(this).closest(".feed").find(".torrents")).slideDown();
 	}
 
 	function addTorrent(e) {
@@ -196,9 +200,8 @@ $(document).ready(function() {
 	}
 
 	function shareFeed() {
-		var $feed = $(this).closest('.feed').find('.feedName');
-		postFeed($feed.data('feed-key'),
-				$feed.find('.feedName').text());
+		var $feed = $(this).closest('.feed');
+		postFeed($feed.data('feed-key'), $feed.find('.feedName').text());
 	}
 
 	function removeSubscribedFeed() {
