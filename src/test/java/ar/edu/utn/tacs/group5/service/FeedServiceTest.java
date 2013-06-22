@@ -1,5 +1,6 @@
 package ar.edu.utn.tacs.group5.service;
 
+import static ar.edu.utn.tacs.group5.model.Feed.newFeed;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.Assert.assertEquals;
@@ -139,18 +140,11 @@ public class FeedServiceTest extends AbstractServiceTest {
         service.insert(userId);
         List<Feed> all = service.getAll(userId);
         assertThat(all.size(), is(1));
-        service.insert(newStubFeed(userId, "Foo1"));
-        service.insert(newStubFeed(userId, "Foo2"));
-        service.insert(newStubFeed(userId, "Foo3"));
+        service.insert(newFeed(userId, "Foo1"));
+        service.insert(newFeed(userId, "Foo2"));
+        service.insert(newFeed(userId, "Foo3"));
         all = service.getAll(userId);
         assertThat(all.size(), is(4));
-    }
-
-    private Feed newStubFeed(long userId, String title) {
-        Feed feed = new Feed();
-        feed.setUserId(userId);
-        feed.setTitle(title);
-        return feed;
     }
 
 }

@@ -147,4 +147,11 @@ public class Feed implements Serializable {
         return builder.toString();
     }
 
+    public static Feed newFeed(long userId, String title) {
+        Feed feed = new Feed();
+        feed.setUserId(userId);
+        feed.setTitle(title);
+        return feed;
+    }
+
 }
