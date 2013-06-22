@@ -7,6 +7,10 @@
 	<title>Guybrush</title>
 	<link href="style/style.css" rel="stylesheet">
 	<link href="style/bootstrap.min.css" rel="stylesheet">
+
+	<script type="text/javascript">
+	  var guybrushApp = {};
+	</script>
 </head>
 
 <body>
@@ -223,8 +227,9 @@
 	<!-- Placed at the end of the document so the pages load faster -->
 
 	<script src="scripts/jquery-2.0.2.js"></script>
-	<script src="scripts/fbscripts.js"></script>
+	<script src="scripts/guybrush.js"></script>
 	<script src="scripts/application.js"></script>
+	<script src="scripts/fbscripts.js"></script>
 	<script src="scripts/bootstrap.min.js"></script>
 </body>
 </html>
