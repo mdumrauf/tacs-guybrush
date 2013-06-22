@@ -29,13 +29,10 @@ public class Feed implements Serializable {
     private String link;
 
     private String description;
-    
-    @Attribute(persistent = false)
-    private List<Item> items;
 
     @Attribute(persistent = false)
-	private InverseModelListRef<Item, Feed> itemListRef = new InverseModelListRef<Item, Feed>(
-			Item.class, ItemMeta.get().feedRef.getName(), this);
+    private InverseModelListRef<Item, Feed> itemListRef = new InverseModelListRef<Item, Feed>(Item.class,
+            ItemMeta.get().feedRef.getName(), this);
 
     public Key getKey() {
         return key;
@@ -54,42 +51,46 @@ public class Feed implements Serializable {
     }
 
     public String getTitle() {
-		return title;
-	}
+        return title;
+    }
 
-	public void setTitle(String title) {
-		this.title = title;
-	}
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-	public String getLink() {
-		return link;
-	}
+    public String getLink() {
+        return link;
+    }
 
-	public void setLink(String link) {
-		this.link = link;
-	}
+    public void setLink(String link) {
+        this.link = link;
+    }
 
-	public String getDescription() {
-		return description;
-	}
+    public String getDescription() {
+        return description;
+    }
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-	public long getUserId() {
-		return userId;
-	}
+    public long getUserId() {
+        return userId;
+    }
 
-	public void setUserId(long userId) {
-		this.userId = userId;
-	}
+    public void setUserId(long userId) {
+        this.userId = userId;
+    }
 
-	public InverseModelListRef<Item, Feed> getItemListRef() {
-		return itemListRef;
-	}
+    public InverseModelListRef<Item, Feed> getItemListRef() {
+        return itemListRef;
+    }
 
-	@Override
+    public boolean isValid() {
+        return title != null && description != null;
+    }
+
+    @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
@@ -119,16 +120,31 @@ public class Feed implements Serializable {
         return true;
     }
 
-	public List<Item> getItems() {
-		return items;
-	}
+    public List<Item> getItems() {
+        return getItemListRef().getModelList();
+    }
 
-	public void setItems(List<Item> items) {
-		this.items = items;
-	}
-
-	public boolean isValid() {
-		return title != null && description != null;
-	}
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("Feed [key=");
+        builder.append(key);
+        builder.append(", version=");
+        builder.append(version);
+        builder.append(", userId=");
+        builder.append(userId);
+        builder.append(", title=");
+        builder.append(title);
+        builder.append(", link=");
+        builder.append(link);
+        builder.append(", description=");
+        builder.append(description);
+        builder.append(", items=");
+        builder.append(getItems());
+        builder.append(", itemListRef=");
+        builder.append(itemListRef);
+        builder.append("]");
+        return builder.toString();
+    }
 
 }
