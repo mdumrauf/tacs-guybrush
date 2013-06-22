@@ -33,7 +33,7 @@ public class GetFeedController extends Controller {
 			return null;
 		}
         Mustache mustache = mustacheFactory.compile(FEED_TEMPLATE);
-		Feed feed = feedService.getByUserId(userId);
+		Feed feed = feedService.getDefaultFeed(userId);
 		mustache.execute(new PrintWriter(response.getWriter()), feed).flush();
     	return null;
     }

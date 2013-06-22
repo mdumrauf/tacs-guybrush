@@ -98,7 +98,7 @@ public class AddTorrentController extends Controller {
             response.setStatus(HttpStatus.SC_BAD_REQUEST);
             return null;
         }
-        Feed feed = feedService.getByUserId(userId);
+        Feed feed = feedService.getDefaultFeed(userId);
         // XXX: Implementar un builder
         Item item = new Item();
         item.setTitle(title);

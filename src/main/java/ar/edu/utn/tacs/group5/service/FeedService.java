@@ -41,7 +41,7 @@ public class FeedService {
 		return Datastore.query(feedMeta).filter(feedMeta.userId.getName(), FilterOperator.EQUAL, userId);
 	}
 
-	public Feed getByUserId(Long userId) {
+	public Feed getDefaultFeed(Long userId) {
 		return queryFeedBy(userId).asSingle();
 	}
 

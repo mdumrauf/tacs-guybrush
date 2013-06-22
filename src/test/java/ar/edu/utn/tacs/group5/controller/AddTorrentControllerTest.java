@@ -159,7 +159,7 @@ public class AddTorrentControllerTest extends AbstractAuthorizedControllerTest<A
         request.addParameter(Constants.LINK, "http://www.foo.com");
         request.addParameter(Constants.FROM_FB, String.valueOf(true));
         Long userId = tester.sessionScope(Constants.USER_ID);
-        return feedService.getByUserId(userId);
+        return feedService.getDefaultFeed(userId);
     }
 
 }

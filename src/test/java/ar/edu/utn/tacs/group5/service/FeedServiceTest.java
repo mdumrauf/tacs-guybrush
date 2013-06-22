@@ -92,25 +92,25 @@ public class FeedServiceTest extends AbstractServiceTest {
 	}
 
 	@Test
-	public void testGetByUserId() throws Exception {
-		long userId = 123456789L;
-		service.insert(userId);
-		Feed feed = service.getByUserId(userId);
-		assertNotNull(feed);
-		assertThat(feed.getTitle(), is(FeedService.DEFAULT_FEED));
-	}
+        	public void testGetDefaultFeed() throws Exception {
+        		long userId = 123456789L;
+        		service.insert(userId);
+        		Feed feed = service.getDefaultFeed(userId);
+        		assertNotNull(feed);
+        		assertThat(feed.getTitle(), is(FeedService.DEFAULT_FEED));
+        	}
 
 	@Test
-	public void testGetByUserIdWithInvalidId() throws Exception {
-		Feed feed = service.getByUserId(9999999L);
-		assertNull(feed);
-	}
+        	public void testGetDefaultFeedWithInvalidId() throws Exception {
+        		Feed feed = service.getDefaultFeed(9999999L);
+        		assertNull(feed);
+        	}
 
 	@Test
 	public void testGetByKeyString() throws Exception {
 		long userId = 123456789L;
 		service.insert(userId);
-		Feed feed = service.getByUserId(userId);
+		Feed feed = service.getDefaultFeed(userId);
 		assertNotNull(feed);
 		Feed feedByKey = service.getByKey(KeyFactory.keyToString(feed.getKey()));
 		assertNotNull(feedByKey);
