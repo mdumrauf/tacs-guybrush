@@ -19,12 +19,14 @@ import com.google.appengine.api.datastore.Transaction;
 public class FeedService {
 
     static final String DEFAULT_FEED_TITLE = "My Feed";
+    static final String DEFAULT_FEED_DESCRIPTON = "Default feed";
     private FeedMeta feedMeta = FeedMeta.get();
 
     public void insert(Long userId) {
         Feed feed = new Feed();
         feed.setUserId(userId);
         feed.setTitle(DEFAULT_FEED_TITLE);
+        feed.setDescription(DEFAULT_FEED_DESCRIPTON);
         insert(feed);
     }
 
