@@ -147,10 +147,11 @@ public class Feed implements Serializable {
         return builder.toString();
     }
 
-    public static Feed newFeed(long userId, String title) {
+    public static Feed newFeed(long userId, String title, String description) {
         Feed feed = new Feed();
         feed.setUserId(userId);
         feed.setTitle(title);
+        feed.setDescription(description);
         return feed;
     }
 

@@ -140,9 +140,9 @@ public class FeedServiceTest extends AbstractServiceTest {
         service.insert(userId);
         List<Feed> all = service.getAll(userId);
         assertThat(all.size(), is(1));
-        service.insert(newFeed(userId, "Foo1"));
-        service.insert(newFeed(userId, "Foo2"));
-        service.insert(newFeed(userId, "Foo3"));
+        service.insert(newFeed(userId, "Foo1", "Foo1 description"));
+        service.insert(newFeed(userId, "Foo2", "Foo2 description"));
+        service.insert(newFeed(userId, "Foo3", "Foo3 description"));
         all = service.getAll(userId);
         assertThat(all.size(), is(4));
     }
