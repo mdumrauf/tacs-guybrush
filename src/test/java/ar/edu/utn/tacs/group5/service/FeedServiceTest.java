@@ -2,6 +2,7 @@ package ar.edu.utn.tacs.group5.service;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
@@ -12,6 +13,9 @@ import org.junit.Test;
 
 import ar.edu.utn.tacs.group5.model.Feed;
 import ar.edu.utn.tacs.group5.model.Item;
+
+import com.google.appengine.api.datastore.Key;
+import com.google.appengine.api.datastore.KeyFactory;
 
 public class FeedServiceTest extends AbstractServiceTest {
 
@@ -72,7 +76,14 @@ public class FeedServiceTest extends AbstractServiceTest {
 
 	@Test(expected = NullPointerException.class)
 	public void testGetByKeyWithNullKey() throws Exception {
-		service.getByKey(null);
+		Key key = null;
+		service.getByKey(key);
+	}
+
+	@Test(expected = NullPointerException.class)
+	public void testGetByKeyWithNullStringKey() throws Exception {
+		String key = null;
+		service.getByKey(key);
 	}
 
 	@Test
@@ -88,6 +99,17 @@ public class FeedServiceTest extends AbstractServiceTest {
 	public void testGetByUserIdWithInvalidId() throws Exception {
 		Feed feed = service.getByUserId(9999999L);
 		assertNull(feed);
+	}
+
+	@Test
+	public void testGetByKeyString() throws Exception {
+		long userId = 123456789L;
+		service.insert(userId);
+		Feed feed = service.getByUserId(userId);
+		assertNotNull(feed);
+		Feed feedByKey = service.getByKey(KeyFactory.keyToString(feed.getKey()));
+		assertNotNull(feedByKey);
+		assertEquals(feed, feedByKey);
 	}
 
 }

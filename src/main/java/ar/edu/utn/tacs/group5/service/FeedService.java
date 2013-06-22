@@ -10,6 +10,7 @@ import ar.edu.utn.tacs.group5.model.Feed;
 import ar.edu.utn.tacs.group5.model.Item;
 
 import com.google.appengine.api.datastore.Key;
+import com.google.appengine.api.datastore.KeyFactory;
 import com.google.appengine.api.datastore.Query.FilterOperator;
 import com.google.appengine.api.datastore.Transaction;
 
@@ -54,6 +55,11 @@ public class FeedService {
 	public Feed getByKey(Key key) {
 		checkNotNull(key);
 		return Datastore.get(feedMeta, key);
+	}
+
+	public Feed getByKey(String key) {
+		checkNotNull(key);
+		return Datastore.get(feedMeta, KeyFactory.stringToKey(key));
 	}
 
 }
