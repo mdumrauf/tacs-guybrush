@@ -32,10 +32,8 @@
 	</nav>
 
 	<div class='wrapper'>
-	<!-- Feeds -->
-	<section class="row-fluid">
 		<!-- My Feeds -->
-		<section class="span6 feeds">
+		<section class="container feeds">
 			<header>
 				<div class='actions'>
 					<button id='newFeedBtn' class='btn btn-primary'>New Feed <i class="icon-plus icon-white"></i></button>
@@ -85,37 +83,6 @@
 				<!-- List of Feeds -->
 			</section><!-- End of Feeds List -->
 		</section><!-- End of My Feeds -->
-
-		<!-- Subscribed Feeds -->
-		<section class="span6 feeds">
-			<header>
-				<h2>Subscribed Feeds</h2>
-			</header>
-			<section id="subscribedFeedsList">
-				<!-- Subscribed Feed Template -->
-				<article class="feed template">
-					<header>
-						<div class="actions btn-group">
-							<button type='button' class='btn removeSubscribedFeed'>
-								<i class='icon-remove'></i>
-							</button>
-						</div>
-						<h3>
-							<a class='feedName' href="#feedRss">Feed Name</a>
-						</h3>
-					</header>
-					<aside>
-						<p class='feedDescription'>Description of the feed.</p> | <a
-							class='owner' href='#ownerFB'>Owner Name</a>
-					</aside>
-					<hr>
-					<ul class="torrents">
-						<li class="template"><a class='torrent' href='#torrentUrl'>Torrent Name</a></li>
-					</ul>
-				</article>
-			</section><!-- End of Subscribed Feeds List -->
-		</section><!-- End of Subscribed Feeds -->
-	</section><!-- End of Feeds -->
 	</div><!-- End of Wrapper -->
 
 	<!-- About Modal -->
@@ -181,23 +148,6 @@
 			<div class='logo'><img
 				src='img/logo/Black_and_white_266x75.png'></div>
 			<h4>TACS</h4>
-		</div>
-	</div>
-
-	<!-- Add Shared Torrent Modal -->
-	<div id="addSharedTorrentModal" class="modal hide fade" tabindex="-1"
-		role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
-		style="display: none;">
-		<div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-			<h3 id="myModalLabel">Add Shared Torrent</h3>
-			<a href="#sharedTorrentUrl" class="sharedTorrent">Shared Torrent</a>
-		</div>
-		<div class="modal-body">
-			<h4>My Feeds</h4>
-			<p>Please choose one of your feeds to add the shared torrent.</p>
-			<hr>
-			<div class='myFeeds'></div>
 		</div>
 	</div>
 
