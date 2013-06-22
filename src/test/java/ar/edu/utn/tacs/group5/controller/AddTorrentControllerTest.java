@@ -28,7 +28,7 @@ public class AddTorrentControllerTest extends AbstractAuthorizedControllerTest<A
 	@Test
 	public void testRunAddedOk() throws Exception {
 		doLogin();
-		Feed feed = prepareValidRequest();
+		Feed feed = prepareValidPostRequest();
 		tester.start(resource());
 		assertController(HttpStatus.SC_CREATED);
 
@@ -41,9 +41,27 @@ public class AddTorrentControllerTest extends AbstractAuthorizedControllerTest<A
 	}
 
 	@Test
+    public void testRunAddedOkFromFB() throws Exception {
+        doLogin();
+        Feed feed = prepareValidGetRequest();
+        tester.start(resource());
+        AddTorrentController controller = tester.getController();
+        assertThat(controller, is(notNullValue()));
+        assertThat(tester.response.getStatus(), is(HttpStatus.SC_MOVED_TEMPORARILY));
+        assertThat(tester.isRedirect(), is(true));
+        assertThat(tester.getDestinationPath(), is("index.jsp"));
+
+        feed = feedService.getByKey(feed.getKey());
+        assertThat(feed.getItems().size(), is(1));
+        Item item = feed.getItems().get(0);
+        assertThat(item.getTitle(), is("foo"));
+        assertThat(item.getLink(), is("http://www.foo.com"));
+    }
+    
+	@Test
 	public void testRunIsNotAllowed() throws Exception {
 		doLogin();
-		tester.request.setMethod(HttpMethod.GET);
+		tester.request.setMethod(HttpMethod.PUT);
 		tester.start(resource());
 		assertController(HttpStatus.SC_METHOD_NOT_ALLOWED);
 	}
@@ -79,25 +97,12 @@ public class AddTorrentControllerTest extends AbstractAuthorizedControllerTest<A
 		assertController(HttpStatus.SC_BAD_REQUEST);
 	}
 
-	@Test
-	public void testRunFromFB() throws Exception {
-		doLogin();
-		prepareValidRequest();
-		tester.request.setParameter(Constants.FROM_FB, String.valueOf(true));
-		tester.start(resource());
-		AddTorrentController controller = tester.getController();
-		assertThat(controller, is(notNullValue()));
-		assertThat(tester.response.getStatus(), is(HttpStatus.SC_MOVED_TEMPORARILY));
-		assertThat(tester.isRedirect(), is(true));
-		assertThat(tester.getDestinationPath(), is("index.jsp"));
-	}
-
 	@Override
 	protected String resource() {
 		return "/AddTorrent";
 	}
 
-	private Feed prepareValidRequest() throws IOException {
+	private Feed prepareValidPostRequest() throws IOException {
 		String torrent = "{ title: \"foo\", description: \"bar\", link: \"http://www.foo.com\" }";
 
 		Feed feed = new Feed();
@@ -114,5 +119,15 @@ public class AddTorrentControllerTest extends AbstractAuthorizedControllerTest<A
 		request.addParameter(Constants.FEED, KeyFactory.keyToString(feed.getKey()));
 		return feed;
 	}
+
+   private Feed prepareValidGetRequest() throws IOException {
+        MockHttpServletRequest request = tester.request;
+        request.setMethod(HttpMethod.GET);
+        request.addParameter(Constants.TITLE, "foo");
+        request.addParameter(Constants.LINK, "http://www.foo.com");
+        request.addParameter(Constants.FROM_FB, String.valueOf(true));
+        Long userId = tester.sessionScope(Constants.USER_ID);
+        return feedService.getByUserId(userId);
+    }
 
 }

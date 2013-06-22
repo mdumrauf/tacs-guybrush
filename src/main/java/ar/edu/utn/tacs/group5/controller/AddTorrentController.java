@@ -35,6 +35,8 @@ public class AddTorrentController extends Controller {
 		}
     	if (isPost()) {
     	    return handlePost();
+        } else if (isGet()) {
+            return handleGet(userId);
         } else {
 			response.setStatus(HttpStatus.SC_METHOD_NOT_ALLOWED);
 			response.getWriter().print(ALLOWED_METHODS);
@@ -79,13 +81,31 @@ public class AddTorrentController extends Controller {
 			return null;
 		}
 		feedService.addItem(feed, item);
-
-		if (Boolean.valueOf(param(Constants.FROM_FB))) {
-			return redirect("index.jsp");
-		}
 		response.setStatus(HttpStatus.SC_CREATED);
 		response.getWriter().print(itemMeta.modelToJson(item));
 		return null;
+    }
+
+    private Navigation handleGet(Long userId) {
+        boolean isFromFB = Boolean.valueOf(param(Constants.FROM_FB)).booleanValue();
+        if (!isFromFB) {
+            response.setStatus(HttpStatus.SC_BAD_REQUEST);
+            return null;
+        }
+        String title = param(Constants.TITLE);
+        String link = param(Constants.LINK);
+        if (title == null || link == null) {
+            response.setStatus(HttpStatus.SC_BAD_REQUEST);
+            return null;
+        }
+        Feed feed = feedService.getByUserId(userId);
+        // XXX: Implementar un builder
+        Item item = new Item();
+        item.setTitle(title);
+        item.setLink(link);
+        item.setFeed(feed);
+        feedService.addItem(feed, item);
+        return redirect("index.jsp");
     }
 
 }
