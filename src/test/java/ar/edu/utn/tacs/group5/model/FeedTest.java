@@ -10,16 +10,16 @@ import ar.edu.utn.tacs.group5.meta.FeedMeta;
 
 public class FeedTest extends AppEngineTestCase {
 
-	@Test
-	public void testIsValid() throws Exception {
-		Feed feed = new Feed();
-		assertFalse(feed.isValid());
-		feed = getParsedFeed();
-		assertTrue(feed.isValid());
-	}
+    @Test
+    public void testIsValid() throws Exception {
+        Feed feed = new Feed();
+        assertFalse(feed.isValid());
+        feed = getParsedFeed();
+        assertTrue(feed.isValid());
+    }
 
-	private Feed getParsedFeed() {
-		String modelJson = "{ title: \"foo\", description: \"bar\", link: \"http://www.foo.com\" }";
-		return FeedMeta.get().jsonToModel(modelJson);
-	}
+    private Feed getParsedFeed() {
+        String modelJson = "{ title: \"foo\", description: \"bar\", link: \"http://www.foo.com\" }";
+        return FeedMeta.get().jsonToModel(modelJson);
+    }
 }

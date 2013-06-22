@@ -14,52 +14,51 @@ import com.google.appengine.api.datastore.KeyFactory;
 import com.google.appengine.api.datastore.Query.FilterOperator;
 import com.google.appengine.api.datastore.Transaction;
 
-
 public class FeedService {
 
-	static final String DEFAULT_FEED = "My Feed";
-	private FeedMeta feedMeta = FeedMeta.get();
+    static final String DEFAULT_FEED = "My Feed";
+    private FeedMeta feedMeta = FeedMeta.get();
 
-	public void insert(Long userId) {
-		Feed feed = new Feed();
-		feed.setUserId(userId);
-		feed.setTitle(DEFAULT_FEED);
-		insert(feed);
-	}
+    public void insert(Long userId) {
+        Feed feed = new Feed();
+        feed.setUserId(userId);
+        feed.setTitle(DEFAULT_FEED);
+        insert(feed);
+    }
 
-	public void insert(Feed feed) {
-		Transaction tx = Datastore.beginTransaction();
-		Datastore.put(tx, feed);
-		tx.commit();
-	}
+    public void insert(Feed feed) {
+        Transaction tx = Datastore.beginTransaction();
+        Datastore.put(tx, feed);
+        tx.commit();
+    }
 
-	public boolean hasDefaultFeed(Long userId) {
-		return queryFeedBy(userId).count() > 0;
-	}
+    public boolean hasDefaultFeed(Long userId) {
+        return queryFeedBy(userId).count() > 0;
+    }
 
-	private ModelQuery<Feed> queryFeedBy(Long userId) {
-		return Datastore.query(feedMeta).filter(feedMeta.userId.getName(), FilterOperator.EQUAL, userId);
-	}
+    private ModelQuery<Feed> queryFeedBy(Long userId) {
+        return Datastore.query(feedMeta).filter(feedMeta.userId.getName(), FilterOperator.EQUAL, userId);
+    }
 
-	public Feed getDefaultFeed(Long userId) {
-		return queryFeedBy(userId).asSingle();
-	}
+    public Feed getDefaultFeed(Long userId) {
+        return queryFeedBy(userId).asSingle();
+    }
 
-	public void addItem(Feed feed, Item item) {
-		checkNotNull(feed);
-		checkNotNull(item);
-		item.getFeedRef().setModel(feed);
-		Datastore.put(feed, item);
-	}
+    public void addItem(Feed feed, Item item) {
+        checkNotNull(feed);
+        checkNotNull(item);
+        item.getFeedRef().setModel(feed);
+        Datastore.put(feed, item);
+    }
 
-	public Feed getByKey(Key key) {
-		checkNotNull(key);
-		return Datastore.get(feedMeta, key);
-	}
+    public Feed getByKey(Key key) {
+        checkNotNull(key);
+        return Datastore.get(feedMeta, key);
+    }
 
-	public Feed getByKey(String key) {
-		checkNotNull(key);
-		return getByKey(KeyFactory.stringToKey(key));
-	}
+    public Feed getByKey(String key) {
+        checkNotNull(key);
+        return getByKey(KeyFactory.stringToKey(key));
+    }
 
 }

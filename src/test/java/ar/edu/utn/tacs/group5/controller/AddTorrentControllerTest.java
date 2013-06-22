@@ -23,24 +23,24 @@ import com.google.common.net.MediaType;
 
 public class AddTorrentControllerTest extends AbstractAuthorizedControllerTest<AddTorrentController> {
 
-	private FeedService feedService = new FeedService();
+    private FeedService feedService = new FeedService();
 
-	@Test
-	public void testRunAddedOk() throws Exception {
-		doLogin();
-		Feed feed = prepareValidPostRequest();
-		tester.start(resource());
-		assertController(HttpStatus.SC_CREATED);
+    @Test
+    public void testRunAddedOk() throws Exception {
+        doLogin();
+        Feed feed = prepareValidPostRequest();
+        tester.start(resource());
+        assertController(HttpStatus.SC_CREATED);
 
-		feed = feedService.getByKey(feed.getKey());
-		assertThat(feed.getItems().size(), is(1));
-		Item item = feed.getItems().get(0);
-		assertThat(item.getTitle(), is("foo"));
-		assertThat(item.getLink(), is("http://www.foo.com"));
-		assertThat(item.getDescription(), is("bar"));
-	}
+        feed = feedService.getByKey(feed.getKey());
+        assertThat(feed.getItems().size(), is(1));
+        Item item = feed.getItems().get(0);
+        assertThat(item.getTitle(), is("foo"));
+        assertThat(item.getLink(), is("http://www.foo.com"));
+        assertThat(item.getDescription(), is("bar"));
+    }
 
-	@Test
+    @Test
     public void testRunAddedOkFromFB() throws Exception {
         doLogin();
         Feed feed = prepareValidGetRequest();
@@ -57,8 +57,8 @@ public class AddTorrentControllerTest extends AbstractAuthorizedControllerTest<A
         assertThat(item.getTitle(), is("foo"));
         assertThat(item.getLink(), is("http://www.foo.com"));
     }
-    
-	@Test
+
+    @Test
     public void testRunFromFBHasNoItemParameters() throws Exception {
         doLogin();
         MockHttpServletRequest request = tester.request;
@@ -78,7 +78,7 @@ public class AddTorrentControllerTest extends AbstractAuthorizedControllerTest<A
         tester.start(resource());
         assertController(HttpStatus.SC_BAD_REQUEST);
     }
-    
+
     @Test
     public void testRunFromFBHasNoItemLink() throws Exception {
         doLogin();
@@ -89,70 +89,70 @@ public class AddTorrentControllerTest extends AbstractAuthorizedControllerTest<A
         tester.start(resource());
         assertController(HttpStatus.SC_BAD_REQUEST);
     }
-    
-	@Test
-	public void testRunIsNotAllowed() throws Exception {
-		doLogin();
-		tester.request.setMethod(HttpMethod.PUT);
-		tester.start(resource());
-		assertController(HttpStatus.SC_METHOD_NOT_ALLOWED);
-	}
 
-	@Test
-	public void testRunHasNoTorrent() throws Exception {
-		doLogin();
-		MockHttpServletRequest request = tester.request;
-		request.setContentType(MediaType.JSON_UTF_8.toString());
-		request.setMethod(HttpMethod.POST);
-		tester.start(resource());
-		assertController(HttpStatus.SC_BAD_REQUEST);
-	}
+    @Test
+    public void testRunIsNotAllowed() throws Exception {
+        doLogin();
+        tester.request.setMethod(HttpMethod.PUT);
+        tester.start(resource());
+        assertController(HttpStatus.SC_METHOD_NOT_ALLOWED);
+    }
 
-	@Test
-	public void testRunHasNoFeedKey() throws Exception {
-		doLogin();
-		MockHttpServletRequest request = tester.request;
-		request.setContentType(MediaType.JSON_UTF_8.toString());
-		request.setMethod(HttpMethod.POST);
-		tester.start(resource());
-		assertController(HttpStatus.SC_BAD_REQUEST);
-	}
+    @Test
+    public void testRunHasNoTorrent() throws Exception {
+        doLogin();
+        MockHttpServletRequest request = tester.request;
+        request.setContentType(MediaType.JSON_UTF_8.toString());
+        request.setMethod(HttpMethod.POST);
+        tester.start(resource());
+        assertController(HttpStatus.SC_BAD_REQUEST);
+    }
 
-	@Test
-	public void testRunHasInvalidFeedKey() throws Exception {
-		doLogin();
-		MockHttpServletRequest request = tester.request;
-		request.setContentType(MediaType.JSON_UTF_8.toString());
-		request.setMethod(HttpMethod.POST);
-		request.setParameter(Constants.FEED, "xxxx9999xxxxx");
-		tester.start(resource());
-		assertController(HttpStatus.SC_BAD_REQUEST);
-	}
+    @Test
+    public void testRunHasNoFeedKey() throws Exception {
+        doLogin();
+        MockHttpServletRequest request = tester.request;
+        request.setContentType(MediaType.JSON_UTF_8.toString());
+        request.setMethod(HttpMethod.POST);
+        tester.start(resource());
+        assertController(HttpStatus.SC_BAD_REQUEST);
+    }
 
-	@Override
-	protected String resource() {
-		return "/AddTorrent";
-	}
+    @Test
+    public void testRunHasInvalidFeedKey() throws Exception {
+        doLogin();
+        MockHttpServletRequest request = tester.request;
+        request.setContentType(MediaType.JSON_UTF_8.toString());
+        request.setMethod(HttpMethod.POST);
+        request.setParameter(Constants.FEED, "xxxx9999xxxxx");
+        tester.start(resource());
+        assertController(HttpStatus.SC_BAD_REQUEST);
+    }
 
-	private Feed prepareValidPostRequest() throws IOException {
-		String torrent = "{ title: \"foo\", description: \"bar\", link: \"http://www.foo.com\" }";
+    @Override
+    protected String resource() {
+        return "/AddTorrent";
+    }
 
-		Feed feed = new Feed();
-		feed.setTitle("My Feed");
-		feed.setDescription("My Feed description");
-		feedService.insert(feed);
+    private Feed prepareValidPostRequest() throws IOException {
+        String torrent = "{ title: \"foo\", description: \"bar\", link: \"http://www.foo.com\" }";
 
-		BufferedReader reader = Mockito.mock(BufferedReader.class);
-		when(reader.readLine()).thenReturn(torrent);
-		MockHttpServletRequest request = tester.request;
-		request.setReader(reader);
-		request.setContentType(MediaType.JSON_UTF_8.toString());
-		request.setMethod(HttpMethod.POST);
-		request.addParameter(Constants.FEED, KeyFactory.keyToString(feed.getKey()));
-		return feed;
-	}
+        Feed feed = new Feed();
+        feed.setTitle("My Feed");
+        feed.setDescription("My Feed description");
+        feedService.insert(feed);
 
-   private Feed prepareValidGetRequest() throws IOException {
+        BufferedReader reader = Mockito.mock(BufferedReader.class);
+        when(reader.readLine()).thenReturn(torrent);
+        MockHttpServletRequest request = tester.request;
+        request.setReader(reader);
+        request.setContentType(MediaType.JSON_UTF_8.toString());
+        request.setMethod(HttpMethod.POST);
+        request.addParameter(Constants.FEED, KeyFactory.keyToString(feed.getKey()));
+        return feed;
+    }
+
+    private Feed prepareValidGetRequest() throws IOException {
         MockHttpServletRequest request = tester.request;
         request.setMethod(HttpMethod.GET);
         request.addParameter(Constants.TITLE, "foo");

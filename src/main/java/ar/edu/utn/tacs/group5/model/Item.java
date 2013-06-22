@@ -47,46 +47,46 @@ public class Item implements Serializable {
     }
 
     public String getTitle() {
-		return title;
-	}
+        return title;
+    }
 
-	public void setTitle(String title) {
-		this.title = title;
-	}
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-	public String getLink() {
-		return link;
-	}
+    public String getLink() {
+        return link;
+    }
 
-	public void setLink(String link) {
-		this.link = link;
-	}
+    public void setLink(String link) {
+        this.link = link;
+    }
 
-	public String getDescription() {
-		return description;
-	}
+    public String getDescription() {
+        return description;
+    }
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-	public ModelRef<Feed> getFeedRef() {
-		return feedRef;
-	}
+    public ModelRef<Feed> getFeedRef() {
+        return feedRef;
+    }
 
-	public Feed getFeed() {
-		return feed;
-	}
+    public Feed getFeed() {
+        return feed;
+    }
 
-	public void setFeed(Feed feed) {
-		this.feed = feed;
-	}
+    public void setFeed(Feed feed) {
+        this.feed = feed;
+    }
 
-	public boolean isValid() {
-		return title != null && link != null && feed != null && feed.isValid();
-	}
+    public boolean isValid() {
+        return title != null && link != null && feed != null && feed.isValid();
+    }
 
-	@Override
+    @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;

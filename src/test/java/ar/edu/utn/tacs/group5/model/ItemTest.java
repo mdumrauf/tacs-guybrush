@@ -12,19 +12,19 @@ import ar.edu.utn.tacs.group5.meta.ItemMeta;
 
 public class ItemTest extends AppEngineTestCase {
 
-	@Test
-	public void testIsValid() throws Exception {
-		Item item = new Item();
-		assertFalse(item.isValid());
-		item = getParsedItem(ItemMeta.get());
-		assertFalse(item.isValid());
-		Feed feed = getParsedItem(FeedMeta.get());
-		item.setFeed(feed);
-		assertTrue(item.isValid());
-	}
+    @Test
+    public void testIsValid() throws Exception {
+        Item item = new Item();
+        assertFalse(item.isValid());
+        item = getParsedItem(ItemMeta.get());
+        assertFalse(item.isValid());
+        Feed feed = getParsedItem(FeedMeta.get());
+        item.setFeed(feed);
+        assertTrue(item.isValid());
+    }
 
-	private static <T, M extends ModelMeta<T>> T getParsedItem(M modelMeta) {
-		String modelJson = "{ title: \"foo\", description: \"bar\", link: \"http://www.foo.com\" }";
-		return modelMeta.jsonToModel(modelJson);
-	}
+    private static <T, M extends ModelMeta<T>> T getParsedItem(M modelMeta) {
+        String modelJson = "{ title: \"foo\", description: \"bar\", link: \"http://www.foo.com\" }";
+        return modelMeta.jsonToModel(modelJson);
+    }
 }
