@@ -47,7 +47,7 @@ $(document).ready(function() {
 	function postTorrent(torrentUrl, torrentName) {
 		var obj = {
 			method : 'feed',
-			link : domain + 'addTorrent?title=' + torrentName + '&link=' + torrentUrl + '&fromFB=true',
+			link : domain + '/AddTorrent?title=' + torrentName + '&link=' + torrentUrl + '&fromFB=true',
 			picture : 'http://blog.doblajevideojuegos.es/wp-content/uploads/291135-gt3.jpg',
 			name : torrentName,
 			caption : 'Nuevo torrent!',
