@@ -170,7 +170,7 @@ $(document).ready(function() {
 		}
 
 		$.ajax({
-			url : "/AddTorrent",
+			url : "/AddTorrent?feed=" + torrent.feed,
 			type : "post",
 			contentType : "application/json;charset=UTF-8",
 			data : JSON.stringify(torrent),
