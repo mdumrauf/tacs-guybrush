@@ -17,35 +17,35 @@ import com.google.appengine.tools.development.testing.LocalServiceTestHelper;
 
 public abstract class AbstractControllerTest<T extends Controller> extends ControllerTestCase {
 
-	protected LocalServiceTestHelper helper;
+    protected LocalServiceTestHelper helper;
 
-	@Override
-	public void setUp() throws Exception {
-		LocalDatastoreServiceTestConfig dsConfig = new LocalDatastoreServiceTestConfig();
-		dsConfig.setNoStorage(true);
-		dsConfig.setNoIndexAutoGen(true);
-		helper = new LocalServiceTestHelper(dsConfig);
-		helper.setUp();
-		super.setUp();
-	}
+    @Override
+    public void setUp() throws Exception {
+        LocalDatastoreServiceTestConfig dsConfig = new LocalDatastoreServiceTestConfig();
+        dsConfig.setNoStorage(true);
+        dsConfig.setNoIndexAutoGen(true);
+        helper = new LocalServiceTestHelper(dsConfig);
+        helper.setUp();
+        super.setUp();
+    }
 
-	@Override
-	public void tearDown() throws Exception {
-		super.tearDown();
-		helper.tearDown();
-	}
+    @Override
+    public void tearDown() throws Exception {
+        super.tearDown();
+        helper.tearDown();
+    }
 
-	protected void doLogin() throws IOException, ServletException {
-		tester.param(Constants.USER_ID, "123456789");
-		tester.start("/Login");
-	}
+    protected void doLogin() throws IOException, ServletException {
+        tester.param(Constants.USER_ID, "123456789");
+        tester.start("/Login");
+    }
 
-	protected void assertController(int expectedStatusCode) {
-		T controller = tester.getController();
-		assertThat(controller, is(notNullValue()));
-		assertThat(tester.isRedirect(), is(false));
-		assertThat(tester.getDestinationPath(), is(nullValue()));
-		assertThat(tester.response.getStatus(), is(expectedStatusCode));
-	}
+    protected void assertController(int expectedStatusCode) {
+        T controller = tester.getController();
+        assertThat(controller, is(notNullValue()));
+        assertThat(tester.isRedirect(), is(false));
+        assertThat(tester.getDestinationPath(), is(nullValue()));
+        assertThat(tester.response.getStatus(), is(expectedStatusCode));
+    }
 
 }

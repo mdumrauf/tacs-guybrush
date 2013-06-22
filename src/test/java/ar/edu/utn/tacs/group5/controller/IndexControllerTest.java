@@ -10,11 +10,10 @@ import org.junit.Test;
 
 public class IndexControllerTest extends AbstractControllerTest<IndexController> {
 
-
-	@Test
-	public void test() throws Exception {
-		tester.start("/");
-		assertThat(tester.response.getStatus(), is(equalTo(HttpServletResponse.SC_OK)));
-	}
+    @Test
+    public void test() throws Exception {
+        tester.start("/");
+        assertThat(tester.response.getStatus(), is(equalTo(HttpServletResponse.SC_OK)));
+    }
 
 }

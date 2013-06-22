@@ -162,26 +162,40 @@ $(document).ready(function() {
 	function addTorrent(e) {
 		e.preventDefault();
 		var $formAddTorrent = $('#formAddTorrent');
-		var torrentName = $formAddTorrent.find('.torrentName').val();
-		var torrentUrl = $formAddTorrent.find('.torrentUrl').val();
-		var feedKey = $(this).closest(".feed").data("feed-key");
+		var torrent = {};
+		torrent.title = $formAddTorrent.find('.torrentName').val();
+		torrent.link = $formAddTorrent.find('.torrentUrl').val();
+		// TODO: description
+		torrent.feed = $(this).closest(".feed").data("feed-key");
 
-		if (torrentName == "" || torrentUrl == "") {
+		if (torrent.title == "" || torrent.link == "") {
 			alert('The name or url of the torrent are missing.');
 			return;
 		}
 
-		// TODO: Llamada a servlet addTorrent
+		$.ajax({
+			url : "/AddTorrent?feed=" + torrent.feed,
+			type : "post",
+			contentType : "application/json;charset=UTF-8",
+			data : JSON.stringify(torrent),
+			error : function(status) {
+				alert("Error al intentar agregar el torrent");
+			},
+			success : function(torrentJson) {
+				var $torrents = $formAddTorrent.closest('.torrents');
+				var $newTorrent = $torrents.find('.template').clone().removeClass('template');
+				var torrent = $.parseJSON(torrentJson);
+				$newTorrent.find('.torrent').text(torrent.title);
+				$newTorrent.find('.torrent').attr('href', torrent.link);
+				// TODO: description
+				$newTorrent.prependTo($torrents).hide().slideDown();
 
-		var $torrents = $(this).closest('.torrents');
-		var $newTorrent = $torrents.find('.template').clone().removeClass('template');
-		$newTorrent.find('.torrent').text(torrentName);
-		$newTorrent.find('.torrent').attr('href', torrentUrl);
-		$newTorrent.prependTo($torrents).hide().slideDown();
+				$formAddTorrent.slideUp();
 
-		$formAddTorrent.slideUp();
-		
-		postTorrent(torrentUrl,torrentName);
+				postTorrent(torrent.link, torrent.title);
+			}
+		});
+
 	}
 	
 	// TODO: Not Used
