@@ -177,9 +177,10 @@ $(document).ready(function() {
 			error : function(status) {
 				alert("Error al intentar agregar el torrent");
 			},
-			success : function(torrent) {
+			success : function(torrentJson) {
 				var $torrents = $(this).closest('.torrents');
 				var $newTorrent = $torrents.find('.template').clone().removeClass('template');
+				var torrent = $.parseJSON(torrentJson);
 				$newTorrent.find('.torrent').text(torrent.title);
 				$newTorrent.find('.torrent').attr('href', torrent.link);
 				// TODO: description
