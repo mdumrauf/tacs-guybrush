@@ -1,0 +1,35 @@
+package ar.edu.utn.tacs.group5.controller;
+
+
+import java.util.List;
+
+import org.apache.commons.httpclient.HttpStatus;
+import org.slim3.controller.Controller;
+import org.slim3.controller.Navigation;
+
+import ar.edu.utn.tacs.group5.meta.FeedMeta;
+import ar.edu.utn.tacs.group5.model.Feed;
+import ar.edu.utn.tacs.group5.service.FeedService;
+
+public class GetFeedsController extends Controller {
+    private static final String ALLOWED_METHODS = "Allowed methods: GET";
+	private FeedService feedService = new FeedService();
+
+	@Override
+	protected Navigation run() throws Exception {
+    	Long userId = sessionScope(Constants.USER_ID);
+    	if (userId == null) {
+			response.setStatus(HttpStatus.SC_FORBIDDEN);
+			return null;
+		}
+    	if (!isGet()) {
+			response.setStatus(HttpStatus.SC_METHOD_NOT_ALLOWED);
+			response.getWriter().print(ALLOWED_METHODS);
+			return null;
+		}
+		List<Feed> feeds = feedService.getFeedsByUserId(userId);
+		response.getWriter().print(FeedMeta.get().modelsToJson(feeds));
+    	return null;
+	}
+
+}

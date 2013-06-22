@@ -1,5 +1,7 @@
 package ar.edu.utn.tacs.group5.service;
 
+import java.util.List;
+
 import org.slim3.datastore.Datastore;
 import org.slim3.datastore.ModelQuery;
 
@@ -41,6 +43,14 @@ public class FeedService {
 		Feed feed = queryFeedBy(userId).asSingle();
 		feed.setItems(feed.getItemListRef().getModelList());
 		return feed;
+	}
+	
+	public List<Feed> getFeedsByUserId(Long userId) {
+		List<Feed> feeds = queryFeedBy(userId).asList();
+		for(Feed feed : feeds) {
+			feed.setItems(feed.getItemListRef().getModelList());
+		}
+		return feeds;
 	}
 
 	public void addTorrent(Long userId, String link) {
