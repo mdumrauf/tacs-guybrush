@@ -82,15 +82,14 @@ public class AddTorrentControllerTest extends AbstractAuthorizedControllerTest<A
 	@Test
 	public void testRunFromFB() throws Exception {
 		doLogin();
-		tester.param(Constants.LINK, "http://www.foo.com");
-		tester.param(Constants.FROM_FB, true);
-		tester.request.setMethod(HttpMethod.POST);
+		prepareValidRequest();
+		tester.request.setParameter(Constants.FROM_FB, String.valueOf(true));
 		tester.start(resource());
 		AddTorrentController controller = tester.getController();
 		assertThat(controller, is(notNullValue()));
+		assertThat(tester.response.getStatus(), is(HttpStatus.SC_MOVED_TEMPORARILY));
 		assertThat(tester.isRedirect(), is(true));
 		assertThat(tester.getDestinationPath(), is("index.jsp"));
-		assertThat(tester.response.getStatus(), is(HttpStatus.SC_MOVED_TEMPORARILY));
 	}
 
 	@Override
