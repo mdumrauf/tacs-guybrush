@@ -7,6 +7,7 @@ import org.slim3.datastore.Model;
 import org.slim3.datastore.ModelRef;
 
 import com.google.appengine.api.datastore.Key;
+import com.google.gson.annotations.Expose;
 
 @Model(schemaVersion = 1)
 public class Item implements Serializable {
@@ -14,20 +15,25 @@ public class Item implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Attribute(primaryKey = true)
+    @Expose
     private Key key;
 
     @Attribute(version = true)
     private Long version;
 
+    @Expose
     private String title;
 
+    @Expose
     private String link;
 
+    @Expose
     private String description;
 
     private ModelRef<Feed> feedRef = new ModelRef<Feed>(Feed.class);
 
     @Attribute(persistent = false)
+    @Expose
     private Feed feed;
 
     public Key getKey() {
