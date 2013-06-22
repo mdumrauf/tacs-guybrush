@@ -116,4 +116,11 @@ public class Item implements Serializable {
         return true;
     }
 
+    public static Item newItem(String title, String link) {
+        Item item = new Item();
+        item.setTitle(title);
+        item.setLink(link);
+        return item;
+    }
+
 }
