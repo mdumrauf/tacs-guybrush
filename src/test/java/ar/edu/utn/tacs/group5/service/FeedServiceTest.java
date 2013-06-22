@@ -1,6 +1,7 @@
 package ar.edu.utn.tacs.group5.service;
 
 import static ar.edu.utn.tacs.group5.model.Feed.newFeed;
+import static ar.edu.utn.tacs.group5.model.Item.newItem;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.Assert.assertEquals;
@@ -9,8 +10,6 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
-
-import java.util.List;
 
 import org.junit.Test;
 
@@ -138,13 +137,23 @@ public class FeedServiceTest extends AbstractServiceTest {
     public void testGetAll() throws Exception {
         long userId = 123456789L;
         service.insert(userId);
-        List<Feed> all = service.getAll(userId);
-        assertThat(all.size(), is(1));
+        assertThat(service.getAll(userId).size(), is(1));
+        assertThat(service.getAll(userId).get(0).getItems().size(), is(0));
+
+        Feed defaultFeed = service.getDefaultFeed(userId);
+        service.addItem(defaultFeed, newItem("Item 1", "http://item1.com"));
+        service.addItem(defaultFeed, newItem("Item 2", "http://item2.com"));
+        service.addItem(defaultFeed, newItem("Item 3", "http://item3.com"));
+        assertThat(service.getAll(userId).size(), is(1));
+        assertThat(service.getAll(userId).get(0).getItems().size(), is(3));
+        Item item = service.getAll(userId).get(0).getItems().get(0);
+        assertThat(item.getTitle(), is("Item 1"));
+        assertThat(item.getLink(), is("http://item1.com"));
+
         service.insert(newFeed(userId, "Foo1", "Foo1 description"));
         service.insert(newFeed(userId, "Foo2", "Foo2 description"));
         service.insert(newFeed(userId, "Foo3", "Foo3 description"));
-        all = service.getAll(userId);
-        assertThat(all.size(), is(4));
+        assertThat(service.getAll(userId).size(), is(4));
     }
 
 }
