@@ -30,7 +30,9 @@ public class GetFeedControllerTest extends AbstractAuthorizedControllerTest<GetF
         feed.setTitle("My Feed");
         feed.setDescription("My Feed description");
         feedService.insert(feed);
-        tester.request.addParameter(Constants.FEED, KeyFactory.keyToString(feed.getKey()));
+        String keyToString = KeyFactory.keyToString(feed.getKey());
+        feed.setLink("http://localhost:8888/GetFeed?feed=" + keyToString);
+        tester.request.addParameter(Constants.FEED, keyToString);
         tester.start(resource());
         assertController(HttpStatus.SC_OK);
         Mustache feedTemplate = mustacheFactory.compile(FEED_TEMPLATE);
