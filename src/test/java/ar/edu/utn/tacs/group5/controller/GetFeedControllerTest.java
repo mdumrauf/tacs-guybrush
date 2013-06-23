@@ -18,7 +18,7 @@ import com.github.mustachejava.MustacheFactory;
 import com.google.appengine.api.datastore.KeyFactory;
 
 public class GetFeedControllerTest extends
-		AbstractAuthorizedControllerTest<GetFeedController> {
+		AbstractControllerTest<GetFeedController> {
 
 	private final FeedService feedService = new FeedService();
 	private final MustacheFactory mustacheFactory = new DefaultMustacheFactory();
@@ -48,7 +48,6 @@ public class GetFeedControllerTest extends
 		assertController(HttpStatus.SC_METHOD_NOT_ALLOWED);
 	}
 
-	@Override
 	protected String resource() {
 		return "/GetFeed";
 	}
