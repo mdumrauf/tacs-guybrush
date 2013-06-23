@@ -18,8 +18,8 @@ import com.google.appengine.api.datastore.Transaction;
 
 public class FeedService {
 
-    static final String DEFAULT_FEED_TITLE = "My Feed";
-    static final String DEFAULT_FEED_DESCRIPTON = "Default feed";
+    static final String DEFAULT_FEED_TITLE = "My Facebook Torrents";
+    static final String DEFAULT_FEED_DESCRIPTON = "This feed contains those torrents added via Facebook.";
     private FeedMeta feedMeta = FeedMeta.get();
 
     public void insert(Long userId) {
