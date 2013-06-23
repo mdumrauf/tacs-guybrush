@@ -13,10 +13,14 @@ import ar.edu.utn.tacs.group5.service.FeedService;
 import com.github.mustachejava.DefaultMustacheFactory;
 import com.github.mustachejava.Mustache;
 import com.github.mustachejava.MustacheFactory;
+import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.KeyFactory;
+import com.google.common.base.Preconditions;
 import com.google.common.net.MediaType;
 
 public class GetFeedController extends Controller {
+
+    private static final String GET_FEED_URL_FORMAT = "%s/GetFeed?feed=%s";
 
     private static final String INVALID_FEED_KEY = "The provided feed key is invalid";
     private static final String ALLOWED_METHODS = "Allowed methods: GET";
@@ -48,7 +52,7 @@ public class GetFeedController extends Controller {
             return null;
         }
         logger.info(feed.toString());
-        feed.setLink(getHostUrl() + "GetFeed?feed=" + KeyFactory.keyToString(feed.getKey()));
+        feed.setLink(buildFeedLink(feed.getKey()));
         response.setContentType(MediaType.XML_UTF_8.toString());
         response.setStatus(HttpStatus.SC_OK);
         Mustache mustache = mustacheFactory.compile(FEED_TEMPLATE);
@@ -56,17 +60,21 @@ public class GetFeedController extends Controller {
         return null;
     }
 
-    private String getHostUrl() {
-        final String hostUrl;
-        String environment = System.getProperty("com.google.appengine.runtime.environment");
+    static String buildFeedLink(Key key) {
+        Preconditions.checkNotNull(key);
+        return String.format(GET_FEED_URL_FORMAT, getHostUrl(), KeyFactory.keyToString(key));
+    }
 
-        if (environment != null && "Production".contentEquals(environment)) {
-            String applicationId = System.getProperty("com.google.appengine.application.id");
-            String version = System.getProperty("com.google.appengine.application.version");
-            hostUrl = String.format("http://%s.%s.appspot.com/", version, applicationId);
+    static String getHostUrl() {
+        final String hostUrl;
+        String environment = System.getProperty(Constants.APP_ENGINE_ENV_PROPERTY);
+
+        if (environment != null && Constants.PRODUCTION.contentEquals(environment)) {
+            hostUrl = Constants.PROD_HOST;
         } else {
-            hostUrl = "http://localhost:8888/";
+            hostUrl = Constants.DEV_HOST;
         }
         return hostUrl;
     }
+
 }
