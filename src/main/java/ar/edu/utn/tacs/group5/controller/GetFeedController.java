@@ -58,15 +58,14 @@ public class GetFeedController extends Controller {
 
     private String getHostUrl() {
         final String hostUrl;
-        String environment = System.getProperty("com.google.appengine.runtime.environment");
+        String environment = System.getProperty(Constants.APP_ENGINE_ENV_PROPERTY);
 
-        if (environment != null && "Production".contentEquals(environment)) {
-            String applicationId = System.getProperty("com.google.appengine.application.id");
-            String version = System.getProperty("com.google.appengine.application.version");
-            hostUrl = String.format("http://%s.%s.appspot.com/", version, applicationId);
+        if (environment != null && Constants.PRODUCTION.contentEquals(environment)) {
+            hostUrl = Constants.PROD_HOST;
         } else {
-            hostUrl = "http://localhost:8888/";
+            hostUrl = Constants.DEV_HOST;
         }
         return hostUrl;
     }
+
 }
