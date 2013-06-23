@@ -15,6 +15,7 @@ import com.github.mustachejava.Mustache;
 import com.github.mustachejava.MustacheFactory;
 import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.KeyFactory;
+import com.google.common.base.Preconditions;
 import com.google.common.net.MediaType;
 
 public class GetFeedController extends Controller {
@@ -60,6 +61,7 @@ public class GetFeedController extends Controller {
     }
 
     private static String buildFeedLink(Key key) {
+        Preconditions.checkNotNull(key);
         return String.format(GET_FEED_URL_FORMAT, getHostUrl(), KeyFactory.keyToString(key));
     }
 
