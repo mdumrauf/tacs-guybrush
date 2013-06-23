@@ -46,7 +46,7 @@ public class GetFeedControllerTest extends AbstractControllerTest<GetFeedControl
         assertController(HttpStatus.SC_METHOD_NOT_ALLOWED);
     }
 
-    protected String resource() {
+    private String resource() {
         return "/GetFeed";
     }
 
