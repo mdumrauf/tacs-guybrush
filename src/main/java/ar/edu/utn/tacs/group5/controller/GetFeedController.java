@@ -14,6 +14,7 @@ import com.github.mustachejava.DefaultMustacheFactory;
 import com.github.mustachejava.Mustache;
 import com.github.mustachejava.MustacheFactory;
 import com.google.appengine.api.datastore.KeyFactory;
+import com.google.common.net.MediaType;
 
 public class GetFeedController extends Controller {
 
@@ -53,9 +54,10 @@ public class GetFeedController extends Controller {
         }
         logger.info(feed.toString());
         feed.setLink(getHostUrl() + "GetFeed?feed=" + KeyFactory.keyToString(feed.getKey()));
+        response.setContentType(MediaType.XML_UTF_8.toString());
+        response.setStatus(HttpStatus.SC_OK);
         Mustache mustache = mustacheFactory.compile(FEED_TEMPLATE);
         mustache.execute(new PrintWriter(response.getWriter()), feed).flush();
-        response.setStatus(HttpStatus.SC_OK);
         return null;
     }
 
