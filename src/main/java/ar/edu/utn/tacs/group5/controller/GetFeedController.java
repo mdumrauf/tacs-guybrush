@@ -19,6 +19,8 @@ import com.google.common.net.MediaType;
 
 public class GetFeedController extends Controller {
 
+    private static final String GET_FEED_URL_FORMAT = "%s/GetFeed?feed=%s";
+
     private static final String INVALID_FEED_KEY = "The provided feed key is invalid";
     private static final String ALLOWED_METHODS = "Allowed methods: GET";
     static final String FEED_TEMPLATE = "feed.mustache";
@@ -58,7 +60,7 @@ public class GetFeedController extends Controller {
     }
 
     private static String buildFeedLink(Key key) {
-        return String.format("%s/GetFeed?feed=%s", getHostUrl(), KeyFactory.keyToString(key));
+        return String.format(GET_FEED_URL_FORMAT, getHostUrl(), KeyFactory.keyToString(key));
     }
 
     private static String getHostUrl() {
