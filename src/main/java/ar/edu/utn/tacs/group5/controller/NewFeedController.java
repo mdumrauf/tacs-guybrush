@@ -54,6 +54,7 @@ public class NewFeedController extends Controller {
         feed.setUserId(userId);
         feedService.insert(feed);
         response.setStatus(HttpStatus.SC_CREATED);
+        response.setContentType(MediaType.JSON_UTF_8.toString());
         response.getWriter().print(feedMeta.modelToJson(feed));
         return null;
     }

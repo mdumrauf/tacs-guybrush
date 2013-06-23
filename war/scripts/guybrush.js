@@ -15,9 +15,8 @@ $(document).ready(function() {
 			error : function(status) {
 				alert("Error al intentar cargar los Feeds");
 			},
-			success : function(feedsJson) {
+			success : function(feeds) {
 				var $myFeedsList = $('#myFeedsList');
-				var feeds = $.parseJSON(feedsJson);
 	
 				$('.feed').not('.template').fadeOut(function(){$(this).remove()});
 
@@ -69,10 +68,9 @@ $(document).ready(function() {
 			error : function(status) {
 				alert("Error al intentar guardar el Feed");
 			},
-			success : function(feedJson) {
+			success : function(feed) {
 				var $newFeedTemplate = $('#myFeedsList').find('.feed.template');
 				var $newFeed = $newFeedTemplate.clone().removeClass('template');
-				var feed = $.parseJSON(feedJson);
 	
 				$newFeed.data('feed-key', feed.key);
 				$newFeed.find('.feedName').text(feed.title);
@@ -118,10 +116,9 @@ $(document).ready(function() {
 			error : function(status) {
 				alert("Error al intentar agregar el torrent");
 			},
-			success : function(torrentJson) {
+			success : function(torrent) {
 				var $torrents = $formAddTorrent.closest('.torrents');
 				var $newTorrent = $torrents.find('.template').clone().removeClass('template');
-				var torrent = $.parseJSON(torrentJson);
 				$newTorrent.find('.torrent').text(torrent.title);
 				$newTorrent.find('.torrent').attr('href', torrent.link);
 				// TODO: description

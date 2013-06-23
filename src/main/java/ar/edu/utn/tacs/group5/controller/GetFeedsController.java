@@ -7,6 +7,8 @@ import org.apache.commons.httpclient.HttpStatus;
 import org.slim3.controller.Controller;
 import org.slim3.controller.Navigation;
 
+import com.google.common.net.MediaType;
+
 import ar.edu.utn.tacs.group5.model.Feed;
 import ar.edu.utn.tacs.group5.parser.GAEGson;
 import ar.edu.utn.tacs.group5.service.FeedService;
@@ -33,7 +35,9 @@ public class GetFeedsController extends Controller {
         }
         List<Feed> all = feedService.getAll(userId);
         logger.info(all.toString());
+        response.setStatus(HttpStatus.SC_OK);
         response.getWriter().print(gaeGson.toJsonString(all));
+        response.setContentType(MediaType.JSON_UTF_8.toString());
         return null;
     }
 

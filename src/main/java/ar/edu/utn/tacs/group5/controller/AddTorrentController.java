@@ -82,6 +82,7 @@ public class AddTorrentController extends Controller {
         }
         feedService.addItem(feed, item);
         response.setStatus(HttpStatus.SC_CREATED);
+        response.setContentType(MediaType.JSON_UTF_8.toString());
         response.getWriter().print(itemMeta.modelToJson(item));
         return null;
     }
