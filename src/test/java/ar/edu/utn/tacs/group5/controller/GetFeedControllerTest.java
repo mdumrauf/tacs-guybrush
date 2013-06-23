@@ -24,7 +24,6 @@ public class GetFeedControllerTest extends AbstractControllerTest<GetFeedControl
 
     @Test
     public void runOk() throws Exception {
-        doLogin();
         Feed feed = new Feed();
         feed.setTitle("My Feed");
         feed.setDescription("My Feed description");
