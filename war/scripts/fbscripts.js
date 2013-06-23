@@ -71,12 +71,14 @@ $(document).ready(function() {
 	}
 	
 	function postCallback(response) {
-		if (response && response.post_id) {
-			// TODO: Se posteo bien
-		} else {
-			alert('El link no se posteó correctamente');
+		if (response) {
+			if (response.error) {
+				alert('El link no se posteó en Facebook');
+			}
+			// link shared successfully
 		}
-	}
+		// user cancelled
+	}	
 	
 	function loginOnServer(uid) {
 		userId = uid;
