@@ -4,11 +4,11 @@ $(document).ready(function() {
   guybrushApp.postFeed = postFeed;
 
 	var userId;
-	var domain = 'tacs-guybrush.appspot.com';
+	var domain = 'localhost:8080';
 
 	window.fbAsyncInit = function() {
 		FB.init({
-			appId : 475074325879764,
+			appId : 175661185922694,
 			channelUrl : '//' + domain + '/',
 			status : true,
 			cookie : true,
