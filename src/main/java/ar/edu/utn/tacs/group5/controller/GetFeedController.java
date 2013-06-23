@@ -60,7 +60,7 @@ public class GetFeedController extends Controller {
         return null;
     }
 
-    private static String buildFeedLink(Key key) {
+    static String buildFeedLink(Key key) {
         Preconditions.checkNotNull(key);
         return String.format(GET_FEED_URL_FORMAT, getHostUrl(), KeyFactory.keyToString(key));
     }

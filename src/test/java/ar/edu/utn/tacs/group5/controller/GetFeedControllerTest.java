@@ -1,6 +1,7 @@
 package ar.edu.utn.tacs.group5.controller;
 
 import static ar.edu.utn.tacs.group5.controller.GetFeedController.FEED_TEMPLATE;
+import static ar.edu.utn.tacs.group5.controller.GetFeedController.buildFeedLink;
 import static ar.edu.utn.tacs.group5.controller.GetFeedController.getHostUrl;
 import static org.junit.Assert.assertEquals;
 
@@ -16,6 +17,8 @@ import ar.edu.utn.tacs.group5.service.FeedService;
 import com.github.mustachejava.DefaultMustacheFactory;
 import com.github.mustachejava.Mustache;
 import com.github.mustachejava.MustacheFactory;
+import com.google.appengine.api.datastore.Entities;
+import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.KeyFactory;
 
 public class GetFeedControllerTest extends AbstractControllerTest<GetFeedController> {
@@ -60,6 +63,18 @@ public class GetFeedControllerTest extends AbstractControllerTest<GetFeedControl
         System.setProperty(Constants.APP_ENGINE_ENV_PROPERTY, Constants.PRODUCTION);
         assertEquals(Constants.PROD_HOST, getHostUrl());
         System.setProperty(Constants.APP_ENGINE_ENV_PROPERTY, Constants.DEVELOPMENT);
+    }
+
+    @Test(expected = NullPointerException.class)
+    public void testBuildFeedLinkWithNullKey() {
+        buildFeedLink(null);
+    }
+
+    @Test
+    public void testBuildFeedLink() {
+        Key key = KeyFactory.createKey(Entities.PROPERTY_METADATA_KIND, 123456789L);
+        String keyString = KeyFactory.keyToString(key);
+        assertEquals("http://localhost:8888/GetFeed?feed=" + keyString, buildFeedLink(key));
     }
 
 }
