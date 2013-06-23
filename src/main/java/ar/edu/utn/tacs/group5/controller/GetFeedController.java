@@ -63,7 +63,7 @@ public class GetFeedController extends Controller {
         return String.format(GET_FEED_URL_FORMAT, getHostUrl(), KeyFactory.keyToString(key));
     }
 
-    private static String getHostUrl() {
+    static String getHostUrl() {
         final String hostUrl;
         String environment = System.getProperty(Constants.APP_ENGINE_ENV_PROPERTY);
 

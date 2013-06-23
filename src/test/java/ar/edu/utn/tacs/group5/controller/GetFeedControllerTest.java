@@ -1,6 +1,7 @@
 package ar.edu.utn.tacs.group5.controller;
 
 import static ar.edu.utn.tacs.group5.controller.GetFeedController.FEED_TEMPLATE;
+import static ar.edu.utn.tacs.group5.controller.GetFeedController.getHostUrl;
 import static org.junit.Assert.assertEquals;
 
 import java.io.StringWriter;
@@ -47,6 +48,18 @@ public class GetFeedControllerTest extends AbstractControllerTest<GetFeedControl
 
     protected String resource() {
         return "/GetFeed";
+    }
+
+    @Test
+    public void testGetHostUrlDev() {
+        assertEquals(Constants.DEV_HOST, getHostUrl());
+    }
+
+    @Test
+    public void testGetHostUrlProd() {
+        System.setProperty(Constants.APP_ENGINE_ENV_PROPERTY, Constants.PRODUCTION);
+        assertEquals(Constants.PROD_HOST, getHostUrl());
+        System.setProperty(Constants.APP_ENGINE_ENV_PROPERTY, Constants.DEVELOPMENT);
     }
 
 }
