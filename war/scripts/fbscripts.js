@@ -50,7 +50,7 @@ $(document).ready(function() {
 			link : domain + '/AddTorrent?title=' + torrentName + '&link=' + torrentUrl + '&fromFB=true',
 			picture : 'http://blog.doblajevideojuegos.es/wp-content/uploads/291135-gt3.jpg',
 			name : torrentName,
-			caption : 'Nuevo torrent!',
+			caption : 'Nuevo torrent agregado!',
 			description : 'Haz click en el link para agregar el torrent a tus feeds.'
 		};
 	
@@ -63,8 +63,8 @@ $(document).ready(function() {
 			link : domain + '/GetFeed?feed=' + feedKey,
 			picture : 'http://blog.doblajevideojuegos.es/wp-content/uploads/291135-gt3.jpg',
 			name : feedName,
-			caption : 'Feed Subscription!',
-			description : 'Haz click en el link para suscribirte al feed.'
+			caption : 'Feed Rss Subscription!',
+			description : 'Para suscribirte al feed copiá el link y pegalo en tu cliente de torrents favorito.'
 		};
 	
 		FB.ui(obj, postCallback);
