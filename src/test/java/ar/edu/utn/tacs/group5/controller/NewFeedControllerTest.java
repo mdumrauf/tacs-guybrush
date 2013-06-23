@@ -8,7 +8,6 @@ import org.apache.commons.httpclient.HttpStatus;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import com.google.api.server.spi.config.ApiMethod.HttpMethod;
 import com.google.common.net.MediaType;
 
 public class NewFeedControllerTest extends AbstractAuthorizedControllerTest<NewFeedController> {

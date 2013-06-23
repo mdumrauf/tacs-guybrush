@@ -17,7 +17,6 @@ import ar.edu.utn.tacs.group5.model.Feed;
 import ar.edu.utn.tacs.group5.model.Item;
 import ar.edu.utn.tacs.group5.service.FeedService;
 
-import com.google.api.server.spi.config.ApiMethod.HttpMethod;
 import com.google.appengine.api.datastore.KeyFactory;
 import com.google.common.net.MediaType;
 

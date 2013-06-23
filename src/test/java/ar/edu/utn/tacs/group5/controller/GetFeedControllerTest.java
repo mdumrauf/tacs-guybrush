@@ -15,7 +15,6 @@ import ar.edu.utn.tacs.group5.service.FeedService;
 import com.github.mustachejava.DefaultMustacheFactory;
 import com.github.mustachejava.Mustache;
 import com.github.mustachejava.MustacheFactory;
-import com.google.api.server.spi.config.ApiMethod.HttpMethod;
 import com.google.appengine.api.datastore.KeyFactory;
 
 public class GetFeedControllerTest extends AbstractAuthorizedControllerTest<GetFeedController> {

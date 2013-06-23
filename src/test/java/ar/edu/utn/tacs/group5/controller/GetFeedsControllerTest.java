@@ -18,7 +18,6 @@ import ar.edu.utn.tacs.group5.model.Item;
 import ar.edu.utn.tacs.group5.parser.GAEGson;
 import ar.edu.utn.tacs.group5.service.FeedService;
 
-import com.google.api.server.spi.config.ApiMethod.HttpMethod;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
