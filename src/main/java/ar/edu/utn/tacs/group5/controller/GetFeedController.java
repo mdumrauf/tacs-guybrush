@@ -13,6 +13,7 @@ import ar.edu.utn.tacs.group5.service.FeedService;
 import com.github.mustachejava.DefaultMustacheFactory;
 import com.github.mustachejava.Mustache;
 import com.github.mustachejava.MustacheFactory;
+import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.KeyFactory;
 import com.google.common.net.MediaType;
 
@@ -48,7 +49,7 @@ public class GetFeedController extends Controller {
             return null;
         }
         logger.info(feed.toString());
-        feed.setLink(getHostUrl() + "GetFeed?feed=" + KeyFactory.keyToString(feed.getKey()));
+        feed.setLink(buildFeedLink(feed.getKey()));
         response.setContentType(MediaType.XML_UTF_8.toString());
         response.setStatus(HttpStatus.SC_OK);
         Mustache mustache = mustacheFactory.compile(FEED_TEMPLATE);
@@ -56,7 +57,11 @@ public class GetFeedController extends Controller {
         return null;
     }
 
-    private String getHostUrl() {
+    private static String buildFeedLink(Key key) {
+        return String.format("%s/GetFeed?feed=%s", getHostUrl(), KeyFactory.keyToString(key));
+    }
+
+    private static String getHostUrl() {
         final String hostUrl;
         String environment = System.getProperty(Constants.APP_ENGINE_ENV_PROPERTY);
 
