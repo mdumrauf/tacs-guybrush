@@ -28,11 +28,6 @@ public class GetFeedController extends Controller {
 
     @Override
     public Navigation run() throws Exception {
-        Long userId = sessionScope(Constants.USER_ID);
-        if (userId == null) {
-            response.setStatus(HttpStatus.SC_FORBIDDEN);
-            return null;
-        }
         if (!isGet()) {
             response.setStatus(HttpStatus.SC_METHOD_NOT_ALLOWED);
             response.getWriter().print(ALLOWED_METHODS);
