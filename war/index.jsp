@@ -105,7 +105,7 @@
 			</ul>
 			<hr>
 			<div class="fb-like"
-					data-href="http://localhost:8080"
+					data-href="https://apps.facebook.com/tacs-guybrush"
 					data-send="false" data-layout="button_count" data-width="450"
 					data-show-faces="false" data-font="tahoma"></div>
 		</div>
